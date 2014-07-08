@@ -53,7 +53,7 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=alarmas911',
+			'connectionString' => 'mysql:host=localhost;dbname=alarmas_db',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
