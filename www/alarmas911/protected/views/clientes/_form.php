@@ -18,18 +18,48 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
+<!--
 	<div class="row">
 		<?php echo $form->labelEx($model,'Tipos_Cliente_tipo_cliente_id'); ?>
 		<?php echo $form->textField($model,'Tipos_Cliente_tipo_cliente_id',array('size'=>11,'maxlength'=>11)); ?>
 		<?php echo $form->error($model,'Tipos_Cliente_tipo_cliente_id'); ?>
 	</div>
+-->	
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'Tipos_Cliente_tipo_cliente_id'); ?>
+		<?php
+			$role_list = CHtml::listData(tiposCliente::model()->findAll(), 'tipo_cliente_id', 'nombre_tipo_cliente');
+			$options = array(
+			        'tabindex' => '0',
+			        'empty' => '(not set)',
+			);
+		?>
+		<?php echo $form->dropDownList($model,'Tipos_Cliente_tipo_cliente_id', $role_list, $options); ?>
+		<?php echo $form->error($model,'Tipos_Cliente_tipo_cliente_id'); ?>
+	</div>
+
+<!--
 	<div class="row">
 		<?php echo $form->labelEx($model,'Persona_persona_id'); ?>
 		<?php echo $form->textField($model,'Persona_persona_id',array('size'=>11,'maxlength'=>11)); ?>
 		<?php echo $form->error($model,'Persona_persona_id'); ?>
 	</div>
+-->	
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'Persona_persona_id'); ?>
+		<?php
+			$role_list = CHtml::listData(persona::model()->findAll(), 'persona_id', 'nombre_persona');
+			$options = array(
+			        'tabindex' => '0',
+			        'empty' => '(not set)',
+			);
+		?>
+		<?php echo $form->dropDownList($model,'Persona_persona_id', $role_list, $options); ?>
+		<?php echo $form->error($model,'Persona_persona_id'); ?>
+	</div>
+
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'direccion_cobro'); ?>

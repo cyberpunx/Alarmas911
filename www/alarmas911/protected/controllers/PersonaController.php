@@ -1,6 +1,6 @@
 <?php
 
-class ClientesController extends Controller
+class PersonaController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -51,10 +51,8 @@ class ClientesController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$model =  $this->loadModel($id);
 		$this->render('view',array(
-			'model_u'=>$model,
-			'model_p'=>$model->Persona,
+			'model'=>$this->loadModel($id),
 		));
 	}
 
@@ -64,16 +62,16 @@ class ClientesController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Clientes;
+		$model=new Persona;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Clientes']))
+		if(isset($_POST['Persona']))
 		{
-			$model->attributes=$_POST['Clientes'];
+			$model->attributes=$_POST['Persona'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->cliente_id));
+				$this->redirect(array('view','id'=>$model->persona_id));
 		}
 
 		$this->render('create',array(
@@ -93,11 +91,11 @@ class ClientesController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Clientes']))
+		if(isset($_POST['Persona']))
 		{
-			$model->attributes=$_POST['Clientes'];
+			$model->attributes=$_POST['Persona'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->cliente_id));
+				$this->redirect(array('view','id'=>$model->persona_id));
 		}
 
 		$this->render('update',array(
@@ -124,7 +122,7 @@ class ClientesController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Clientes');
+		$dataProvider=new CActiveDataProvider('Persona');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -135,10 +133,10 @@ class ClientesController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Clientes('search');
+		$model=new Persona('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Clientes']))
-			$model->attributes=$_GET['Clientes'];
+		if(isset($_GET['Persona']))
+			$model->attributes=$_GET['Persona'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -149,12 +147,12 @@ class ClientesController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Clientes the loaded model
+	 * @return Persona the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Clientes::model()->findByPk($id);
+		$model=Persona::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -162,11 +160,11 @@ class ClientesController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Clientes $model the model to be validated
+	 * @param Persona $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='clientes-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='persona-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

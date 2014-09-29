@@ -64,6 +64,7 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Dashboard', 'url'=>array('/site/index')),
+				array('label'=>'Clientes', 'url'=>array('/site/page', 'view'=>'clientes'),'itemOptions'=>array('class'=>'icon_chart')),
 				array('label'=>'Graphs', 'url'=>array('/site/page', 'view'=>'graphs'),'itemOptions'=>array('class'=>'icon_chart')),
 				array('label'=>'Form', 'url'=>array('/site/page', 'view'=>'forms')),
 				array('label'=>'Interface', 'url'=>array('/site/page', 'view'=>'interface')),				

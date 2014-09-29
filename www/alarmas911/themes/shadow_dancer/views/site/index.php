@@ -33,8 +33,8 @@
     </div>
     
     <div class="dashIcon span-3">
-        <a href="#"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-people.png" alt="Customers" /></a>
-        <div class="dashIconText"><a href="#">Customers</a></div>
+        <a href="?r=clientes/index"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-people.png" alt="Clientes" /></a>
+        <div class="dashIconText"><a href="?r=clientes/index">Clientes</a></div>
     </div>
     
     <div class="dashIcon span-3">
