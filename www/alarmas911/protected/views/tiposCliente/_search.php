@@ -18,12 +18,12 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'nombre_tipo_cliente'); ?>
-		<?php echo $form->textField($model,'nombre_tipo_cliente',array('size'=>1,'maxlength'=>1)); ?>
+		<?php echo $form->textField($model,'nombre_tipo_cliente',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'observaciones_tipo_cliente'); ?>
-		<?php echo $form->textField($model,'observaciones_tipo_cliente',array('size'=>1,'maxlength'=>1)); ?>
+		<?php echo $form->textArea($model,'observaciones_tipo_cliente',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row buttons">

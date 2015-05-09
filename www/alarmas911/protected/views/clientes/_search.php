@@ -17,23 +17,18 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'Tipos_Cliente_tipo_cliente_id'); ?>
-		<?php echo $form->textField($model,'Tipos_Cliente_tipo_cliente_id',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->label($model,'tipos_cliente_tipo_cliente_id'); ?>
+		<?php echo $form->textField($model,'tipos_cliente_tipo_cliente_id',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'Persona_persona_id'); ?>
-		<?php echo $form->textField($model,'Persona_persona_id',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->label($model,'personas_persona_id'); ?>
+		<?php echo $form->textField($model,'personas_persona_id',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'direccion_cobro'); ?>
-		<?php echo $form->textField($model,'direccion_cobro',array('size'=>1,'maxlength'=>1)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'abono_mensual'); ?>
-		<?php echo $form->textField($model,'abono_mensual',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->textField($model,'direccion_cobro',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row">
@@ -43,12 +38,12 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'factura'); ?>
-		<?php echo $form->textField($model,'factura',array('size'=>1,'maxlength'=>1)); ?>
+		<?php echo $form->textField($model,'factura',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'razon_social'); ?>
-		<?php echo $form->textField($model,'razon_social',array('size'=>1,'maxlength'=>1)); ?>
+		<?php echo $form->textField($model,'razon_social',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row">

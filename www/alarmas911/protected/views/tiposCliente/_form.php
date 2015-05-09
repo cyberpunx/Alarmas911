@@ -21,13 +21,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'nombre_tipo_cliente'); ?>
-		<?php echo $form->textField($model,'nombre_tipo_cliente',array('size'=>1,'maxlength'=>1)); ?>
+		<?php echo $form->textField($model,'nombre_tipo_cliente',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'nombre_tipo_cliente'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'observaciones_tipo_cliente'); ?>
-		<?php echo $form->textField($model,'observaciones_tipo_cliente',array('size'=>1,'maxlength'=>1)); ?>
+		<?php echo $form->textArea($model,'observaciones_tipo_cliente',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'observaciones_tipo_cliente'); ?>
 	</div>
 

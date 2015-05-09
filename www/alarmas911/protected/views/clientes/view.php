@@ -19,21 +19,12 @@ $this->menu=array(
 <h1>View Clientes #<?php echo $model->cliente_id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model_p,
-	'attributes'=>array(
-		'nombre_persona',
-		'apellido_persona',
-	),
-)); ?>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model_u,
+	'data'=>$model,
 	'attributes'=>array(
 		'cliente_id',
-		'Tipos_Cliente_tipo_cliente_id',
-		'Persona_persona_id',
+		'tipos_cliente_tipo_cliente_id',
+		'personas_persona_id',
 		'direccion_cobro',
-		'abono_mensual',
 		'sistema_secundario_id',
 		'factura',
 		'razon_social',

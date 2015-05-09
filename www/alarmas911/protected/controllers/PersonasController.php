@@ -1,6 +1,6 @@
 <?php
 
-class ClientesController extends Controller
+class PersonasController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,16 +62,16 @@ class ClientesController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Clientes;
+		$model=new Personas;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Clientes']))
+		if(isset($_POST['Personas']))
 		{
-			$model->attributes=$_POST['Clientes'];
+			$model->attributes=$_POST['Personas'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->cliente_id));
+				$this->redirect(array('view','id'=>$model->persona_id));
 		}
 
 		$this->render('create',array(
@@ -91,11 +91,11 @@ class ClientesController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Clientes']))
+		if(isset($_POST['Personas']))
 		{
-			$model->attributes=$_POST['Clientes'];
+			$model->attributes=$_POST['Personas'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->cliente_id));
+				$this->redirect(array('view','id'=>$model->persona_id));
 		}
 
 		$this->render('update',array(
@@ -122,7 +122,7 @@ class ClientesController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Clientes');
+		$dataProvider=new CActiveDataProvider('Personas');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class ClientesController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Clientes('search');
+		$model=new Personas('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Clientes']))
-			$model->attributes=$_GET['Clientes'];
+		if(isset($_GET['Personas']))
+			$model->attributes=$_GET['Personas'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class ClientesController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Clientes the loaded model
+	 * @return Personas the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Clientes::model()->findByPk($id);
+		$model=Personas::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,11 +160,11 @@ class ClientesController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Clientes $model the model to be validated
+	 * @param Personas $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='clientes-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='personas-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

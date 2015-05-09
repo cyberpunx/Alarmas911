@@ -30,7 +30,8 @@ class TiposCliente extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('nombre_tipo_cliente', 'required'),
-			array('nombre_tipo_cliente, observaciones_tipo_cliente', 'length', 'max'=>1),
+			array('nombre_tipo_cliente', 'length', 'max'=>128),
+			array('observaciones_tipo_cliente', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('tipo_cliente_id, nombre_tipo_cliente, observaciones_tipo_cliente', 'safe', 'on'=>'search'),
@@ -45,7 +46,7 @@ class TiposCliente extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'clientes' => array(self::HAS_MANY, 'Clientes', 'Tipos_Cliente_tipo_cliente_id'),
+			'clientes' => array(self::HAS_MANY, 'Clientes', 'tipos_cliente_tipo_cliente_id'),
 		);
 	}
 
