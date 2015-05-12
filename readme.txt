@@ -39,4 +39,8 @@ CHANGELOG:
 
 	Creadas las paginas CRUD para Clientes, Tipos de Cliente y Personas.
 	El formulario de Clientes toma el "Tipo de Cliente" de un combobox autorellenado con los datos de la tabla Tipos_Cliente.
+
+11:24 a.m. 12/05/2015
+	
+	Actualizado el modelo de datos con los mecanismos de compensacion correspondientes. 
 	
