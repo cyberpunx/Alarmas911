@@ -55,8 +55,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'dni',
 		'email',
 		'telefono_alt',
-		'usuario',
 		'contrasena',
+		'empleado_funcion',
+		'empleado_temporal',
+		'empleado_activo',
+		'es_empleado',
+		'cliente_direccion_cobro',
+		'cliente_sistema_secundario_id',
+		'cliente_factura',
+		'cliente_razon_social',
+		'cliente_cuit',
+		'tipos_cliente_tipo_cliente_id',
 		*/
 		array(
 			'class'=>'CButtonColumn',

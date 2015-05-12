@@ -9,7 +9,7 @@
  * @property string $observaciones_tipo_cliente
  *
  * The followings are the available model relations:
- * @property Clientes[] $clientes
+ * @property Personas[] $personases
  */
 class TiposCliente extends CActiveRecord
 {
@@ -46,7 +46,7 @@ class TiposCliente extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'clientes' => array(self::HAS_MANY, 'Clientes', 'tipos_cliente_tipo_cliente_id'),
+			'personases' => array(self::HAS_MANY, 'Personas', 'tipos_cliente_tipo_cliente_id'),
 		);
 	}
 

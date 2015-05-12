@@ -13,12 +13,23 @@
  * @property string $dni
  * @property string $email
  * @property string $telefono_alt
- * @property string $usuario
  * @property string $contrasena
+ * @property string $empleado_funcion
+ * @property integer $empleado_temporal
+ * @property integer $empleado_activo
+ * @property integer $es_empleado
+ * @property string $cliente_direccion_cobro
+ * @property integer $cliente_sistema_secundario_id
+ * @property string $cliente_factura
+ * @property string $cliente_razon_social
+ * @property integer $cliente_cuit
+ * @property string $tipos_cliente_tipo_cliente_id
  *
  * The followings are the available model relations:
- * @property Clientes[] $clientes
- * @property Empleados[] $empleadoses
+ * @property ClientesPagosFecha[] $clientesPagosFechas
+ * @property TiposCliente $tiposClienteTipoCliente
+ * @property OrdenesServicio[] $ordenesServicios
+ * @property SistemaAlarmas[] $sistemaAlarmases
  */
 class Personas extends CActiveRecord
 {
@@ -38,12 +49,13 @@ class Personas extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('apellido, dni, email, usuario, contrasena', 'required'),
-			array('nombre_persona, apellido, direccion, telefono_fijo, telefono_celular, email, telefono_alt, usuario, contrasena', 'length', 'max'=>128),
-			array('dni', 'length', 'max'=>11),
+			array('apellido, dni, email, contrasena, tipos_cliente_tipo_cliente_id, nombre_persona', 'required'),
+			array('empleado_temporal, empleado_activo, es_empleado, cliente_sistema_secundario_id, cliente_cuit', 'numerical', 'integerOnly'=>true),
+			array('nombre_persona, apellido, direccion, telefono_fijo, telefono_celular, email, telefono_alt, contrasena, empleado_funcion, cliente_direccion_cobro, cliente_factura, cliente_razon_social', 'length', 'max'=>128),
+			array('dni, tipos_cliente_tipo_cliente_id', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('persona_id, nombre_persona, apellido, direccion, telefono_fijo, telefono_celular, dni, email, telefono_alt, usuario, contrasena', 'safe', 'on'=>'search'),
+			array('persona_id, nombre_persona, apellido, direccion, telefono_fijo, telefono_celular, dni, email, telefono_alt, contrasena, empleado_funcion, empleado_temporal, empleado_activo, es_empleado, cliente_direccion_cobro, cliente_sistema_secundario_id, cliente_factura, cliente_razon_social, cliente_cuit, tipos_cliente_tipo_cliente_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,8 +67,10 @@ class Personas extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'clientes' => array(self::HAS_MANY, 'Clientes', 'personas_persona_id'),
-			'empleadoses' => array(self::HAS_MANY, 'Empleados', 'personas_persona_id'),
+			'clientesPagosFechas' => array(self::HAS_MANY, 'ClientesPagosFecha', 'personas_persona_id'),
+			'tiposClienteTipoCliente' => array(self::BELONGS_TO, 'TiposCliente', 'tipos_cliente_tipo_cliente_id'),
+			'ordenesServicios' => array(self::MANY_MANY, 'OrdenesServicio', 'personas_has_ordenes_servicio(personas_persona_id, ordenes_servicio_orden_servicio_id)'),
+			'sistemaAlarmases' => array(self::HAS_MANY, 'SistemaAlarmas', 'personas_persona_id'),
 		);
 	}
 
@@ -66,17 +80,26 @@ class Personas extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'persona_id' => 'Persona',
-			'nombre_persona' => 'Nombre Persona',
+			'persona_id' => 'Persona ID',
+			'nombre_persona' => 'Nombre',
 			'apellido' => 'Apellido',
-			'direccion' => 'Direccion',
-			'telefono_fijo' => 'Telefono Fijo',
-			'telefono_celular' => 'Telefono Celular',
-			'dni' => 'Dni',
-			'email' => 'Email',
-			'telefono_alt' => 'Telefono Alt',
-			'usuario' => 'Usuario',
-			'contrasena' => 'Contrasena',
+			'direccion' => 'Dirección',
+			'telefono_fijo' => 'Número de Teléfono',
+			'telefono_celular' => 'Número de Celular',
+			'dni' => 'DNI',
+			'email' => 'Dirección de Email',
+			'telefono_alt' => 'Numero de Teléfono (Alternativo)',
+			'contrasena' => 'Contraseña',
+			'empleado_funcion' => 'Empleado Funcion',
+			'empleado_temporal' => 'Empleado Temporal',
+			'empleado_activo' => 'Empleado Activo',
+			'es_empleado' => 'Es Empleado',
+			'cliente_direccion_cobro' => 'Cliente Direccion Cobro',
+			'cliente_sistema_secundario_id' => 'Cliente Sistema Secundario',
+			'cliente_factura' => 'Cliente Factura',
+			'cliente_razon_social' => 'Cliente Razon Social',
+			'cliente_cuit' => 'Cliente Cuit',
+			'tipos_cliente_tipo_cliente_id' => 'Tipos Cliente Tipo Cliente',
 		);
 	}
 
@@ -107,8 +130,17 @@ class Personas extends CActiveRecord
 		$criteria->compare('dni',$this->dni,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('telefono_alt',$this->telefono_alt,true);
-		$criteria->compare('usuario',$this->usuario,true);
 		$criteria->compare('contrasena',$this->contrasena,true);
+		$criteria->compare('empleado_funcion',$this->empleado_funcion,true);
+		$criteria->compare('empleado_temporal',$this->empleado_temporal);
+		$criteria->compare('empleado_activo',$this->empleado_activo);
+		$criteria->compare('es_empleado',$this->es_empleado);
+		$criteria->compare('cliente_direccion_cobro',$this->cliente_direccion_cobro,true);
+		$criteria->compare('cliente_sistema_secundario_id',$this->cliente_sistema_secundario_id);
+		$criteria->compare('cliente_factura',$this->cliente_factura,true);
+		$criteria->compare('cliente_razon_social',$this->cliente_razon_social,true);
+		$criteria->compare('cliente_cuit',$this->cliente_cuit);
+		$criteria->compare('tipos_cliente_tipo_cliente_id',$this->tipos_cliente_tipo_cliente_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
