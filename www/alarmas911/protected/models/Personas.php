@@ -49,10 +49,15 @@ class Personas extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('apellido, dni, email, contrasena, tipos_cliente_tipo_cliente_id, nombre_persona', 'required'),
+			array('apellido, dni, email, contrasena, tipos_cliente_tipo_cliente_id', 'required','message'=>'Este campo no debe estar en blanco.'),
+			array('apellido, dni, email, contrasena, tipos_cliente_tipo_cliente_id', 'required','message'=>'Este campo no debe estar en blanco.'),
+			array('apellido',  'match', 'pattern'=>"/^([a-zA-Z]*)$/", 'message'=>'El campo apellido contiene caracteres invalidos, utilize solo letras'),
+			array('email', 'email', 'message'=>'Direccion de email invalida.'),
+			array('telefono_fijo', 'match', 'pattern'=>"/^([0-9]*-[0-9]*)$/",'message'=>'El telefono debe estar separado en CodArea-NumeroTelefono'),
 			array('empleado_temporal, empleado_activo, es_empleado, cliente_sistema_secundario_id, cliente_cuit', 'numerical', 'integerOnly'=>true),
 			array('nombre_persona, apellido, direccion, telefono_fijo, telefono_celular, email, telefono_alt, contrasena, empleado_funcion, cliente_direccion_cobro, cliente_factura, cliente_razon_social', 'length', 'max'=>128),
 			array('dni, tipos_cliente_tipo_cliente_id', 'length', 'max'=>11),
+			array('dni', 'numerical', 'message'=>'DNI debe contener valores numericos'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('persona_id, nombre_persona, apellido, direccion, telefono_fijo, telefono_celular, dni, email, telefono_alt, contrasena, empleado_funcion, empleado_temporal, empleado_activo, es_empleado, cliente_direccion_cobro, cliente_sistema_secundario_id, cliente_factura, cliente_razon_social, cliente_cuit, tipos_cliente_tipo_cliente_id', 'safe', 'on'=>'search'),
