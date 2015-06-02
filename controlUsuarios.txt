@@ -1,0 +1,114 @@
+
+	Control de usuario y validacion contra la base de datos. 
+	1)  Tener atributo usuario_rol, dentro de la tabla usuarios.
+	2) Modificar con la siguiente linea el modelo Usuarios.php
+	
+	<?php
+
+		public function validatePassword($clave)
+		{
+								//El campo de password en el modelo.
+		 return $clave===$this->contrasena;
+		}
+	?>
+	3) Modificar el archivo Components/UserIdentity.
+		<?php
+
+			class UserIdentity extends CUserIdentity {
+				private $_id;
+				public function authenticate() {
+				    $username = strtoupper($this->username);
+				    		//Modelo 				//Elemento a validar 
+				    $user = Usuarios::model()->find('email=?', array($username));
+				    if ($user === null)
+				      $this->errorCode = self::ERROR_USERNAME_INVALID;
+				  					//Metodo creado en Modelo/Usuarios
+				    else if (!$user->validatePassword($this->password))
+				      $this->errorCode = self::ERROR_PASSWORD_INVALID;
+				    else {					
+				    					//Id de la tabla Usuarios
+				      $this->_id = $user->persona_id;	
+				      					//Que atributo de Usuarios sera tomado como nombreDeUsuario
+				      $this->username = $user->email;
+				      $this->setState('roles', $user->usuario_rol); //atributo Roles. 
+				      $this->errorCode = self::ERROR_NONE;
+				    }
+				 	return $this->errorCode == self::ERROR_NONE;
+				  }
+				 
+				  public function getId() {
+				    return $this->_id;
+				  }
+				}
+	?>
+	
+	4)Crear Components/WebUser 
+		<?php 
+		//Se pueden crear checkAccess personalizados. 
+		class WebUser extends CWebUser
+		{
+		    public function checkAccess($operation, $params=array())
+		    {
+		        if (empty($this->id)) {
+		            // Not identified => no rights
+		            return false;
+		        }
+		        $role = $this->getState("roles");
+		        if ($role === 'ADMINISTRADOR') {
+		            return true; // admin role has access to everything
+		        }
+		        // allow access if the operation request is the current user's role
+		        return ($operation === $role);
+		    }
+		}
+	?>
+	5) LLamar a WebUser desde el main.php.
+		<?php
+		'user'=>array(
+			// enable cookie-based authentication
+			'allowAutoLogin'=>true,
+			'class'=> 'WebUser'
+		),
+		?>
+
+
+	6) Dentro del controlador UsuariosController.php-
+	<?php	
+		public function filters()
+		{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+			//'postOnly + delete', // we only allow deletion via POST request
+		);
+		}
+	?>
+	7) Se agregan los privilegios, Por Ejemplo: 
+	<?php	
+
+		public function accessRules()
+		{
+		return array(
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view'),
+				'roles'=>array('CLIENTE')
+			),
+			
+			array('allow', // ADMISNITRADOR HACE TODO
+				'actions'=>array('admin','delete','view', 'create', 'index'),
+				'roles'=>array('ADMINISTRADOR');
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
+		}
+	?>
+	8) Se modificcan los menues. Dentro de Layout/main.php
+	
+	<?php
+		array('label'=>'About', 'url'=>array('/site/page'), 'view'=>'about', 'visible'=>Yii::app()->user->checkAccess('CLIENTE')),
+		array('label'=>'Contact', 'url'=>array('/site/contact')),
+		array('label'=>'Usuarios', 'url'=>array('/usuarios/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+		array('label'=>'TiposClientes', 'url'=>array('/tiposCliente/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+		array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+		array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)

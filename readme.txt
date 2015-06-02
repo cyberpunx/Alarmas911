@@ -43,4 +43,9 @@ CHANGELOG:
 11:24 a.m. 12/05/2015
 	
 	Actualizado el modelo de datos con los mecanismos de compensacion correspondientes. 
+
+18:20 p.m. 02/06/2015
+	Actualizado el modelo de datos. Se agrego el atributo usuario_rol en la tabla Usuarios. 
+	Creado un archivo localizado en la raiz, controlUsuarios. Tutorial para generar todo lo necesario. 
+	Se loguea con el email. 
 	
