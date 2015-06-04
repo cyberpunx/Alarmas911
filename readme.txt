@@ -48,4 +48,7 @@ CHANGELOG:
 	Actualizado el modelo de datos. Se agrego el atributo usuario_rol en la tabla Usuarios. 
 	Creado un archivo localizado en la raiz, controlUsuarios. Tutorial para generar todo lo necesario. 
 	Se loguea con el email. 
+
+01:10 p.m. 04/06/2015
+	Implementado el control de usuarios
 	
