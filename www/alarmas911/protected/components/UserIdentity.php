@@ -13,7 +13,7 @@ class UserIdentity extends CUserIdentity {
 	public function authenticate() {
 		$username = strtoupper($this->username);
 				//Modelo 				//Elemento a validar 
-		$user = Usuarios::model()->find('email=?', array($username));
+		$user = Personas::model()->find('email=?', array($username));
 		
 		if ($user === null){
 			$this->errorCode = self::ERROR_USERNAME_INVALID;
@@ -22,8 +22,8 @@ class UserIdentity extends CUserIdentity {
 			$this->errorCode = self::ERROR_PASSWORD_INVALID;
 		}		
 		else {			
-			$this->_id = $user->persona_id;	//Id de la tabla Usuarios			
-			//Que atributo de Usuarios sera tomado como nombreDeUsuario
+			$this->_id = $user->persona_id;	//Id de la tabla Personas			
+			//Que atributo de Personas sera tomado como nombreDeUsuario
 			$this->username = $user->email;
 			$this->setState('roles', $user->usuario_rol); //atributo Roles. 
 			$this->errorCode = self::ERROR_NONE;

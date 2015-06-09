@@ -3,7 +3,7 @@
 /* @var $model Personas */
 
 $this->breadcrumbs=array(
-	'Personas'=>array('index'),
+	'Personases'=>array('index'),
 	$model->persona_id,
 );
 
@@ -22,7 +22,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'persona_id',
-		'nombre_persona',
+		'nombre',
 		'apellido',
 		'direccion',
 		'telefono_fijo',
@@ -31,15 +31,6 @@ $this->menu=array(
 		'email',
 		'telefono_alt',
 		'contrasena',
-		'empleado_funcion',
-		'empleado_temporal',
-		'empleado_activo',
-		'es_empleado',
-		'cliente_direccion_cobro',
-		'cliente_sistema_secundario_id',
-		'cliente_factura',
-		'cliente_razon_social',
-		'cliente_cuit',
-		'tipos_cliente_tipo_cliente_id',
+		'usuario_rol',
 	),
 )); ?>

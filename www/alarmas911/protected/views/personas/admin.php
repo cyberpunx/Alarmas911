@@ -3,7 +3,7 @@
 /* @var $model Personas */
 
 $this->breadcrumbs=array(
-	'Personas'=>array('index'),
+	'Personases'=>array('index'),
 	'Manage',
 );
 
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Personas</h1>
+<h1>Manage Personases</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -46,7 +46,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'persona_id',
-		'nombre_persona',
+		'nombre',
 		'apellido',
 		'direccion',
 		'telefono_fijo',
@@ -56,16 +56,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'email',
 		'telefono_alt',
 		'contrasena',
-		'empleado_funcion',
-		'empleado_temporal',
-		'empleado_activo',
-		'es_empleado',
-		'cliente_direccion_cobro',
-		'cliente_sistema_secundario_id',
-		'cliente_factura',
-		'cliente_razon_social',
-		'cliente_cuit',
-		'tipos_cliente_tipo_cliente_id',
+		'usuario_rol',
 		*/
 		array(
 			'class'=>'CButtonColumn',

@@ -17,8 +17,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'nombre_persona'); ?>
-		<?php echo $form->textField($model,'nombre_persona',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->label($model,'nombre'); ?>
+		<?php echo $form->textField($model,'nombre',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row">
@@ -62,53 +62,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'empleado_funcion'); ?>
-		<?php echo $form->textField($model,'empleado_funcion',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'empleado_temporal'); ?>
-		<?php echo $form->textField($model,'empleado_temporal'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'empleado_activo'); ?>
-		<?php echo $form->textField($model,'empleado_activo'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'es_empleado'); ?>
-		<?php echo $form->textField($model,'es_empleado'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'cliente_direccion_cobro'); ?>
-		<?php echo $form->textField($model,'cliente_direccion_cobro',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'cliente_sistema_secundario_id'); ?>
-		<?php echo $form->textField($model,'cliente_sistema_secundario_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'cliente_factura'); ?>
-		<?php echo $form->textField($model,'cliente_factura',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'cliente_razon_social'); ?>
-		<?php echo $form->textField($model,'cliente_razon_social',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'cliente_cuit'); ?>
-		<?php echo $form->textField($model,'cliente_cuit'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'tipos_cliente_tipo_cliente_id'); ?>
-		<?php echo $form->textField($model,'tipos_cliente_tipo_cliente_id',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->label($model,'usuario_rol'); ?>
+		<?php echo $form->textField($model,'usuario_rol',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row buttons">
