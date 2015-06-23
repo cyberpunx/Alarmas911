@@ -8,7 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
-
+	'theme'=>'shadow_dancer',
 	// preloading 'log' component
 	'preload'=>array('log'),
 
@@ -23,7 +23,7 @@ return array(
 		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'root',
+			'password'=>'911',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
@@ -33,10 +33,53 @@ return array(
 	// application components
 	'components'=>array(
 
+		// THEME shadow_dancer WIDGETS
+		 'widgetFactory'=>array(
+            'widgets'=>array(
+                'CGridView'=>array(
+                    'htmlOptions'=>array('cellspacing'=>'0','cellpadding'=>'0'),
+					'itemsCssClass'=>'item-class',
+					'pagerCssClass'=>'pager-class'
+                ),
+                'CJuiTabs'=>array(
+                    'htmlOptions'=>array('class'=>'shadowtabs'),
+                ),
+                'CJuiAccordion'=>array(
+                    'htmlOptions'=>array('class'=>'shadowaccordion'),
+                ),
+                'CJuiProgressBar'=>array(
+                   'htmlOptions'=>array('class'=>'shadowprogressbar'),
+                ),
+                'CJuiSlider'=>array(
+                    'htmlOptions'=>array('class'=>'shadowslider'),
+                ),
+                'CJuiSliderInput'=>array(
+                    'htmlOptions'=>array('class'=>'shadowslider'),
+                ),
+                'CJuiButton'=>array(
+                    'htmlOptions'=>array('class'=>'shadowbutton'),
+                ),
+                'CJuiButton'=>array(
+                    'htmlOptions'=>array('class'=>'shadowbutton'),
+                ),
+                'CJuiButton'=>array(
+                    'htmlOptions'=>array('class'=>'button green'),
+                ),
+            ),
+        ),
+
+
+		//'user'=>array(
+		//	// enable cookie-based authentication
+		//	'allowAutoLogin'=>true,
+		//),
+		
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
+			'class'=> 'WebUser'
 		),
+	
 
 		// uncomment the following to enable URLs in path-format
 		/*
@@ -49,15 +92,23 @@ return array(
 			),
 		),
 		*/
-
-		// database settings are configured in database.php
-		'db'=>require(dirname(__FILE__).'/database.php'),
-
+		'db'=>array(
+			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
+		),
+		// uncomment the following to use a MySQL database
+		
+		'db'=>array(
+			'connectionString' => 'mysql:host=localhost;dbname=alarmas_db',
+			'emulatePrepare' => true,
+			'username' => 'root',
+			'password' => '',
+			'charset' => 'utf8',
+		),
+		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
-
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
@@ -73,7 +124,6 @@ return array(
 				*/
 			),
 		),
-
 	),
 
 	// application-level parameters that can be accessed
