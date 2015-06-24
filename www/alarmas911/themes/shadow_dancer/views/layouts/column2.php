@@ -5,8 +5,11 @@
 			<?php echo $content; ?>
 		</div><!-- content -->
 	</div>
+
+	
 	<div class="span-5 last">
 		<div id="sidebar">
+
 		<?php
 			$this->beginWidget('zii.widgets.CPortlet', array(
 				'title'=>'<span class="icon icon-sitemap_color">Operations</span>',
@@ -18,6 +21,7 @@
 			$this->endWidget();
 		?>
 		
+		<!--
 		<?php
 			$this->beginWidget('zii.widgets.CPortlet', array(
 				'title'=>'<span class="icon icon-user">Account Details</span>',
@@ -66,11 +70,12 @@
 				),
 			));
 			?>
+		-->
 			<?php
 			$this->endWidget();
 		?>
-		
-		</div><!-- sidebar -->
+	
+		</div>	 <!-- sidebar -->
 	</div>
-</div>
+</div>	
 <?php $this->endContent(); ?>

@@ -36,8 +36,8 @@ class ClientesController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'actions'=>array('admin','delete','index','view','create','update'),
+				'roles'=>array('ADMINISTRADOR'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -95,7 +95,7 @@ class ClientesController extends Controller
 		{
 			$model->attributes=$_POST['Clientes'];
 			if($model->save())
-				$this->redirect(array('view','idPersona'=>$model->cliente_id));
+				$this->redirect(array('view','id'=>$model->cliente_id));
 		}
 
 		$this->render('update',array(

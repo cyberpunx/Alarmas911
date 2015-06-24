@@ -6,13 +6,13 @@
 
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php 
+	$form=$this->beginWidget('CActiveForm', array(
 	'id'=>'personas-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+	'focus' => array($model, 'persona_id'),
+        
+    'enableClientValidation' => true,
+    'enableAjaxValidation' => true,
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -38,18 +38,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'telefono_fijo'); ?>
-		<?php echo $form->textField($model,'telefono_fijo',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'telefono_fijo'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'telefono_celular'); ?>
-		<?php echo $form->textField($model,'telefono_celular',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'telefono_celular'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'dni'); ?>
 		<?php echo $form->textField($model,'dni',array('size'=>11,'maxlength'=>11)); ?>
 		<?php echo $form->error($model,'dni'); ?>
@@ -62,10 +50,25 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'telefono_fijo'); ?>
+		<?php echo $form->textField($model,'telefono_fijo',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'telefono_fijo'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'telefono_celular'); ?>
+		<?php echo $form->textField($model,'telefono_celular',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'telefono_celular'); ?>
+	</div>
+
+
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'telefono_alt'); ?>
 		<?php echo $form->textField($model,'telefono_alt',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'telefono_alt'); ?>
 	</div>
+
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'contrasena'); ?>
@@ -79,6 +82,26 @@
 		<?php echo $form->error($model,'usuario_rol'); ?>
 	</div>
 
+
+
+	<?php
+    echo CHtml::link('Más datos de Cliente', '#', array('id' => 'loadClienteByAjax'));
+    ?>
+    <div id="clientes">
+        <?php
+        $index = 0;
+        foreach ($model->clientes as $id => $clientes):
+            $this->renderPartial('clientes/_form', array(
+                'model' => $clientes,
+                'index' => $id,
+                'display' => 'block'
+            ));
+            $index++;
+        endforeach;
+        ?>
+    </div>
+
+	<div style="clear:both;"></div>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
@@ -86,3 +109,27 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+	<?php
+Yii::app()->clientScript->registerCoreScript('jquery');
+Yii::app()->clientScript->registerScript('loadCliente', 'var _index = ' . $index . ';$("#loadClienteByAjax").click(function(e){
+    e.preventDefault();
+    var _url = "' . Yii::app()->controller->createUrl("loadClienteByAjax", array("load_for" => $this->action->id)) . '&index="+_index;
+    
+    if(_index == 0){
+	    $.ajax({
+	        url: _url,
+	        success:function(response){
+	            $("#clientes").append(response);
+	            $("#clientes .crow").last().animate({
+	                opacity : 1,
+	                left: "+50",
+	                height: "toggle"
+	            });
+	        }
+	    });
+	    _index++;
+	}
+});
+', CClientScript::POS_END);
+?>

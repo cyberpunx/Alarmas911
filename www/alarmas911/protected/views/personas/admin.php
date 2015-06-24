@@ -2,14 +2,20 @@
 /* @var $this PersonasController */
 /* @var $model Personas */
 
+/*
+ * COMENTARIOS:
+ * Agregue la columna para mostrar y filtrar por FullName (nombre completo)
+ *
+ */
+
 $this->breadcrumbs=array(
-	'Personases'=>array('index'),
-	'Manage',
+	'Clientes'=>array('admin'),
+	'Listado',
 );
 
 $this->menu=array(
-	array('label'=>'List Personas', 'url'=>array('index')),
-	array('label'=>'Create Personas', 'url'=>array('create')),
+	array('label'=>'Listar Clientes', 'url'=>array('admin')),
+	array('label'=>'Insertar Cliente', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,7 +32,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Personases</h1>
+<h1>Listar y Administrar Clientes</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -45,21 +51,26 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'persona_id',
-		'nombre',
-		'apellido',
+		array(
+			'name' => 'fullName',
+			'value' => '$data->getFullName()',
+		),
+		'email',
+		//'persona_id',
+		//'nombre',
+		//'apellido',
 		'direccion',
 		'telefono_fijo',
-		'telefono_celular',
-		/*
-		'dni',
-		'email',
-		'telefono_alt',
-		'contrasena',
-		'usuario_rol',
-		*/
+		'telefono_celular',		
+		//'dni',		
+		//'telefono_alt',
+		//'contrasena',
+		//'usuario_rol',
+		
 		array(
 			'class'=>'CButtonColumn',
 		),
+
 	),
-)); ?>
+)); 
+?>

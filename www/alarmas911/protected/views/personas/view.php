@@ -18,7 +18,8 @@ $this->menu=array(
 
 <h1>View Personas #<?php echo $model->persona_id; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php
+ $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'persona_id',
@@ -32,5 +33,6 @@ $this->menu=array(
 		'telefono_alt',
 		'contrasena',
 		'usuario_rol',
-	),
-)); ?>
+		),
+)); 
+

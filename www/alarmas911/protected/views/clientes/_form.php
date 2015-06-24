@@ -28,7 +28,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'personas_persona_id'); ?>
-		<?php echo $form->textField($model,'personas_persona_id',array('size'=>11,'maxlength'=>11, 'value'=>$_GET["idPersona"] )); ?>
+		<?php echo $form->textField($model,'personas_persona_id',array('size'=>11,'maxlength'=>11, 'value'=>$_GET["id"] )); ?>
 		<?php echo $form->error($model,'personas_persona_id'); ?>
 	</div>
 

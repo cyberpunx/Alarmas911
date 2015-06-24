@@ -25,6 +25,9 @@ class Personas extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+
+	public $fullName;
+
 	public function tableName()
 	{
 		return 'personas';
@@ -43,7 +46,7 @@ class Personas extends CActiveRecord
 			array('dni', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('persona_id, nombre, apellido, direccion, telefono_fijo, telefono_celular, dni, email, telefono_alt, contrasena, usuario_rol', 'safe', 'on'=>'search'),
+			array('persona_id, nombre, apellido, direccion, telefono_fijo, telefono_celular, dni, email, telefono_alt, contrasena, usuario_rol, fullName', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -98,6 +101,8 @@ class Personas extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->addSearchCondition('concat(nombre, " ", apellido)', $this->fullName);
+
 		$criteria->compare('persona_id',$this->persona_id,true);
 		$criteria->compare('nombre',$this->nombre,true);
 		$criteria->compare('apellido',$this->apellido,true);
@@ -107,7 +112,7 @@ class Personas extends CActiveRecord
 		$criteria->compare('dni',$this->dni,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('telefono_alt',$this->telefono_alt,true);
-		$criteria->compare('contrasena',$this->contrasena,true);
+		//$criteria->compare('contrasena',$this->contrasena,true);
 		$criteria->compare('usuario_rol',$this->usuario_rol,true);
 
 		return new CActiveDataProvider($this, array(
@@ -120,7 +125,11 @@ class Personas extends CActiveRecord
   		return $clave===$this->contrasena; //El campo de password en el modelo.
  	}
 
-
+ 	// Esto se usa para obtener el nombre completo de la persona
+ 	// usado en la vista admin por ejemplo
+ 	public function getFullName(){
+ 		return $this->nombre.' '.$this->apellido;
+ 	}
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -132,4 +141,11 @@ class Personas extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function behaviors()
+    {
+        return array('ESaveRelatedBehavior' => array(
+                'class' => 'application.components.ESaveRelatedBehavior')
+        );
+    }
 }

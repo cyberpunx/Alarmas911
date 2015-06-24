@@ -29,5 +29,13 @@ $this->menu=array(
 		'factura',
 		'razon_social',
 		'cuit',
+		array(
+			'label'=>'Nombre del guachin',
+			'value'=>$model->personasPersona->nombre,
+			),
+		array(
+			'label'=>'Apellido del guachin',
+			'value'=>$model->personasPersona->apellido,
+			),
 	),
 )); ?>

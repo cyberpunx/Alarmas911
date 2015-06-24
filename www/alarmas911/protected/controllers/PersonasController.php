@@ -54,7 +54,7 @@ class PersonasController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update','loadClienteByAjax'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -79,17 +79,25 @@ class PersonasController extends Controller
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
 	public function actionCreate()
+	
+
 	{
 		$model=new Personas;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Personas']))
 		{
 			$model->attributes=$_POST['Personas'];
-			if($model->save())
-				$this->redirect(array('clientes/create','id'=>$model->persona_id));
+			if (isset($_POST['Clientes']))
+            {
+                $model->clientes = $_POST['Clientes'];
+            }
+            if ($model->saveWithRelated('clientes'))
+                $this->redirect(array('clientes/admin'));
+            else
+                $model->addError('clientes', 'Error occured while saving clientes.');
 		}
 
 		$this->render('create',array(
@@ -104,21 +112,27 @@ class PersonasController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		$model = $this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Personas']))
+		if (isset($_POST['Personas']))
 		{
-			$model->attributes=$_POST['Personas'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->persona_id));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
+			$model->attributes = $_POST['Personas'];
+			if (isset($_POST['Clientes']))
+			{
+			    $model->children = $_POST['Clientes'];
+			}
+			if ($model->saveWithRelated('clientes'))
+			    $this->redirect(array('view', 'id' => $model->persona_id));
+			else
+			    $model->addError('clientes', 'Error occured while saving clientes.');
+		 }
+		$this->render('update', array(
+			'model' => $model,
 		));
+	 
 	}
 
 	/**
@@ -188,4 +202,14 @@ class PersonasController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	public function actionLoadClienteByAjax($index)
+    {
+        $model = new Clientes;
+        $this->renderPartial('clientes/_form', array(
+            'model' => $model,
+            'index' => $index,
+//            'display' => 'block',
+        ), false, true);
+    }
 }

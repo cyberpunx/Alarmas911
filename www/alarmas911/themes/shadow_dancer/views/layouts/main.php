@@ -39,7 +39,7 @@
 				'items'=>array(
 					array('label'=>'About', 'url'=>array('/site/page'), 'view'=>'about', 'visible'=>Yii::app()->user->checkAccess('CLIENTE')),
 					array('label'=>'Contact', 'url'=>array('/site/contact')),
-					array('label'=>'Personas', 'url'=>array('/personas/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+					array('label'=>'Personas', 'url'=>array('/personas/admin'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 					array('label'=>'Clientes', 'url'=>array('/clientes/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 					//array('label'=>'Usuarios', 'url'=>array('/usuarios/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 					array('label'=>'TiposClientes', 'url'=>array('/tiposCliente/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
