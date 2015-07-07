@@ -37,14 +37,14 @@
 		<div class="topnav_text">
 			<?php $this->widget('zii.widgets.CMenu',array(
 				'items'=>array(
-					array('label'=>'About', 'url'=>array('/site/page'), 'view'=>'about', 'visible'=>Yii::app()->user->checkAccess('CLIENTE')),
-					array('label'=>'Contact', 'url'=>array('/site/contact')),
-					array('label'=>'Personas', 'url'=>array('/personas/admin'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
-					array('label'=>'Clientes', 'url'=>array('/clientes/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+					//array('label'=>'About', 'url'=>array('/site/page'), 'view'=>'about', 'visible'=>Yii::app()->user->checkAccess('CLIENTE')),
+					//array('label'=>'Contact', 'url'=>array('/site/contact')),
+					//array('label'=>'Personas', 'url'=>array('/personas/admin'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+					//array('label'=>'Clientes', 'url'=>array('/clientes/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 					//array('label'=>'Usuarios', 'url'=>array('/usuarios/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
-					array('label'=>'TiposClientes', 'url'=>array('/tiposCliente/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
-					array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-					array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+					//array('label'=>'TiposClientes', 'url'=>array('/tiposCliente/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+					//array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+					//array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 				),
 			)); ?>
 		</div>
@@ -84,7 +84,11 @@
 			'items'=>array(
 				array('label'=>'Inicio', 'url'=>array('/site/index')),
 				//array('label'=>'Usuarios', 'url'=>array('/usuarios/index')),
-				array('label'=>'Ejemplos Shadowdancer', 'url'=>array('/site/example')),
+				array('label'=>'Página de ejemplo', 'url'=>array('/site/example')),
+				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+				
 			),
 		)); ?>
 	</div> <!--mainmenu -->
