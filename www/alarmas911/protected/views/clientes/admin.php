@@ -4,12 +4,12 @@
 
 $this->breadcrumbs=array(
 	'Clientes'=>array('index'),
-	'Manage',
+	'Administrar',
 );
 
 $this->menu=array(
-	array('label'=>'List Clientes', 'url'=>array('index')),
-	array('label'=>'Create Clientes', 'url'=>array('create')),
+	array('label'=>'Listar Clientes', 'url'=>array('index')),
+	array('label'=>'Insertar Cliente', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Clientes</h1>
+<h1>Administrar Clientes</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -46,6 +46,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'cliente_id',
+		'personas.email',
 		'tipos_cliente_tipo_cliente_id',
 		'personas_persona_id',
 		'direccion_cobro',
