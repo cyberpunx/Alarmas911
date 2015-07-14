@@ -1,6 +1,6 @@
 <?php
 
-class TiposClienteController extends Controller
+class TiposBateriasController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -59,16 +59,16 @@ class TiposClienteController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new TiposCliente;
+		$model=new TiposBaterias;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['TiposCliente']))
+		if(isset($_POST['TiposBaterias']))
 		{
-			$model->attributes=$_POST['TiposCliente'];
+			$model->attributes=$_POST['TiposBaterias'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->tipo_cliente_id));
+				$this->redirect(array('view','id'=>$model->tipo_bateria_id));
 		}
 
 		$this->render('create',array(
@@ -88,11 +88,11 @@ class TiposClienteController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['TiposCliente']))
+		if(isset($_POST['TiposBaterias']))
 		{
-			$model->attributes=$_POST['TiposCliente'];
+			$model->attributes=$_POST['TiposBaterias'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->tipo_cliente_id));
+				$this->redirect(array('view','id'=>$model->tipo_bateria_id));
 		}
 
 		$this->render('update',array(
@@ -119,7 +119,7 @@ class TiposClienteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('TiposCliente');
+		$dataProvider=new CActiveDataProvider('TiposBaterias');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -130,10 +130,10 @@ class TiposClienteController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new TiposCliente('search');
+		$model=new TiposBaterias('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['TiposCliente']))
-			$model->attributes=$_GET['TiposCliente'];
+		if(isset($_GET['TiposBaterias']))
+			$model->attributes=$_GET['TiposBaterias'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -144,12 +144,12 @@ class TiposClienteController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return TiposCliente the loaded model
+	 * @return TiposBaterias the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=TiposCliente::model()->findByPk($id);
+		$model=TiposBaterias::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -157,11 +157,11 @@ class TiposClienteController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param TiposCliente $model the model to be validated
+	 * @param TiposBaterias $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='tipos-cliente-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='tipos-baterias-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

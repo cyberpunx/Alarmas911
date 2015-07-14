@@ -11,7 +11,7 @@
 
 <?php $this->pageTitle=Yii::app()->name; ?>
 
-<h1>Bienvenido a Alarmas 911</h1>
+<h1>Admin</h1>
 <!--
 <div class="flash-error">This is an example of an error message to show you that things have gone wrong.</div>
 <div class="flash-notice">This is an example of a notice message.</div>
@@ -23,11 +23,94 @@
 <div class="dashboardIcons span-23" style="margin-left:30px">
      
     <div class="dashIcon span-3">
-        <a href="?r=personas/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-people.png" alt="Clientes" /></a>
+        <a href="?r=personas/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-people.png" alt="Monitoreo" /></a>
         <div class="dashIconText"><a href="?r=personas/admin">Clientes</a></div>
     </div>
-    
+
+    <div class="dashIcon span-3">
+        <a href="?r=empleados/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-man-tie.png" alt="Empleados" /></a>
+        <div class="dashIconText"><a href="?r=empleados/admin">Empleados</a></div>
+    </div>  
+
+    <div class="dashIcon span-3">
+        <a href="?r=ordenesServicio/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-tools.png" alt="Ordenes de Servicio" /></a>
+        <div class="dashIconText"><a href="?r=ordenesServicio/admin">Ordenes Servicio</a></div>
+    </div> 
    
+
+    
+</div><!-- END OF .dashIcons -->
+
+<h1>Sistemas de Alarmas.</h1>
+
+
+<div class="dashboardIcons span-23" style="margin-left:30px">
+     
+    <div class="dashIcon span-3">
+        <a href="?r=marcas/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-list3.png" alt="marcas" /></a>
+        <div class="dashIconText"><a href="?r=marcas/admin">Marcas</a></div>
+    </div> 
+
+   <div class="dashIcon span-3">
+        <a href="?r=modelos/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-list2.png" alt="modelos" /></a>
+        <div class="dashIconText"><a href="?r=modelos/admin">Modelos</a></div>
+    </div> 
+
+    <div class="dashIcon span-3">
+        <a href="?r=sistemaAlarmas/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-bell.png" alt="sistemaAlarmas" /></a>
+        <div class="dashIconText"><a href="?r=sistemaAlarmas/admin">Sistemas Alarmas</a></div>
+    </div> 
+
+</div><!-- END OF .dashIcons -->
+
+<h1>Tipos</h1>
+
+
+<div class="dashboardIcons span-23" style="margin-left:30px">
+     
+
+
+    <div class="dashIcon span-3">
+        <a href="?r=tiposBaterias/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-battery-charging.png" alt="tiposBaterias" /></a>
+        <div class="dashIconText"><a href="?r=tiposBaterias/admin">Tipos Baterias</a></div>
+    </div>
+
+    <div class="dashIcon span-3">
+        <a href="?r=tiposCliente/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-people4.png" alt="tiposClientes" /></a>
+        <div class="dashIconText"><a href="?r=tiposCliente/admin">Tipos Cliente</a></div>
+    </div> 
+   
+    <div class="dashIcon span-3">
+        <a href="?r=tiposMonitoreo/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-wimax.png" alt="tiposMonitoreo" /></a>
+        <div class="dashIconText"><a href="?r=tiposMonitoreo/admin">Tipos Monitoreo</a></div>
+    </div> 
+
+    <div class="dashIcon span-3">
+        <a href="?r=tiposPago/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-cash2.png" alt="tiposPago" /></a>
+        <div class="dashIconText"><a href="?r=tiposPago/admin">Tipos Pago</a></div>
+    </div> 
+
+    <div class="dashIcon span-3">
+        <a href="?r=tiposSensores/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-signal.png" alt="tiposSensores" /></a>
+        <div class="dashIconText"><a href="?r=tiposSensores/admin">Tipos Sensores</a></div>
+    </div> 
+
+    <div class="dashIcon span-3">
+        <a href="?r=tiposServicio/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-gears.png" alt="tiposServicios" /></a>
+        <div class="dashIconText"><a href="?r=tiposServicio/admin">Tipos Servicios</a></div>
+    </div>
+    
+</div><!-- END OF .dashIcons -->
+
+<h1>Misc.</h1>
+
+
+<div class="dashboardIcons span-23" style="margin-left:30px">
+     
+    <div class="dashIcon span-3">
+        <a href="?r=barrios/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-map2.png" alt="Barrios" /></a>
+        <div class="dashIconText"><a href="?r=barrios/admin">Barrios</a></div>
+    </div>
     
 </div><!-- END OF .dashIcons -->
 
