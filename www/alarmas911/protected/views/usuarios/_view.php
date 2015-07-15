@@ -5,28 +5,28 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('persona_id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->persona_id), array('view', 'id'=>$data->persona_id)); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('usuario_id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->usuario_id), array('view', 'id'=>$data->usuario_id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('nombre_persona')); ?>:</b>
-	<?php echo CHtml::encode($data->nombre_persona); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('nombre')); ?>:</b>
+	<?php echo CHtml::encode($data->nombre); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('apellido_persona')); ?>:</b>
-	<?php echo CHtml::encode($data->apellido_persona); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('apellido')); ?>:</b>
+	<?php echo CHtml::encode($data->apellido); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('email')); ?>:</b>
+	<?php echo CHtml::encode($data->email); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('password')); ?>:</b>
+	<?php echo CHtml::encode($data->password); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('direccion')); ?>:</b>
 	<?php echo CHtml::encode($data->direccion); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('telefono_fijo')); ?>:</b>
-	<?php echo CHtml::encode($data->telefono_fijo); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('telefono_celular')); ?>:</b>
-	<?php echo CHtml::encode($data->telefono_celular); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('dni')); ?>:</b>
@@ -34,16 +34,24 @@
 	<br />
 
 	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('email')); ?>:</b>
-	<?php echo CHtml::encode($data->email); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('telefono_celular')); ?>:</b>
+	<?php echo CHtml::encode($data->telefono_celular); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('telefono_fijo')); ?>:</b>
+	<?php echo CHtml::encode($data->telefono_fijo); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('telefono_alt')); ?>:</b>
 	<?php echo CHtml::encode($data->telefono_alt); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('contrasena')); ?>:</b>
-	<?php echo CHtml::encode($data->contrasena); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('rol')); ?>:</b>
+	<?php echo CHtml::encode($data->rol); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('comentarios')); ?>:</b>
+	<?php echo CHtml::encode($data->comentarios); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('empleado_funcion')); ?>:</b>
@@ -56,10 +64,6 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('empleado_activo')); ?>:</b>
 	<?php echo CHtml::encode($data->empleado_activo); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('es_empleado')); ?>:</b>
-	<?php echo CHtml::encode($data->es_empleado); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('cliente_direccion_cobro')); ?>:</b>
@@ -84,10 +88,6 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('tipos_cliente_tipo_cliente_id')); ?>:</b>
 	<?php echo CHtml::encode($data->tipos_cliente_tipo_cliente_id); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('usuario_rol')); ?>:</b>
-	<?php echo CHtml::encode($data->usuario_rol); ?>
 	<br />
 
 	*/ ?>

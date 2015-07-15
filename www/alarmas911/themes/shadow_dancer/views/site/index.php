@@ -21,15 +21,20 @@
 
 <div class="span-23 showgrid">
 <div class="dashboardIcons span-23" style="margin-left:30px">
+
+    <div class="dashIcon span-3">
+        <a href="?r=usuarios/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-people4.png" alt="Usuarios" /></a>
+        <div class="dashIconText"><a href="?r=usuarios/admin">Usuarios</a></div>
+    </div>
      
     <div class="dashIcon span-3">
-        <a href="?r=personas/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-people.png" alt="Monitoreo" /></a>
-        <div class="dashIconText"><a href="?r=personas/admin">Clientes</a></div>
+        <a href="#"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-people.png" alt="Clientes" /></a>
+        <div class="dashIconText">Clientes</div>
     </div>
 
     <div class="dashIcon span-3">
-        <a href="?r=empleados/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-man-tie.png" alt="Empleados" /></a>
-        <div class="dashIconText"><a href="?r=empleados/admin">Empleados</a></div>
+        <a href="#"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-man-tie.png" alt="Empleados" /></a>
+        <div class="dashIconText">Empleados</div>
     </div>  
 
     <div class="dashIcon span-3">

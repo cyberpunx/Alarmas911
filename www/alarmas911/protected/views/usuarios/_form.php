@@ -19,42 +19,16 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<h1> Datos Personales  </h1>
-
 	<div class="row">
-		<?php echo $form->labelEx($model,'nombre_persona'); ?>
-		<?php echo $form->textField($model,'nombre_persona',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'nombre_persona'); ?>
+		<?php echo $form->labelEx($model,'nombre'); ?>
+		<?php echo $form->textField($model,'nombre',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'nombre'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'apellido_persona'); ?>
-		<?php echo $form->textField($model,'apellido_persona',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'apellido_persona'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'direccion'); ?>
-		<?php echo $form->textField($model,'direccion',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'direccion'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'telefono_fijo'); ?>
-		<?php echo $form->textField($model,'telefono_fijo',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'telefono_fijo'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'telefono_celular'); ?>
-		<?php echo $form->textField($model,'telefono_celular',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'telefono_celular'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'dni'); ?>
-		<?php echo $form->textField($model,'dni',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'dni'); ?>
+		<?php echo $form->labelEx($model,'apellido'); ?>
+		<?php echo $form->textField($model,'apellido',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'apellido'); ?>
 	</div>
 
 	<div class="row">
@@ -64,28 +38,70 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'password'); ?>
+		<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'password'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'direccion'); ?>
+		<?php echo $form->textField($model,'direccion',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'direccion'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'dni'); ?>
+		<?php echo $form->textField($model,'dni',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->error($model,'dni'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'telefono_celular'); ?>
+		<?php echo $form->textField($model,'telefono_celular',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'telefono_celular'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'telefono_fijo'); ?>
+		<?php echo $form->textField($model,'telefono_fijo',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'telefono_fijo'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'telefono_alt'); ?>
 		<?php echo $form->textField($model,'telefono_alt',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'telefono_alt'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'contrasena'); ?>
-		<?php echo $form->textField($model,'contrasena',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'contrasena'); ?>
+		<?php echo $form->labelEx($model,'rol'); ?>
+		<?php echo $form->textField($model,'rol',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'rol'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'usuario_rol'); ?>
-		<?php echo $form->textField($model,'usuario_rol',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'usuario_rol'); ?>
+		<?php echo $form->labelEx($model,'comentarios'); ?>
+		<?php echo $form->textArea($model,'comentarios',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'comentarios'); ?>
 	</div>
 
-	
+	<div class="row">
+		<?php echo $form->labelEx($model,'empleado_funcion'); ?>
+		<?php echo $form->textField($model,'empleado_funcion',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->error($model,'empleado_funcion'); ?>
+	</div>
 
-	
+	<div class="row">
+		<?php echo $form->labelEx($model,'empleado_temporal'); ?>
+		<?php echo $form->textField($model,'empleado_temporal'); ?>
+		<?php echo $form->error($model,'empleado_temporal'); ?>
+	</div>
 
-	<h1> Datos del Cliente  </h1>
+	<div class="row">
+		<?php echo $form->labelEx($model,'empleado_activo'); ?>
+		<?php echo $form->textField($model,'empleado_activo'); ?>
+		<?php echo $form->error($model,'empleado_activo'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'cliente_direccion_cobro'); ?>
@@ -120,44 +136,14 @@
 	<div class="row">
 	<?php echo $form->labelEx($model,'tipos_cliente_tipo_cliente_id'); ?>
 	<?php
-		$tipos_cliente_Lst = CHtml::listData(TiposCliente::model()->findAll(), 'tipo_cliente_id', 'nombre_tipo_cliente');
-		$options = array(
-				//'tabindex' => '0',
-				//'empty' => '(not set)',
-		);
+	$tiposCliente_list = CHtml::listData(TiposCliente::model()->findAll(), 'tipo_cliente_id', 'nombre_tipo_cliente');
+	$options = array(
+	        'tabindex' => '1',
+	);
 	?>
-	<?php echo $form->dropDownList($model,'tipos_cliente_tipo_cliente_id', $tipos_cliente_Lst, $options); ?>
+	<?php echo $form->dropDownList($model,'tipos_cliente_tipo_cliente_id', $tiposCliente_list, $options); ?>
 	<?php echo $form->error($model,'tipos_cliente_tipo_cliente_id'); ?>
 	</div>
-
-	<h1> Datos del Empleado  </h1>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'es_empleado'); ?>
-		<?php echo $form->textField($model,'es_empleado'); ?>
-		<?php echo $form->error($model,'es_empleado'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'empleado_funcion'); ?>
-		<?php echo $form->textField($model,'empleado_funcion',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'empleado_funcion'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'empleado_temporal'); ?>
-		<?php echo $form->textField($model,'empleado_temporal'); ?>
-		<?php echo $form->error($model,'empleado_temporal'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'empleado_activo'); ?>
-		<?php echo $form->textField($model,'empleado_activo'); ?>
-		<?php echo $form->error($model,'empleado_activo'); ?>
-	</div>
-
-
-	
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

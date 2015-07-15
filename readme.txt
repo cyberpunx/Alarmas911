@@ -51,4 +51,10 @@ CHANGELOG:
 
 01:10 p.m. 04/06/2015
 	Implementado el control de usuarios
+
+05:27 p.m. 15/07/2015
+	Pusheado el Modelo de Datos v5.1 con una única tabla Usuarios (que engloba Personas-Clientes-Empleados).
+	Tambien un SQL con inserción de 100 usuarios de Dummy Data.
+	En la carpeta WWW está el script generatedata, puede ser accedido mediante http://localhost/generatedata
+	
 	

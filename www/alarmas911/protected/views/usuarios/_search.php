@@ -12,38 +12,18 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'persona_id'); ?>
-		<?php echo $form->textField($model,'persona_id',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->label($model,'usuario_id'); ?>
+		<?php echo $form->textField($model,'usuario_id',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'nombre_persona'); ?>
-		<?php echo $form->textField($model,'nombre_persona',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->label($model,'nombre'); ?>
+		<?php echo $form->textField($model,'nombre',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'apellido_persona'); ?>
-		<?php echo $form->textField($model,'apellido_persona',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'direccion'); ?>
-		<?php echo $form->textField($model,'direccion',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'telefono_fijo'); ?>
-		<?php echo $form->textField($model,'telefono_fijo',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'telefono_celular'); ?>
-		<?php echo $form->textField($model,'telefono_celular',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'dni'); ?>
-		<?php echo $form->textField($model,'dni',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->label($model,'apellido'); ?>
+		<?php echo $form->textField($model,'apellido',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row">
@@ -52,13 +32,38 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'direccion'); ?>
+		<?php echo $form->textField($model,'direccion',array('size'=>60,'maxlength'=>128)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'dni'); ?>
+		<?php echo $form->textField($model,'dni',array('size'=>11,'maxlength'=>11)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'telefono_celular'); ?>
+		<?php echo $form->textField($model,'telefono_celular',array('size'=>60,'maxlength'=>128)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'telefono_fijo'); ?>
+		<?php echo $form->textField($model,'telefono_fijo',array('size'=>60,'maxlength'=>128)); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'telefono_alt'); ?>
 		<?php echo $form->textField($model,'telefono_alt',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'contrasena'); ?>
-		<?php echo $form->textField($model,'contrasena',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->label($model,'rol'); ?>
+		<?php echo $form->textField($model,'rol',array('size'=>60,'maxlength'=>128)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'comentarios'); ?>
+		<?php echo $form->textArea($model,'comentarios',array('rows'=>6, 'cols'=>50)); ?>
 	</div>
 
 	<div class="row">
@@ -74,11 +79,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'empleado_activo'); ?>
 		<?php echo $form->textField($model,'empleado_activo'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'es_empleado'); ?>
-		<?php echo $form->textField($model,'es_empleado'); ?>
 	</div>
 
 	<div class="row">
@@ -109,11 +109,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'tipos_cliente_tipo_cliente_id'); ?>
 		<?php echo $form->textField($model,'tipos_cliente_tipo_cliente_id',array('size'=>11,'maxlength'=>11)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'usuario_rol'); ?>
-		<?php echo $form->textField($model,'usuario_rol',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
 
 	<div class="row buttons">
