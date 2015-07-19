@@ -33,7 +33,7 @@ class UsuariosController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update','listClientes'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -139,6 +139,22 @@ class UsuariosController extends Controller
 			'model'=>$model,
 		));
 	}
+
+	/**
+	 * Devuelve los Clientes de la tabla de usuarios
+	 */
+	public function actionListClientes()
+	{
+		$modelSearch=new Usuarios('searchListClientes');
+		$modelSearch->unsetAttributes();  // clear any default values
+		if(isset($_GET['Usuarios']))
+			$modelSearch->attributes=$_GET['Usuarios'];
+
+		$this->render('clientList',array(
+			'modelSearch'=>$modelSearch,
+		));
+	}
+
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

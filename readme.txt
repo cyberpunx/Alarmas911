@@ -57,4 +57,17 @@ CHANGELOG:
 	Tambien un SQL con inserción de 100 usuarios de Dummy Data.
 	En la carpeta WWW está el script generatedata, puede ser accedido mediante http://localhost/generatedata
 	
-	
+01:58 p.m. 19/07/2015
+	Arreglado un bug de un dropdown menu, que insertaba NULL en la tabla sin importar que estaba seleccionado (Ver views/usuarios/_form linea 82)
+	Modificado ligeramente los inserts de los 100 usuarios (eliminar y volver a correr)
+	Modificada la vista Admin para que las columnas muestren un numero maximo de caracteres (se deformaba todo con cadenas muy largas)
+	Agregada una vista custom  usuarios/listClientes  (a modo de ejemplo por ahora solo muestra los clientes cuya factua sera del tipo A)
+		Busqueda FullName operativa sobre la nueva vista
+		Edits:
+			view: views/usuarios/clientList.php (casi replica de views/usuarios/admin.php)
+			controller: 
+				Accion nueva actionListClientes() (casi replica de la accion actionAdmin)
+				Agregada actionListClientes() en las AccessRules
+			model:
+				Agregada funcion searchListClientes() (Casi replica de Search()  pero con una clausula WHERE )
+				Agregada searchListClientes() en la lista de Rules() para que funcionen las busquedas y filtros.

@@ -60,7 +60,7 @@ class Usuarios extends CActiveRecord
 			array('comentarios', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('usuario_id, nombre, apellido, email, password, direccion, dni, telefono_celular, telefono_fijo, telefono_alt, rol, comentarios, empleado_funcion, empleado_temporal, empleado_activo, cliente_direccion_cobro, cliente_sistema_secundario_id, cliente_factura, cliente_razon_social, cliente_cuit, tipos_cliente_tipo_cliente_id, fullName', 'safe', 'on'=>'search'),
+			array('usuario_id, nombre, apellido, email, password, direccion, dni, telefono_celular, telefono_fijo, telefono_alt, rol, comentarios, empleado_funcion, empleado_temporal, empleado_activo, cliente_direccion_cobro, cliente_sistema_secundario_id, cliente_factura, cliente_razon_social, cliente_cuit, tipos_cliente_tipo_cliente_id, fullName', 'safe', 'on'=>'search, searchListClientes'),
 		);
 	}
 
@@ -72,7 +72,7 @@ class Usuarios extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'sistemaAlarmases' => array(self::HAS_MANY, 'SistemaAlarmas', 'personas_persona_id'),
+			'sistemaAlarmas' => array(self::HAS_MANY, 'SistemaAlarmas', 'personas_persona_id'),
 			'tiposClienteTipoCliente' => array(self::BELONGS_TO, 'TiposCliente', 'tipos_cliente_tipo_cliente_id'),
 			'usuariosHasOrdenesServicios' => array(self::HAS_MANY, 'UsuariosHasOrdenesServicio', 'usuarios_usuario_id'),
 			'usuariosPagosFechas' => array(self::HAS_MANY, 'UsuariosPagosFecha', 'usuarios_usuario_id'),
@@ -89,23 +89,23 @@ class Usuarios extends CActiveRecord
 			'nombre' => 'Nombre',
 			'apellido' => 'Apellido',
 			'email' => 'Email',
-			'password' => 'Password',
+			'password' => 'Contraseña',
 			'direccion' => 'Direccion',
-			'dni' => 'Dni',
-			'telefono_celular' => 'Telefono Celular',
-			'telefono_fijo' => 'Telefono Fijo',
-			'telefono_alt' => 'Telefono Alt',
-			'rol' => 'Rol',
+			'dni' => 'Nro. de DNI',
+			'telefono_celular' => 'Nro. de Celular',
+			'telefono_fijo' => 'Nro. de Teléfono',
+			'telefono_alt' => 'Nro. de Telefono Alternativo',
+			'rol' => 'Tipo de Usuario',
 			'comentarios' => 'Comentarios',
-			'empleado_funcion' => 'Empleado Funcion',
-			'empleado_temporal' => 'Empleado Temporal',
-			'empleado_activo' => 'Empleado Activo',
-			'cliente_direccion_cobro' => 'Cliente Direccion Cobro',
-			'cliente_sistema_secundario_id' => 'Cliente Sistema Secundario',
-			'cliente_factura' => 'Cliente Factura',
-			'cliente_razon_social' => 'Cliente Razon Social',
-			'cliente_cuit' => 'Cliente Cuit',
-			'tipos_cliente_tipo_cliente_id' => 'Tipos Cliente Tipo Cliente',
+			'empleado_funcion' => 'Función',
+			'empleado_temporal' => 'Temporal',
+			'empleado_activo' => 'Activo',
+			'cliente_direccion_cobro' => 'Direccion Cobro',
+			'cliente_sistema_secundario_id' => 'ID de Sistema Secundario',
+			'cliente_factura' => 'Tipo de Factura',
+			'cliente_razon_social' => 'Razon Social',
+			'cliente_cuit' => 'Nro de CUIT',
+			'tipos_cliente_tipo_cliente_id' => 'Tipo de Cliente',
 		);
 	}
 
@@ -150,6 +150,43 @@ class Usuarios extends CActiveRecord
 		$criteria->compare('cliente_razon_social',$this->cliente_razon_social,true);
 		$criteria->compare('cliente_cuit',$this->cliente_cuit);
 		$criteria->compare('tipos_cliente_tipo_cliente_id',$this->tipos_cliente_tipo_cliente_id,true);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+
+	public function searchListClientes()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+		$criteria->condition = "cliente_sistema_secundario_id IS NOT NULL AND cliente_factura = \"A\" ";
+
+		$criteria->addSearchCondition('concat(nombre, " ", apellido)', $this->fullName);
+		$criteria->compare('usuario_id',$this->usuario_id,true);
+		$criteria->compare('nombre',$this->nombre,true);
+		$criteria->compare('apellido',$this->apellido,true);
+		$criteria->compare('email',$this->email,true);
+		$criteria->compare('password',$this->password,true);
+		$criteria->compare('direccion',$this->direccion,true);
+		$criteria->compare('dni',$this->dni,true);
+		$criteria->compare('telefono_celular',$this->telefono_celular,true);
+		$criteria->compare('telefono_fijo',$this->telefono_fijo,true);
+		$criteria->compare('telefono_alt',$this->telefono_alt,true);
+		$criteria->compare('rol',$this->rol,true);
+		$criteria->compare('comentarios',$this->comentarios,true);
+		$criteria->compare('empleado_funcion',$this->empleado_funcion,true);
+		$criteria->compare('empleado_temporal',$this->empleado_temporal);
+		$criteria->compare('empleado_activo',$this->empleado_activo);
+		$criteria->compare('cliente_direccion_cobro',$this->cliente_direccion_cobro,true);
+		$criteria->compare('cliente_sistema_secundario_id',$this->cliente_sistema_secundario_id);
+		$criteria->compare('cliente_factura',$this->cliente_factura,true);
+		$criteria->compare('cliente_razon_social',$this->cliente_razon_social,true);
+		$criteria->compare('cliente_cuit',$this->cliente_cuit);
+		$criteria->compare('tipos_cliente_tipo_cliente_id',$this->tipos_cliente_tipo_cliente_id,true);
+
+		
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -15,9 +15,11 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Los campos marcados con <span class="required">*</span> son obligatorios.</p>
 
 	<?php echo $form->errorSummary($model); ?>
+
+	<h1>Datos Personales</h1>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'nombre'); ?>
@@ -39,7 +41,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->passwordField($model,'password'); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 
@@ -51,32 +53,39 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'dni'); ?>
-		<?php echo $form->textField($model,'dni',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->textField($model,'dni'); ?>
 		<?php echo $form->error($model,'dni'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'telefono_celular'); ?>
-		<?php echo $form->textField($model,'telefono_celular',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->textField($model,'telefono_celular'); ?>
 		<?php echo $form->error($model,'telefono_celular'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'telefono_fijo'); ?>
-		<?php echo $form->textField($model,'telefono_fijo',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->textField($model,'telefono_fijo'); ?>
 		<?php echo $form->error($model,'telefono_fijo'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'telefono_alt'); ?>
-		<?php echo $form->textField($model,'telefono_alt',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->textField($model,'telefono_alt'); ?>
 		<?php echo $form->error($model,'telefono_alt'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'rol'); ?>
-		<?php echo $form->textField($model,'rol',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'rol'); ?>
+	<?php echo $form->labelEx($model,'rol'); ?>
+	<?php
+	/* Custom Dropdown para el Rol del usuario */
+	$rol_lst = array('CLIENTE'=>'CLIENTE', 'ADMINISTRADOR'=>'ADMINISTRADOR'); // 'LO_QUE_SE_MUESTRA'=>'LO_QUE_SE_GUARDA'
+	$options = array(
+	        'tabindex' => '1',
+	);
+	?>
+	<?php echo $form->dropDownList($model,'rol', $rol_lst, $options); ?>
+	<?php echo $form->error($model,'rol'); ?>
 	</div>
 
 	<div class="row">
@@ -85,23 +94,7 @@
 		<?php echo $form->error($model,'comentarios'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'empleado_funcion'); ?>
-		<?php echo $form->textField($model,'empleado_funcion',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'empleado_funcion'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'empleado_temporal'); ?>
-		<?php echo $form->textField($model,'empleado_temporal'); ?>
-		<?php echo $form->error($model,'empleado_temporal'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'empleado_activo'); ?>
-		<?php echo $form->textField($model,'empleado_activo'); ?>
-		<?php echo $form->error($model,'empleado_activo'); ?>
-	</div>
+	<h1>Datos de Cliente</h1>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'cliente_direccion_cobro'); ?>
@@ -117,13 +110,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'cliente_factura'); ?>
-		<?php echo $form->textField($model,'cliente_factura',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->textField($model,'cliente_factura',array('size'=>5,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'cliente_factura'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'cliente_razon_social'); ?>
-		<?php echo $form->textField($model,'cliente_razon_social',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->textField($model,'cliente_razon_social'); ?>
 		<?php echo $form->error($model,'cliente_razon_social'); ?>
 	</div>
 
@@ -136,6 +129,7 @@
 	<div class="row">
 	<?php echo $form->labelEx($model,'tipos_cliente_tipo_cliente_id'); ?>
 	<?php
+	/*  Dropdown para el Tipo de Cliente del usuario */
 	$tiposCliente_list = CHtml::listData(TiposCliente::model()->findAll(), 'tipo_cliente_id', 'nombre_tipo_cliente');
 	$options = array(
 	        'tabindex' => '1',
@@ -143,10 +137,32 @@
 	?>
 	<?php echo $form->dropDownList($model,'tipos_cliente_tipo_cliente_id', $tiposCliente_list, $options); ?>
 	<?php echo $form->error($model,'tipos_cliente_tipo_cliente_id'); ?>
+	</div>	
+
+	<h1>Datos de Empleado</h1>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'empleado_funcion'); ?>
+		<?php echo $form->textField($model,'empleado_funcion'); ?>
+		<?php echo $form->error($model,'empleado_funcion'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'empleado_temporal'); ?>
+		<?php echo $form->checkBox($model,'empleado_temporal'); ?>
+		<?php echo $form->error($model,'empleado_temporal'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'empleado_activo'); ?>
+		<?php echo $form->checkBox($model,'empleado_activo'); ?>
+		<?php echo $form->error($model,'empleado_activo'); ?>
+	</div>
+
+	
+
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'CREAR' : 'Save'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
