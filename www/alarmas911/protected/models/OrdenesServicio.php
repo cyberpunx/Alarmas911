@@ -42,6 +42,7 @@ class OrdenesServicio extends CActiveRecord
 			array('observaciones_orden_servicio', 'length', 'max'=>128),
 			array('prioridad, sistema_alarmas_sistema_alarma_id', 'length', 'max'=>11),
 			array('fecha_cierre, vencimiento_orden', 'safe'),
+			array('fecha_cierre','compare','compareAttribute'=>'fecha_emision','operator'=>'>=','on'=>'insert, update','message'=>'La Fecha de Cierre no puede ser anterior a la Fecha de Emisión'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('orden_servicio_id, fecha_emision, fecha_cierre, importe, observaciones_orden_servicio, vencimiento_orden, prioridad, sistema_alarmas_sistema_alarma_id', 'safe', 'on'=>'search'),
@@ -97,6 +98,8 @@ class OrdenesServicio extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+
+		//$criteria->compare('sistemaAlarmas.nombre_sistema_alarma',$this->sistemaAlarmas->nombre_sistema_alarma,true);
 
 		$criteria->compare('orden_servicio_id',$this->orden_servicio_id,true);
 		$criteria->compare('fecha_emision',$this->fecha_emision,true);

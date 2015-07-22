@@ -45,12 +45,22 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'orden_servicio_id',
+		//'orden_servicio_id',
+		array(
+			'name'=>'sistemaAlarmas.nombre_sistema_alarma',
+			'value'=>function($data) {
+				if(strlen($data->sistemaAlarmas->nombre_sistema_alarma) > 20){
+					return substr($data->sistemaAlarmas->nombre_sistema_alarma, 0, 20)."...";
+				} else {
+					return $data->sistemaAlarmas->nombre_sistema_alarma;
+				}
+			},
+		),
 		'fecha_emision',
 		'fecha_cierre',
-		'importe',
-		'observaciones_orden_servicio',
 		'vencimiento_orden',
+		'importe',
+		'observaciones_orden_servicio',		
 		/*
 		'prioridad',
 		'sistema_alarmas_sistema_alarma_id',
