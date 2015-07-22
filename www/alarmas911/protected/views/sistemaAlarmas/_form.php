@@ -82,7 +82,7 @@
                 // defaults to false.  set 'true' to display the FK field with 'readonly' attribute.
                 'showFKField'=>false,
                 // display size of the FK field.  only matters if not hidden.  defaults to 10
-                'FKFieldSize'=>15, 
+                'FKFieldSize'=>1, 
                 'relName'=>'usuariosUsuario', // the relation name defined above
                 'displayAttr'=>'apellido',  // attribute or pseudo-attribute to display
                 // length of the AutoComplete/display field, defaults to 50

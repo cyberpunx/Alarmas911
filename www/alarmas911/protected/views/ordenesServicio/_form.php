@@ -30,9 +30,10 @@
 					'showAnim'=>'fold',
 					'showButtonPanel'=>true,
 					'autoSize'=>true,
-					'dateFormat'=>'dd-mm-yy',
+					'dateFormat'=>'yy-mm-dd',
 					'defaultDate'=>+0,
 				),
+				'htmlOptions'=>array('value'=>date('Y-m-d'))
 			));
 		?>
 		<?php echo $form->error($model,'fecha_emision'); ?>
@@ -50,7 +51,7 @@
 				'showAnim'=>'fold',
 				'showButtonPanel'=>true,
 				'autoSize'=>true,
-				'dateFormat'=>'dd-mm-yy',
+				'dateFormat'=>'yy-mm-dd',
 				'defaultDate'=>$model->vencimiento_orden,
 				),
 			));
@@ -84,7 +85,7 @@
 				'showAnim'=>'fold',
 				'showButtonPanel'=>true,
 				'autoSize'=>true,
-				'dateFormat'=>'dd-mm-yy',
+				'dateFormat'=>'yy-mm-dd',
 				'defaultDate'=>$model->fecha_cierre,
 				),
 			));
@@ -102,7 +103,21 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'sistema_alarmas_sistema_alarma_id'); ?>
-		<?php echo $form->textField($model,'sistema_alarmas_sistema_alarma_id',array('size'=>11,'maxlength'=>11)); ?>
+		<?php
+			$this->widget('EJuiAutoCompleteFkField', array(
+				'model'=>$model, 
+				'attribute'=>'sistema_alarmas_sistema_alarma_id',
+				'sourceUrl'=>Yii::app()->createUrl('/ordenesServicio/findSistemaAlarmas'), 
+				'showFKField'=>true,
+				'FKFieldSize'=>1, 
+				'relName'=>'sistemaAlarmas',
+				'displayAttr'=>'nombre_sistema_alarma', 
+				'autoCompleteLength'=>60,
+				'options'=>array(
+					'minLength'=>3, 
+				),
+			));
+		?>
 		<?php echo $form->error($model,'sistema_alarmas_sistema_alarma_id'); ?>
 	</div>
 

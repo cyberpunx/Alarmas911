@@ -57,8 +57,8 @@ class OrdenesServicio extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'detalleOrdenesServicios' => array(self::HAS_MANY, 'DetalleOrdenesServicio', 'ordenes_servicio_orden_servicio_id'),
-			'sistemaAlarmasSistemaAlarma' => array(self::BELONGS_TO, 'SistemaAlarmas', 'sistema_alarmas_sistema_alarma_id'),
-			'pagoses' => array(self::HAS_MANY, 'Pagos', 'ordenes_servicio_orden_servicio_id'),
+			'sistemaAlarmas' => array(self::BELONGS_TO, 'SistemaAlarmas', 'sistema_alarmas_sistema_alarma_id'),
+			'pagos' => array(self::HAS_MANY, 'Pagos', 'ordenes_servicio_orden_servicio_id'),
 			'usuariosHasOrdenesServicio' => array(self::HAS_ONE, 'UsuariosHasOrdenesServicio', 'ordenes_servicio_orden_servicio_id'),
 		);
 	}

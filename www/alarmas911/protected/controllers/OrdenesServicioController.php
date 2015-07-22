@@ -33,7 +33,7 @@ class OrdenesServicioController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findSistemaAlarmas'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -150,9 +150,46 @@ class OrdenesServicioController extends Controller
 	public function loadModel($id)
 	{
 		$model=OrdenesServicio::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+		if($model===null){
+			if (isset($_GET['id'])){
+				// NOTE 'with()'
+				$this->model=OrdenesServicio::model()->with('usuariosUsuario')->findbyPk($_GET['id']); 
+			}
+
+			if($model===null){
+				throw new CHttpException(404,'The requested page does not exist.');
+			}
+		}
+
 		return $model;
+	}
+
+	public function actionFindSistemaAlarmas() {
+		$q = $_GET['term'];
+		if (isset($q)) {
+			$criteria = new CDbCriteria;
+			
+			$criteria->condition = 'nombre_sistema_alarma like :q';
+			$criteria->order = 'nombre_sistema_alarma asc'; // correct order-by field
+			$criteria->limit = 10; // probably a good idea to limit the results
+			// with trailing wildcard only; probably a good idea for large volumes of data
+			$criteria->params = array(':q' => trim($q) . '%'); 
+			$PostCodes = SistemaAlarmas::model()->findAll($criteria);
+
+			if (!empty($PostCodes)) {
+				$out = array();
+				foreach ($PostCodes as $p) {
+					$out[] = array(
+						// expression to give the string for the autoComplete drop-down
+						'label' => $p->nombre_sistema_alarma,  
+						'value' => $p->nombre_sistema_alarma,
+						'id' => $p->sistema_alarma_id, // return value from autocomplete
+					);
+				}
+				echo CJSON::encode($out);
+				Yii::app()->end();
+			}
+		}
 	}
 
 	/**

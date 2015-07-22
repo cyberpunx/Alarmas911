@@ -71,3 +71,14 @@ CHANGELOG:
 			model:
 				Agregada funcion searchListClientes() (Casi replica de Search()  pero con una clausula WHERE )
 				Agregada searchListClientes() en la lista de Rules() para que funcionen las busquedas y filtros.
+
+
+05:05 p.m. 22/07/2015
+	Ordenes de Servicio -> Views/ordenesServicio/_form  --> Agregado sistema de fechas para insertar los valores.
+														--> Fecha default al dia de hoy para insertar nueva orden de servicio
+
+	Sistemas de Alarmas -> models/SistemaAlarmas
+						   controllers/SistemaAlarmasController
+						   views/sistemaAlarmas
+
+						   Agregado en _form un campo para insertar el cliente mediante una busqueda de FullName. Use una extensión. 
