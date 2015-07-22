@@ -39,6 +39,7 @@ class Usuarios extends CActiveRecord
 	 */
 
 	public $fullName;
+	public $fullNameDniAddress;
 
 	public function tableName()
 	{
@@ -60,7 +61,7 @@ class Usuarios extends CActiveRecord
 			array('comentarios', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('usuario_id, nombre, apellido, email, password, direccion, dni, telefono_celular, telefono_fijo, telefono_alt, rol, comentarios, empleado_funcion, empleado_temporal, empleado_activo, cliente_direccion_cobro, cliente_sistema_secundario_id, cliente_factura, cliente_razon_social, cliente_cuit, tipos_cliente_tipo_cliente_id, fullName', 'safe', 'on'=>'search, searchListClientes'),
+			array('usuario_id, nombre, apellido, email, password, direccion, dni, telefono_celular, telefono_fijo, telefono_alt, rol, comentarios, empleado_funcion, empleado_temporal, empleado_activo, cliente_direccion_cobro, cliente_sistema_secundario_id, cliente_factura, cliente_razon_social, cliente_cuit, tipos_cliente_tipo_cliente_id, fullName, fullNameDniAddress', 'safe', 'on'=>'search, searchListClientes'),
 		);
 	}
 
@@ -128,6 +129,7 @@ class Usuarios extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->addSearchCondition('concat(nombre, " ", apellido)', $this->fullName);
+		$criteria->addSearchCondition('concat(nombre, " ", apellido, " ", dni, " ", direccion)', $this->fullNameDniAddress);
 
 		$criteria->compare('usuario_id',$this->usuario_id,true);
 		$criteria->compare('nombre',$this->nombre,true);
@@ -164,6 +166,8 @@ class Usuarios extends CActiveRecord
 		$criteria->condition = "cliente_sistema_secundario_id IS NOT NULL AND cliente_factura = \"A\" ";
 
 		$criteria->addSearchCondition('concat(nombre, " ", apellido)', $this->fullName);
+		$criteria->addSearchCondition('concat(nombre, " ", apellido, " ", dni, " ", direccion)', $this->fullNameDniAddress);
+
 		$criteria->compare('usuario_id',$this->usuario_id,true);
 		$criteria->compare('nombre',$this->nombre,true);
 		$criteria->compare('apellido',$this->apellido,true);
@@ -202,6 +206,10 @@ class Usuarios extends CActiveRecord
  	// usado en la vista admin por ejemplo
  	public function getFullName(){
  		return $this->nombre.' '.$this->apellido;
+ 	}
+
+ 	public function getFullNameDniAddress(){
+ 		return $this->nombre.' '.$this->apellido.' ('.$this->dni.') - '.$this->direccion;
  	}
 
 	/**

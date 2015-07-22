@@ -21,16 +21,16 @@
 
 
 	<div class="row">
-	<?php echo $form->labelEx($model,'marcas_id_marca'); ?>
+	<?php echo $form->labelEx($model,'marcas_marca_id'); ?>
 	<?php
-	$marcas_list = CHtml::listData(Marcas::model()->findAll(), 'id_marca', 'nombre_marca');
+	$marcas_list = CHtml::listData(Marcas::model()->findAll(), 'marca_id', 'nombre_marca');
 	$options = array(
 	        'tabindex' => '0',
 	        'empty' => '(not set)',
 	);
 	?>
-	<?php echo $form->dropDownList($model,'marcas_id_marca', $marcas_list, $options); ?>
-	<?php echo $form->error($model,'marcas_id_marca'); ?>
+	<?php echo $form->dropDownList($model,'marcas_marca_id', $marcas_list, $options); ?>
+	<?php echo $form->error($model,'marcas_marca_id'); ?>
 	</div>
 
 	<div class="row">

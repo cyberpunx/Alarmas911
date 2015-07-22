@@ -68,7 +68,7 @@ class ModelosController extends Controller
 		{
 			$model->attributes=$_POST['Modelos'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_modelo));
+				$this->redirect(array('view','id'=>$model->modelo_id));
 		}
 
 		$this->render('create',array(
@@ -92,7 +92,7 @@ class ModelosController extends Controller
 		{
 			$model->attributes=$_POST['Modelos'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_modelo));
+				$this->redirect(array('view','id'=>$model->modelo_id));
 		}
 
 		$this->render('update',array(

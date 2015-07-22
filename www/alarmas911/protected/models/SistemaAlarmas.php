@@ -7,10 +7,10 @@
  * @property string $sistema_alarma_id
  * @property string $nombre_sistema_alarma
  * @property string $observaciones_sistema_alarma
- * @property string $modelos_id_modelo
+ * @property string $modelos_modelo_id
  * @property string $barrios_barrio_id
  * @property string $tipos_monitoreo_tipo_monitoreo_id
- * @property string $clientes_cliente_id
+ * @property string $usuarios_usuario_id
  *
  * The followings are the available model relations:
  * @property Accesorios[] $accesorioses
@@ -18,7 +18,7 @@
  * @property OrdenesServicio[] $ordenesServicios
  * @property Paneles[] $paneles
  * @property Barrios $barriosBarrio
- * @property Clientes $clientesCliente
+ * @property Usuarios $usuariosUsuario
  * @property Modelos $modelosIdModelo
  * @property TiposMonitoreo $tiposMonitoreoTipoMonitoreo
  * @property Zonas[] $zonases
@@ -41,12 +41,12 @@ class SistemaAlarmas extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre_sistema_alarma, modelos_id_modelo, barrios_barrio_id, tipos_monitoreo_tipo_monitoreo_id, clientes_cliente_id', 'required'),
+			array('nombre_sistema_alarma, modelos_modelo_id, barrios_barrio_id, tipos_monitoreo_tipo_monitoreo_id, usuarios_usuario_id', 'required'),
 			array('nombre_sistema_alarma, observaciones_sistema_alarma', 'length', 'max'=>128),
-			array('modelos_id_modelo, barrios_barrio_id, tipos_monitoreo_tipo_monitoreo_id, clientes_cliente_id', 'length', 'max'=>11),
+			array('modelos_modelo_id, barrios_barrio_id, tipos_monitoreo_tipo_monitoreo_id, usuarios_usuario_id', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('sistema_alarma_id, nombre_sistema_alarma, observaciones_sistema_alarma, modelos_id_modelo, barrios_barrio_id, tipos_monitoreo_tipo_monitoreo_id, clientes_cliente_id', 'safe', 'on'=>'search'),
+			array('sistema_alarma_id, nombre_sistema_alarma, observaciones_sistema_alarma, modelos_modelo_id, barrios_barrio_id, tipos_monitoreo_tipo_monitoreo_id, usuarios_usuario_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,15 +58,15 @@ class SistemaAlarmas extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'accesorioses' => array(self::HAS_MANY, 'Accesorios', 'sistema_alarmas_sistema_alarma_id'),
-			'bateriases' => array(self::HAS_MANY, 'Baterias', 'sistema_alarmas_sistema_alarma_id'),
+			'accesorios' => array(self::HAS_MANY, 'Accesorios', 'sistema_alarmas_sistema_alarma_id'),
+			'baterias' => array(self::HAS_MANY, 'Baterias', 'sistema_alarmas_sistema_alarma_id'),
 			'ordenesServicios' => array(self::HAS_MANY, 'OrdenesServicio', 'sistema_alarmas_sistema_alarma_id'),
 			'paneles' => array(self::HAS_MANY, 'Paneles', 'sistema_alarmas_sistema_alarma_id'),
 			'barriosBarrio' => array(self::BELONGS_TO, 'Barrios', 'barrios_barrio_id'),
-			'clientesCliente' => array(self::BELONGS_TO, 'Clientes', 'clientes_cliente_id'),
-			'modelosIdModelo' => array(self::BELONGS_TO, 'Modelos', 'modelos_id_modelo'),
+			'usuariosUsuario' => array(self::BELONGS_TO, 'Usuarios', 'usuarios_usuario_id'),
+			'modelosIdModelo' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
 			'tiposMonitoreoTipoMonitoreo' => array(self::BELONGS_TO, 'TiposMonitoreo', 'tipos_monitoreo_tipo_monitoreo_id'),
-			'zonases' => array(self::HAS_MANY, 'Zonas', 'sistema_alarmas_sistema_alarma_id'),
+			'zonas' => array(self::HAS_MANY, 'Zonas', 'sistema_alarmas_sistema_alarma_id'),
 		);
 	}
 
@@ -79,10 +79,10 @@ class SistemaAlarmas extends CActiveRecord
 			'sistema_alarma_id' => 'Sistema Alarma',
 			'nombre_sistema_alarma' => 'Nombre Sistema Alarma',
 			'observaciones_sistema_alarma' => 'Observaciones Sistema Alarma',
-			'modelos_id_modelo' => 'Modelos Id Modelo',
+			'modelos_modelo_id' => 'Modelos Id Modelo',
 			'barrios_barrio_id' => 'Barrios Barrio',
 			'tipos_monitoreo_tipo_monitoreo_id' => 'Tipos Monitoreo Tipo Monitoreo',
-			'clientes_cliente_id' => 'Clientes Cliente',
+			'usuarios_usuario_id' => 'Usuarios usuario',
 		);
 	}
 
@@ -107,10 +107,10 @@ class SistemaAlarmas extends CActiveRecord
 		$criteria->compare('sistema_alarma_id',$this->sistema_alarma_id,true);
 		$criteria->compare('nombre_sistema_alarma',$this->nombre_sistema_alarma,true);
 		$criteria->compare('observaciones_sistema_alarma',$this->observaciones_sistema_alarma,true);
-		$criteria->compare('modelos_id_modelo',$this->modelos_id_modelo,true);
+		$criteria->compare('modelos_modelo_id',$this->modelos_modelo_id,true);
 		$criteria->compare('barrios_barrio_id',$this->barrios_barrio_id,true);
 		$criteria->compare('tipos_monitoreo_tipo_monitoreo_id',$this->tipos_monitoreo_tipo_monitoreo_id,true);
-		$criteria->compare('clientes_cliente_id',$this->clientes_cliente_id,true);
+		$criteria->compare('usuarios_usuario_id',$this->usuarios_usuario_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

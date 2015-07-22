@@ -33,7 +33,7 @@ class SistemaAlarmasController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findUsuario'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -150,9 +150,48 @@ class SistemaAlarmasController extends Controller
 	public function loadModel($id)
 	{
 		$model=SistemaAlarmas::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+		if($model===null){
+			if (isset($_GET['id'])){
+               // NOTE 'with()'
+               $this->model=SistemaAlarmas::model()->with('usuariosUsuario')->findbyPk($_GET['id']); 
+			}
+
+			if($model===null){
+				throw new CHttpException(404,'The requested page does not exist.');
+			}
+		}
+		
+		
 		return $model;
+	}
+
+	// data provider for EJuiAutoCompleteFkField for usuario_id field
+	public function actionFindUsuario() {
+		$q = $_GET['term'];
+		if (isset($q)) {
+			$criteria = new CDbCriteria;
+
+			$criteria->condition = 'apellido like :q OR nombre like :q'; 
+			$criteria->order = 'apellido asc'; 
+			$criteria->limit = 10; 
+
+			$criteria->params = array(':q' => trim($q) . '%'); 
+			$usuarios = Usuarios::model()->findAll($criteria);
+
+		   if (!empty($usuarios)) {
+				$out = array();
+				foreach ($usuarios as $p) {
+					$out[] = array(
+						// expression to give the string for the autoComplete drop-down
+						'label' => $p->FullNameDniAddress,  
+						'value' => $p->FullName,
+						'id' => $p->usuario_id, // return value from autocomplete
+					);
+				}
+				echo CJSON::encode($out);
+				Yii::app()->end();
+			}
+		}
 	}
 
 	/**

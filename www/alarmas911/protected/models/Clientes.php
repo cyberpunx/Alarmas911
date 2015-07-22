@@ -56,8 +56,8 @@ class Clientes extends CActiveRecord
 		return array(
 			'personasPersona' => array(self::BELONGS_TO, 'Personas', 'personas_persona_id'),
 			'tiposClienteTipoCliente' => array(self::BELONGS_TO, 'TiposCliente', 'tipos_cliente_tipo_cliente_id'),
-			'clientesPagosFechas' => array(self::HAS_MANY, 'ClientesPagosFecha', 'clientes_cliente_id'),
-			'sistemaAlarmases' => array(self::HAS_MANY, 'SistemaAlarmas', 'clientes_cliente_id'),
+			'clientesPagosFechas' => array(self::HAS_MANY, 'ClientesPagosFecha', 'usuarios_usuario_id'),
+			'sistemaAlarmases' => array(self::HAS_MANY, 'SistemaAlarmas', 'usuarios_usuario_id'),
 		);
 	}
 

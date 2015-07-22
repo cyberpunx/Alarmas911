@@ -17,11 +17,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'sistema_alarmas_sistema_alarma_id'); ?>
-		<?php echo $form->textField($model,'sistema_alarmas_sistema_alarma_id',array('size'=>11,'maxlength'=>11)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'fecha_emision'); ?>
 		<?php echo $form->textField($model,'fecha_emision'); ?>
 	</div>
@@ -42,13 +37,18 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'vencimiento_orden'); ?>
+		<?php echo $form->textField($model,'vencimiento_orden'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'prioridad'); ?>
 		<?php echo $form->textField($model,'prioridad',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'vencimiento_orden'); ?>
-		<?php echo $form->textField($model,'vencimiento_orden',array('size'=>60,'maxlength'=>128)); ?>
+		<?php echo $form->label($model,'sistema_alarmas_sistema_alarma_id'); ?>
+		<?php echo $form->textField($model,'sistema_alarmas_sistema_alarma_id',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
 	<div class="row buttons">

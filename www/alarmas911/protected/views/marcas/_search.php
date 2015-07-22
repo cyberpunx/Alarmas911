@@ -12,8 +12,8 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'id_marca'); ?>
-		<?php echo $form->textField($model,'id_marca',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->label($model,'marca_id'); ?>
+		<?php echo $form->textField($model,'marca_id',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
 	<div class="row">

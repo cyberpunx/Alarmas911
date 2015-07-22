@@ -5,8 +5,8 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id_marca')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_marca), array('view', 'id'=>$data->id_marca)); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('marca_id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->marca_id), array('view', 'id'=>$data->marca_id)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('nombre_marca')); ?>:</b>

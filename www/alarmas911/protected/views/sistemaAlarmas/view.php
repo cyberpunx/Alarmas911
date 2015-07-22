@@ -24,9 +24,9 @@ $this->menu=array(
 		'sistema_alarma_id',
 		'nombre_sistema_alarma',
 		'observaciones_sistema_alarma',
-		'modelos_id_modelo',
+		'modelos_modelo_id',
 		'barrios_barrio_id',
 		'tipos_monitoreo_tipo_monitoreo_id',
-		'clientes_cliente_id',
+		'usuarios_usuario_id',
 	),
 )); ?>

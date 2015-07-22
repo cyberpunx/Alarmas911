@@ -17,8 +17,8 @@
 	<?php echo CHtml::encode($data->observaciones_sistema_alarma); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('modelos_id_modelo')); ?>:</b>
-	<?php echo CHtml::encode($data->modelos_id_modelo); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('modelos_modelo_id')); ?>:</b>
+	<?php echo CHtml::encode($data->modelos_modelo_id); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('barrios_barrio_id')); ?>:</b>
@@ -29,8 +29,8 @@
 	<?php echo CHtml::encode($data->tipos_monitoreo_tipo_monitoreo_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('clientes_cliente_id')); ?>:</b>
-	<?php echo CHtml::encode($data->clientes_cliente_id); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('usuarios_usuario_id')); ?>:</b>
+	<?php echo CHtml::encode($data->usuarios_usuario_id); ?>
 	<br />
 
 

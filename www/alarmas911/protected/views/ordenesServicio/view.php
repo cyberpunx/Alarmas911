@@ -22,12 +22,12 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'orden_servicio_id',
-		'sistema_alarmas_sistema_alarma_id',
 		'fecha_emision',
 		'fecha_cierre',
 		'importe',
 		'observaciones_orden_servicio',
-		'prioridad',
 		'vencimiento_orden',
+		'prioridad',
+		'sistema_alarmas_sistema_alarma_id',
 	),
 )); ?>

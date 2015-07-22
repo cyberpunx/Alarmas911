@@ -4,7 +4,7 @@
  * This is the model class for table "marcas".
  *
  * The followings are the available columns in table 'marcas':
- * @property string $id_marca
+ * @property string $marca_id
  * @property string $nombre_marca
  * @property string $observaciones_marca
  *
@@ -33,7 +33,7 @@ class Marcas extends CActiveRecord
 			array('observaciones_marca', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_marca, nombre_marca, observaciones_marca', 'safe', 'on'=>'search'),
+			array('marca_id, nombre_marca, observaciones_marca', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,7 +45,7 @@ class Marcas extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'modeloses' => array(self::HAS_MANY, 'Modelos', 'marcas_id_marca'),
+			'modeloses' => array(self::HAS_MANY, 'Modelos', 'marcas_marca_id'),
 		);
 	}
 
@@ -55,7 +55,7 @@ class Marcas extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_marca' => 'Id Marca',
+			'marca_id' => 'Id Marca',
 			'nombre_marca' => 'Nombre Marca',
 			'observaciones_marca' => 'Observaciones Marca',
 		);
@@ -79,7 +79,7 @@ class Marcas extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_marca',$this->id_marca,true);
+		$criteria->compare('marca_id',$this->marca_id,true);
 		$criteria->compare('nombre_marca',$this->nombre_marca,true);
 		$criteria->compare('observaciones_marca',$this->observaciones_marca,true);
 

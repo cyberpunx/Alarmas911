@@ -5,12 +5,12 @@
 
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id_modelo')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_modelo), array('view', 'id'=>$data->id_modelo)); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('modelo_id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->modelo_id), array('view', 'id'=>$data->modelo_id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('marcas_id_marca')); ?>:</b>
-	<?php echo CHtml::encode($data->marcas_id_marca); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('marcas_marca_id')); ?>:</b>
+	<?php echo CHtml::encode($data->marcas_marca_id); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('nombre_modelo')); ?>:</b>

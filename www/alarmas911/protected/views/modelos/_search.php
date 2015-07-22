@@ -12,13 +12,13 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'id_modelo'); ?>
-		<?php echo $form->textField($model,'id_modelo',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->label($model,'modelo_id'); ?>
+		<?php echo $form->textField($model,'modelo_id',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'marcas_id_marca'); ?>
-		<?php echo $form->textField($model,'marcas_id_marca',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->label($model,'marcas_marca_id'); ?>
+		<?php echo $form->textField($model,'marcas_marca_id',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
 	<div class="row">

@@ -4,8 +4,8 @@
  * This is the model class for table "modelos".
  *
  * The followings are the available columns in table 'modelos':
- * @property string $id_modelo
- * @property string $marcas_id_marca
+ * @property string $modelo_id
+ * @property string $marcas_marca_id
  * @property string $nombre_modelo
  * @property string $observaciones_modelo
  * @property string $discriminante
@@ -36,13 +36,13 @@ class Modelos extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('marcas_id_marca, nombre_modelo, discriminante', 'required'),
-			array('marcas_id_marca', 'length', 'max'=>11),
+			array('marcas_marca_id, nombre_modelo, discriminante', 'required'),
+			array('marcas_marca_id', 'length', 'max'=>11),
 			array('nombre_modelo, discriminante', 'length', 'max'=>128),
 			array('observaciones_modelo', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_modelo, marcas_id_marca, nombre_modelo, observaciones_modelo, discriminante', 'safe', 'on'=>'search'),
+			array('modelo_id, marcas_marca_id, nombre_modelo, observaciones_modelo, discriminante', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,12 +54,12 @@ class Modelos extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'accesorioses' => array(self::HAS_MANY, 'Accesorios', 'modelos_id_modelo'),
-			'bateriases' => array(self::HAS_MANY, 'Baterias', 'modelos_id_modelo'),
-			'marcasIdMarca' => array(self::BELONGS_TO, 'Marcas', 'marcas_id_marca'),
-			'paneles' => array(self::HAS_MANY, 'Paneles', 'modelos_id_modelo'),
-			'sensores' => array(self::HAS_MANY, 'Sensores', 'modelos_id_modelo'),
-			'sistemaAlarmases' => array(self::HAS_MANY, 'SistemaAlarmas', 'modelos_id_modelo'),
+			'accesorioses' => array(self::HAS_MANY, 'Accesorios', 'modelos_modelo_id'),
+			'bateriases' => array(self::HAS_MANY, 'Baterias', 'modelos_modelo_id'),
+			'marcasIdMarca' => array(self::BELONGS_TO, 'Marcas', 'marcas_marca_id'),
+			'paneles' => array(self::HAS_MANY, 'Paneles', 'modelos_modelo_id'),
+			'sensores' => array(self::HAS_MANY, 'Sensores', 'modelos_modelo_id'),
+			'sistemaAlarmases' => array(self::HAS_MANY, 'SistemaAlarmas', 'modelos_modelo_id'),
 		);
 	}
 
@@ -69,8 +69,8 @@ class Modelos extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_modelo' => 'Id Modelo',
-			'marcas_id_marca' => 'Marcas Id Marca',
+			'modelo_id' => 'Id Modelo',
+			'marcas_marca_id' => 'Marcas Id Marca',
 			'nombre_modelo' => 'Nombre Modelo',
 			'observaciones_modelo' => 'Observaciones Modelo',
 			'discriminante' => 'Discriminante',
@@ -95,8 +95,8 @@ class Modelos extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_modelo',$this->id_modelo,true);
-		$criteria->compare('marcas_id_marca',$this->marcas_id_marca,true);
+		$criteria->compare('modelo_id',$this->modelo_id,true);
+		$criteria->compare('marcas_marca_id',$this->marcas_marca_id,true);
 		$criteria->compare('nombre_modelo',$this->nombre_modelo,true);
 		$criteria->compare('observaciones_modelo',$this->observaciones_modelo,true);
 		$criteria->compare('discriminante',$this->discriminante,true);
