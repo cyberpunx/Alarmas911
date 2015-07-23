@@ -47,7 +47,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		//'orden_servicio_id',
 		array(
-			'name'=>'sistemaAlarmas.nombre_sistema_alarma',
+			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
+			'name'=>'sistemaAlarmasName',
 			'value'=>function($data) {
 				if(strlen($data->sistemaAlarmas->nombre_sistema_alarma) > 20){
 					return substr($data->sistemaAlarmas->nombre_sistema_alarma, 0, 20)."...";
