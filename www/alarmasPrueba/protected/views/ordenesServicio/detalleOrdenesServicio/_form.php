@@ -1,46 +1,51 @@
+<div style="margin-bottom: 20px; display: <?php echo!empty($display) ? $display : 'none'; ?>; width:100%; clear:left;" class="crow">
+ 
+
+    
+
+
+
+    <div class="row">
+	<?php echo CHtml::activeLabelEx($model,'tipos_servicio_tipo_servicio_id'); ?>
+	<?php
+	$servicios_Lst = CHtml::listData(TiposServicio::model()->findAll(), 'tipo_servicio_id', 'nombre_tipo_servicio');
+	$options = array(
+		'tabindex' => '0',
+		'empty' => '(not set)',
+	);
+	?>
+	<?php echo CHtml::activeDropDownList($model, '[' . $index . ']tipos_servicio_tipo_servicio_id', $servicios_Lst, $options); ?>
+	<?php echo CHtml::error($model, '[' . $index . ']tipos_servicio_tipo_servicio_id'); ?>
+	</div>
+
+ 
+    <div class="row" style="width:200px;float: left;">
+        <?php echo CHtml::activeLabelEx($model, '[' . $index . ']descripcion_detalle_orden_servicio'); ?>
+        <?php echo CHtml::activeTextField($model, '[' . $index . ']descripcion_detalle_orden_servicio'); ?>
+        <?php echo CHtml::error($model, '[' . $index . ']descripcion_detalle_orden_servicio'); ?>
+    </div>
+    <div class="row" style="width:100px;float: left;">
+        <br />
+        <?php echo CHtml::link('Delete', '#', array('onclick' => 'deleteChild(this, ' . $index . '); return false;'));
+        ?>
+    </div>
+</div>
+ 
 <?php
-/* @var $this DetalleOrdenesServicioController */
-/* @var $model DetalleOrdenesServicio */
-/* @var $form CActiveForm */
+Yii::app()->clientScript->registerScript('deleteChild', "
+function deleteChild(elm, index)
+{
+    element=$(elm).parent().parent();
+    /* animate div */
+    $(element).animate(
+    {
+        opacity: 0.25,
+        left: '+=50',
+        height: 'toggle'
+    }, 500,
+    function() {
+        /* remove div */
+        $(element).remove();
+    });
+}", CClientScript::POS_END);
 ?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'detalle-ordenes-servicio-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
-)); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'ordenes_servicio_orden_servicio_id'); ?>
-		<?php echo $form->textField($model,'ordenes_servicio_orden_servicio_id',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'ordenes_servicio_orden_servicio_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'tipos_servicio_tipo_servicio_id'); ?>
-		<?php echo $form->textField($model,'tipos_servicio_tipo_servicio_id',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'tipos_servicio_tipo_servicio_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'descripcion_detalle_orden_servicio'); ?>
-		<?php echo $form->textField($model,'descripcion_detalle_orden_servicio',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'descripcion_detalle_orden_servicio'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
-
-</div><!-- form -->
