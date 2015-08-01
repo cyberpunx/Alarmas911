@@ -31,9 +31,9 @@
 					'showButtonPanel'=>true,
 					'autoSize'=>true,
 					'dateFormat'=>'yy-mm-dd',
-					'defaultDate'=>+0,
+					//'defaultDate'=>+0,
 				),
-				'htmlOptions'=>array('value'=>date('Y-m-d'))
+				//'htmlOptions'=>array('value'=>date('Y-m-d'))
 			));
 		?>
 		<?php echo $form->error($model,'fecha_emision'); ?>
@@ -114,7 +114,7 @@
 				'displayAttr'=>'nombre_sistema_alarma', 
 				'autoCompleteLength'=>60,
 				'options'=>array(
-					'minLength'=>3, 
+					'minLength'=>0, 
 				),
 			));
 		?>

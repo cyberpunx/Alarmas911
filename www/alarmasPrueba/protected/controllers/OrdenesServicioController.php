@@ -91,6 +91,7 @@ class OrdenesServicioController extends Controller
                 $model->addError('detalleOrdenesServicios', 'Error occured while saving detalleOrdenesServicios.');
 		}
 
+		$model->fecha_emision = date('Y-m-d');
 		$this->render('create',array(
 			'model'=>$model,
 		));

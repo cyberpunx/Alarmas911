@@ -82,3 +82,9 @@ CHANGELOG:
 						   views/sistemaAlarmas
 
 						   Agregado en _form un campo para insertar el cliente mediante una busqueda de FullName. Use una extensión. 
+
+
+
+
+02:34 p.m. 01/08/2015
+	Funcionando el Detalle Ordenes Servicio con el método Father/Children

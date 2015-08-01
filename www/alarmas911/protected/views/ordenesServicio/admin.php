@@ -46,9 +46,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		//'orden_servicio_id',
+		'fecha_emision',
 		array(
 			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
 			'name'=>'sistemaAlarmasName',
+			'header'=>'Sistema de Alarmas',
 			'value'=>function($data) {
 				if(strlen($data->sistemaAlarmas->nombre_sistema_alarma) > 20){
 					return substr($data->sistemaAlarmas->nombre_sistema_alarma, 0, 20)."...";
@@ -57,9 +59,32 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 				}
 			},
 		),
-		'fecha_emision',
-		'fecha_cierre',
-		'vencimiento_orden',
+		//'fecha_cierre',
+		
+		array(
+			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
+			'name'=>'fecha_cierre',
+			'value'=>function($data) {
+				if($data->fecha_cierre == "0000-00-00"){
+					return "";
+				} else {
+					return $data->fecha_cierre;
+				}
+			},
+		),
+		
+		//'vencimiento_orden',
+		array(
+			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
+			'name'=>'vencimiento_orden',
+			'value'=>function($data) {
+				if($data->vencimiento_orden == "0000-00-00"){
+					return "";
+				} else {
+					return $data->vencimiento_orden;
+				}
+			},
+		),
 		'importe',
 		'observaciones_orden_servicio',		
 		/*
@@ -67,7 +92,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'sistema_alarmas_sistema_alarma_id',
 		*/
 		array(
-			'class'=>'CButtonColumn',
+    		'class'=>'CButtonColumn',
+    		'template'=>'{update}{delete}',
 		),
 	),
 )); ?>

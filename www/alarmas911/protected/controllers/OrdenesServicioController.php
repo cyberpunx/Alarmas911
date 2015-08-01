@@ -33,7 +33,7 @@ class OrdenesServicioController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findSistemaAlarmas'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findSistemaAlarmas','loadDetalleByAjax',),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -64,13 +64,34 @@ class OrdenesServicioController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+//		if(isset($_POST['OrdenesServicio']))
+//		{
+//			$model->attributes=$_POST['OrdenesServicio'];
+//			if($model->save())
+//				$this->redirect(array('view','id'=>$model->orden_servicio_id));
+//		}
+//
+//		$this->render('create',array(
+//			'model'=>$model,
+//		));
+
+		// Uncomment the following line if AJAX validation is needed
+		$this->performAjaxValidation($model);
+
 		if(isset($_POST['OrdenesServicio']))
 		{
 			$model->attributes=$_POST['OrdenesServicio'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->orden_servicio_id));
+			if (isset($_POST['DetalleOrdenesServicio']))
+            {
+                $model->detalleOrdenesServicios = $_POST['DetalleOrdenesServicio'];
+            }
+           if ($model->saveWithRelated('detalleOrdenesServicios'))
+                $this->redirect(array('OrdenesServicio/admin'));
+            else
+                $model->addError('detalleOrdenesServicios', 'Error occured while saving detalleOrdenesServicios.');
 		}
 
+		$model->fecha_emision = date('Y-m-d');
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -83,21 +104,27 @@ class OrdenesServicioController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['OrdenesServicio']))
-		{
-			$model->attributes=$_POST['OrdenesServicio'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->orden_servicio_id));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$model = $this->loadModel($id);
+ 
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
+ 
+        if (isset($_POST['OrdenesServicio']))
+        {
+            $model->attributes = $_POST['OrdenesServicio'];
+            if (isset($_POST['DetalleOrdenesServicio']))
+            {
+                $model->detalleOrdenesServicios = $_POST['DetalleOrdenesServicio'];
+            }
+            if ($model->saveWithRelated('detalleOrdenesServicios'))
+                $this->redirect(array('OrdenesServicio/admin'));
+            else
+                $model->addError('detalleOrdenesServicios', 'Error occured while saving detalleOrdenesServicios.');
+        }
+ 
+        $this->render('update', array(
+            'model' => $model,
+        ));
 	}
 
 	/**
@@ -204,4 +231,14 @@ class OrdenesServicioController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	public function actionLoadDetalleByAjax($index){
+	$model = new DetalleOrdenesServicio;
+	$this->renderPartial('detalleOrdenesServicio/_form', array(
+		'model' => $model,
+		'index' => $index,
+		//'display' => 'block',
+		), false, true);
+	}
+
 }

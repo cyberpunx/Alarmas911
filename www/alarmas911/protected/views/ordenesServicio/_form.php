@@ -12,7 +12,7 @@
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
+	'enableAjaxValidation'=>true,
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -31,9 +31,9 @@
 					'showButtonPanel'=>true,
 					'autoSize'=>true,
 					'dateFormat'=>'yy-mm-dd',
-					'defaultDate'=>+0,
+					//'defaultDate'=>+0,
 				),
-				'htmlOptions'=>array('value'=>date('Y-m-d'))
+				//'htmlOptions'=>array('value'=>date('Y-m-d'))
 			));
 		?>
 		<?php echo $form->error($model,'fecha_emision'); ?>
@@ -114,17 +114,66 @@
 				'displayAttr'=>'nombre_sistema_alarma', 
 				'autoCompleteLength'=>60,
 				'options'=>array(
-					'minLength'=>3, 
+					'minLength'=>0, 
 				),
 			));
 		?>
 		<?php echo $form->error($model,'sistema_alarmas_sistema_alarma_id'); ?>
 	</div>
 
+<!--
+	<div class="row buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	</div>
+-->
+
+
+
+
+
+	<?php
+    echo CHtml::link('Agregar Linea de Detalle', '#', array('id' => 'loadDetalleByAjax'));
+    ?>
+    <div id="detalleOrdenesServicios">
+        <?php
+        $index = 0;
+        foreach ($model->detalleOrdenesServicios as $id => $detalleOrdenesServicio):
+            $this->renderPartial('detalleOrdenesServicio/_form', array(
+                'model' => $detalleOrdenesServicio,
+                'index' => $id,
+                'display' => 'block'
+            ));
+            $index++;
+        endforeach;
+        ?>
+    </div>
+
+	<div style="clear:both;"></div>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
 
-<?php $this->endWidget(); ?>
 
+<?php $this->endWidget(); ?>
 </div><!-- form -->
+
+	<?php
+Yii::app()->clientScript->registerCoreScript('jquery');
+Yii::app()->clientScript->registerScript('loadDetalle', 'var _index = ' . $index . ';$("#loadDetalleByAjax").click(function(e){
+    e.preventDefault();
+    var _url = "' . Yii::app()->controller->createUrl("loadDetalleByAjax", array("load_for" => $this->action->id)) . '&index="+_index;
+    $.ajax({
+	        url: _url,
+	        success:function(response){
+	            $("#detalleOrdenesServicios").append(response);
+	            $("#detalleOrdenesServicios .crow").last().animate({
+	                opacity : 1,
+	                left: "+50",
+	                height: "toggle"
+	            });
+	        }
+	    });
+	    _index++;
+});
+', CClientScript::POS_END);
+?>

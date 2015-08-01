@@ -74,13 +74,13 @@ class OrdenesServicio extends CActiveRecord
 	{
 		return array(
 			'orden_servicio_id' => 'Orden Servicio',
-			'fecha_emision' => 'Fecha Emision',
-			'fecha_cierre' => 'Fecha Cierre',
+			'fecha_emision' => 'Fecha de Emision',
+			'fecha_cierre' => 'Fecha de Cierre',
 			'importe' => 'Importe',
-			'observaciones_orden_servicio' => 'Observaciones Orden Servicio',
-			'vencimiento_orden' => 'Vencimiento Orden',
+			'observaciones_orden_servicio' => 'Observaciones',
+			'vencimiento_orden' => 'Fecha de Vencimiento',
 			'prioridad' => 'Prioridad',
-			'sistema_alarmas_sistema_alarma_id' => 'Sistema Alarmas Sistema Alarma',
+			'sistema_alarmas_sistema_alarma_id' => 'Sistema de Alarmas',
 		);
 	}
 
@@ -130,4 +130,11 @@ class OrdenesServicio extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function behaviors()
+    {
+        return array('ESaveRelatedBehavior' => array(
+                'class' => 'application.components.ESaveRelatedBehavior')
+        );
+    }
 }
