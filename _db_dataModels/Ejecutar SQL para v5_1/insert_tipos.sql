@@ -50,14 +50,6 @@ INSERT INTO `tipos_baterias` VALUES (1,'Energizer',NULL),(2,'Eveready',NULL),(3,
 UNLOCK TABLES;
 
 --
--- Dumping data for table `modelos`
---
-
-LOCK TABLES `modelos` WRITE;
-INSERT INTO `modelos` VALUES (1,6,'Stratocaster',NULL,''),(2,6,'Telecaster',NULL,''),(3,6,'Jazzmaster',NULL,''),(4,7,'Les Paul',NULL,''),(5,7,'SG',NULL,''),(6,7,'Explorer',NULL,''),(7,8,'Gio',NULL,''),(8,1,'C5X',NULL,''),(9,2,'Concert Grand Model D',NULL,'');
-UNLOCK TABLES;
-
---
 -- Dumping data for table `marcas`
 --
 
@@ -71,4 +63,12 @@ UNLOCK TABLES;
 
 LOCK TABLES `barrios` WRITE;
 INSERT INTO `barrios` VALUES (1,'Centro','Radio céntrico'),(2,'Melipal','Km 4'),(3,'Los Coihues',NULL),(4,'Casa de Piedra','Km 12');
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `modelos`
+--
+
+LOCK TABLES `modelos` WRITE;
+INSERT INTO `modelos` VALUES (1,6,'Stratocaster',NULL,''),(2,6,'Telecaster',NULL,''),(3,6,'Jazzmaster',NULL,''),(4,7,'Les Paul',NULL,''),(5,7,'SG',NULL,''),(6,7,'Explorer',NULL,''),(7,8,'Gio',NULL,''),(8,1,'C5X',NULL,''),(9,2,'Concert Grand Model D',NULL,'');
 UNLOCK TABLES;
