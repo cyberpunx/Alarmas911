@@ -58,7 +58,6 @@ class Usuarios extends CActiveRecord
 			array('empleado_temporal, empleado_activo, cliente_sistema_secundario_id, cliente_cuit', 'numerical', 'integerOnly'=>true),
 			array('nombre, apellido, email, password, direccion, telefono_celular, telefono_fijo, telefono_alt, rol, empleado_funcion, cliente_direccion_cobro, cliente_factura, cliente_razon_social', 'length', 'max'=>128),
 			array('dni, tipos_cliente_tipo_cliente_id', 'length', 'max'=>11),
-			array('comentarios', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('usuario_id, nombre, apellido, email, password, direccion, dni, telefono_celular, telefono_fijo, telefono_alt, rol, comentarios, empleado_funcion, empleado_temporal, empleado_activo, cliente_direccion_cobro, cliente_sistema_secundario_id, cliente_factura, cliente_razon_social, cliente_cuit, tipos_cliente_tipo_cliente_id, fullName, fullNameDniAddress', 'safe', 'on'=>'search, searchListClientes'),

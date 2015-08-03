@@ -77,12 +77,12 @@ class SistemaAlarmas extends CActiveRecord
 	{
 		return array(
 			'sistema_alarma_id' => 'Sistema Alarma',
-			'nombre_sistema_alarma' => 'Nombre Sistema Alarma',
-			'observaciones_sistema_alarma' => 'Observaciones Sistema Alarma',
-			'modelos_modelo_id' => 'Modelos Id Modelo',
-			'barrios_barrio_id' => 'Barrios Barrio',
-			'tipos_monitoreo_tipo_monitoreo_id' => 'Tipos Monitoreo Tipo Monitoreo',
-			'usuarios_usuario_id' => 'Usuarios usuario',
+			'nombre_sistema_alarma' => 'Nombre del Sistema',
+			'observaciones_sistema_alarma' => 'Observaciones',
+			'modelos_modelo_id' => 'Modelo',
+			'barrios_barrio_id' => 'Barrio',
+			'tipos_monitoreo_tipo_monitoreo_id' => 'Tipo de Monitoreo',
+			'usuarios_usuario_id' => 'Nombre del Cliente',
 		);
 	}
 

@@ -20,10 +20,39 @@
     <?php echo $form->errorSummary($model); ?>
 
     <div class="row">
+        <?php echo $form->labelEx($model,'usuarios_usuario_id'); ?>
+        <?
+            $this->widget('EJuiAutoCompleteFkField', array(
+                'model'=>$model, 
+                'attribute'=>'usuarios_usuario_id', //the FK field (from CJuiInputWidget)
+                // controller method to return the autoComplete data (from CJuiAutoComplete)
+                'sourceUrl'=>Yii::app()->createUrl('sistemaAlarmas/FindUsuario'), 
+                // defaults to false.  set 'true' to display the FK field with 'readonly' attribute.
+                'showFKField'=>false,
+                // display size of the FK field.  only matters if not hidden.  defaults to 10
+                'FKFieldSize'=>1, 
+                'relName'=>'usuariosUsuario', // the relation name defined above
+                'displayAttr'=>'apellido',  // attribute or pseudo-attribute to display
+                // length of the AutoComplete/display field, defaults to 50
+                'autoCompleteLength'=>60,
+                // any attributes of CJuiAutoComplete and jQuery JUI AutoComplete widget may 
+                // also be defined.  read the code and docs for all options
+                'options'=>array(
+                    // number of characters that must be typed before 
+                    // autoCompleter returns a value, defaults to 2
+                    'minLength'=>0, 
+                ),
+            ));
+        ?>
+        <?php echo $form->error($model,'usuarios_usuario_id'); ?>
+    </div>
+
+    <div class="row">
         <?php echo $form->labelEx($model,'nombre_sistema_alarma'); ?>
         <?php echo $form->textField($model,'nombre_sistema_alarma',array('size'=>60,'maxlength'=>128)); ?>
         <?php echo $form->error($model,'nombre_sistema_alarma'); ?>
     </div>
+
 
     <div class="row">
         <?php echo $form->labelEx($model,'observaciones_sistema_alarma'); ?>
@@ -71,33 +100,7 @@
     <?php echo $form->error($model,'tipos_monitoreo_tipo_monitoreo_id'); ?>
     </div>
 
-    <div class="row">
-        <?php echo $form->labelEx($model,'usuarios_usuario_id'); ?>
-        <?
-            $this->widget('EJuiAutoCompleteFkField', array(
-                'model'=>$model, 
-                'attribute'=>'usuarios_usuario_id', //the FK field (from CJuiInputWidget)
-                // controller method to return the autoComplete data (from CJuiAutoComplete)
-                'sourceUrl'=>Yii::app()->createUrl('sistemaAlarmas/FindUsuario'), 
-                // defaults to false.  set 'true' to display the FK field with 'readonly' attribute.
-                'showFKField'=>false,
-                // display size of the FK field.  only matters if not hidden.  defaults to 10
-                'FKFieldSize'=>1, 
-                'relName'=>'usuariosUsuario', // the relation name defined above
-                'displayAttr'=>'apellido',  // attribute or pseudo-attribute to display
-                // length of the AutoComplete/display field, defaults to 50
-                'autoCompleteLength'=>60,
-                // any attributes of CJuiAutoComplete and jQuery JUI AutoComplete widget may 
-                // also be defined.  read the code and docs for all options
-                'options'=>array(
-                    // number of characters that must be typed before 
-                    // autoCompleter returns a value, defaults to 2
-                    'minLength'=>2, 
-                ),
-            ));
-        ?>
-        <?php echo $form->error($model,'usuarios_usuario_id'); ?>
-    </div>
+    
 
     <div class="row buttons">
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

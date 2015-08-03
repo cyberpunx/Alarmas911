@@ -46,7 +46,7 @@ class TiposCliente extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'clientes' => array(self::HAS_MANY, 'Clientes', 'tipos_cliente_tipo_cliente_id'),
+			'clientes' => array(self::HAS_MANY, 'Usuarios', 'tipos_cliente_tipo_cliente_id'),
 		);
 	}
 
