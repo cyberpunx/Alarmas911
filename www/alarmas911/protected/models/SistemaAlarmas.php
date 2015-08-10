@@ -62,10 +62,10 @@ class SistemaAlarmas extends CActiveRecord
 			'baterias' => array(self::HAS_MANY, 'Baterias', 'sistema_alarmas_sistema_alarma_id'),
 			'ordenesServicios' => array(self::HAS_MANY, 'OrdenesServicio', 'sistema_alarmas_sistema_alarma_id'),
 			'paneles' => array(self::HAS_MANY, 'Paneles', 'sistema_alarmas_sistema_alarma_id'),
-			'barriosBarrio' => array(self::BELONGS_TO, 'Barrios', 'barrios_barrio_id'),
-			'usuariosUsuario' => array(self::BELONGS_TO, 'Usuarios', 'usuarios_usuario_id'),
-			'modelosIdModelo' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
-			'tiposMonitoreoTipoMonitoreo' => array(self::BELONGS_TO, 'TiposMonitoreo', 'tipos_monitoreo_tipo_monitoreo_id'),
+			'barrios' => array(self::BELONGS_TO, 'Barrios', 'barrios_barrio_id'),
+			'usuarios' => array(self::BELONGS_TO, 'Usuarios', 'usuarios_usuario_id'),
+			'modelos' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
+			'tiposMonitoreo' => array(self::BELONGS_TO, 'TiposMonitoreo', 'tipos_monitoreo_tipo_monitoreo_id'),
 			'zonas' => array(self::HAS_MANY, 'Zonas', 'sistema_alarmas_sistema_alarma_id'),
 		);
 	}
@@ -76,7 +76,7 @@ class SistemaAlarmas extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'sistema_alarma_id' => 'Sistema Alarma',
+			'sistema_alarma_id' => 'Sistema Alarma ID',
 			'nombre_sistema_alarma' => 'Nombre del Sistema',
 			'observaciones_sistema_alarma' => 'Observaciones',
 			'modelos_modelo_id' => 'Modelo',
@@ -115,6 +115,23 @@ class SistemaAlarmas extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	public function behaviors()
+    {
+        return array('ESaveRelatedBehavior' => array(
+                'class' => 'application.components.ESaveRelatedBehavior')
+        );
+    }
+
+    public function getRelatedZonas(){
+		$out=CHtml::listData($this->zonas,'zona_id','nombre_zona');
+		$linea = '<ul>';
+		foreach($out as $key=>$value){ 
+			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('zonas/view', 'id' => $key)));
+		}
+		$linea .= '</ul>';
+		return $linea;
 	}
 
 	/**

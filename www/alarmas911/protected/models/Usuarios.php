@@ -208,7 +208,7 @@ class Usuarios extends CActiveRecord
  	}
 
  	public function getFullNameDniAddress(){
- 		return $this->nombre.' '.$this->apellido.' ('.$this->dni.') - '.$this->direccion;
+ 		return $this->nombre.' '.$this->apellido.' (DNI: '.$this->dni.') - '.$this->direccion;
  	}
 
 	/**

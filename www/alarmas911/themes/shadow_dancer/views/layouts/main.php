@@ -39,12 +39,17 @@
 				'items'=>array(
 					//array('label'=>'About', 'url'=>array('/site/page'), 'view'=>'about', 'visible'=>Yii::app()->user->checkAccess('CLIENTE')),
 					//array('label'=>'Contact', 'url'=>array('/site/contact')),
-					//array('label'=>'Personas', 'url'=>array('/personas/admin'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
-					//array('label'=>'Clientes', 'url'=>array('/clientes/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
-					//array('label'=>'Usuarios', 'url'=>array('/usuarios/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
-					//array('label'=>'TiposClientes', 'url'=>array('/tiposCliente/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+					array('label'=>'detalleOrdenesServicio', 'url'=>array('/detalleOrdenesServicio/admin'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+					array('label'=>'--------------------------', 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+					array('label'=>'paneles', 'url'=>array('/paneles/admin'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+					array('label'=>'sensores', 'url'=>array('/sensores/admin'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+					array('label'=>'accesorios', 'url'=>array('/accesorios/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+					array('label'=>'baterias', 'url'=>array('/baterias/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+					array('label'=>'zonas', 'url'=>array('/zonas/index'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+					array('label'=>'--------------------------', 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 					array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-					array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+					array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+					array('label'=>'gii', 'url'=>array('/gii'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 				),
 			)); ?>
 		</div>

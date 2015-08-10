@@ -1,6 +1,6 @@
 <?php
 
-class SistemaAlarmasController extends Controller
+class ZonasController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -33,7 +33,7 @@ class SistemaAlarmasController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findUsuario', 'loadChildByAjax'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'loadChildByAjax'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -59,28 +59,23 @@ class SistemaAlarmasController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new SistemaAlarmas;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		$model = new SistemaAlarmas;
+		$model = new Zonas;
  
         // Uncomment the following line if AJAX validation is needed
         $this->performAjaxValidation($model);
  
-        if (isset($_POST['SistemaAlarmas']))
+        if (isset($_POST['Zonas']))
         {
-            $model->attributes = $_POST['SistemaAlarmas'];
+            $model->attributes = $_POST['Zonas'];
  
-            if (isset($_POST['Zonas']))
+            if (isset($_POST['Sensores']))
             {
-                $model->zonas = $_POST['Zonas'];
+                $model->sensores = $_POST['Sensores'];
             }
-            if ($model->saveWithRelated('zonas'))
-                $this->redirect(array('view', 'id' => $model->sistema_alarma_id));
+            if ($model->saveWithRelated('sensores'))
+                $this->redirect(array('view', 'id' => $model->zona_id));
             else
-                $model->addError('zonas', 'Error occured while saving zonas.');
+                $model->addError('sensores', 'Error occured while saving sensores.');
         }
  
         $this->render('create', array(
@@ -100,17 +95,17 @@ class SistemaAlarmasController extends Controller
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
  
-        if (isset($_POST['SistemaAlarmas']))
+        if (isset($_POST['Zonas']))
         {
-            $model->attributes = $_POST['SistemaAlarmas'];
-            if (isset($_POST['Zonas']))
+            $model->attributes = $_POST['Zonas'];
+            if (isset($_POST['Sensores']))
             {
-                $model->zonas = $_POST['Zonas'];
+                $model->sensores = $_POST['Sensores'];
             }
-            if ($model->saveWithRelated('zonas'))
-                $this->redirect(array('view', 'id' => $model->sistema_alarma_id));
+            if ($model->saveWithRelated('sensores'))
+                $this->redirect(array('view', 'id' => $model->zona_id));
             else
-                $model->addError('zonas', 'Error occured while saving zonas.');
+                $model->addError('sensores', 'Error occured while saving sensores.');
         }
  
         $this->render('update', array(
@@ -137,7 +132,7 @@ class SistemaAlarmasController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('SistemaAlarmas');
+		$dataProvider=new CActiveDataProvider('Zonas');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -148,10 +143,10 @@ class SistemaAlarmasController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new SistemaAlarmas('search');
+		$model=new Zonas('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['SistemaAlarmas']))
-			$model->attributes=$_GET['SistemaAlarmas'];
+		if(isset($_GET['Zonas']))
+			$model->attributes=$_GET['Zonas'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -162,63 +157,24 @@ class SistemaAlarmasController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return SistemaAlarmas the loaded model
+	 * @return Zonas the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=SistemaAlarmas::model()->findByPk($id);
-		if($model===null){
-			if (isset($_GET['id'])){
-               // NOTE 'with()'
-               $this->model=SistemaAlarmas::model()->with('usuariosUsuario')->findbyPk($_GET['id']); 
-			}
-
-			if($model===null){
-				throw new CHttpException(404,'The requested page does not exist.');
-			}
-		}
-		
-		
+		$model=Zonas::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
-	}
-
-	// data provider for EJuiAutoCompleteFkField for usuario_id field
-	public function actionFindUsuario() {
-		$q = $_GET['term'];
-		if (isset($q)) {
-			$criteria = new CDbCriteria;
-
-			$criteria->condition = 'apellido like :q OR nombre like :q'; 
-			$criteria->order = 'apellido asc'; 
-			$criteria->limit = 10; 
-
-			$criteria->params = array(':q' => trim($q) . '%'); 
-			$usuarios = Usuarios::model()->findAll($criteria);
-
-		   if (!empty($usuarios)) {
-				$out = array();
-				foreach ($usuarios as $p) {
-					$out[] = array(
-						// expression to give the string for the autoComplete drop-down
-						'label' => $p->FullNameDniAddress,  
-						'value' => $p->FullName,
-						'id' => $p->usuario_id, // return value from autocomplete
-					);
-				}
-				echo CJSON::encode($out);
-				Yii::app()->end();
-			}
-		}
 	}
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param SistemaAlarmas $model the model to be validated
+	 * @param Zonas $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='sistema-alarmas-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='zonas-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
@@ -227,8 +183,8 @@ class SistemaAlarmasController extends Controller
 
 	public function actionLoadChildByAjax($index)
     {
-        $model = new Zonas;
-        $this->renderPartial('zonas/_form', array(
+        $model = new Sensores;
+        $this->renderPartial('sensores/_form', array(
             'model' => $model,
             'index' => $index,
 //            'display' => 'block',

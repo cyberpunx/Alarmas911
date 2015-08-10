@@ -12,7 +12,7 @@
     // controller action is handling ajax validation correctly.
     // There is a call to performAjaxValidation() commented in generated controller code.
     // See class documentation of CActiveForm for details on this.
-    'enableAjaxValidation'=>false,
+    'enableAjaxValidation'=>true,
 )); ?>
 
     <p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -21,7 +21,7 @@
 
     <div class="row">
         <?php echo $form->labelEx($model,'usuarios_usuario_id'); ?>
-        <?
+        <?php
             $this->widget('EJuiAutoCompleteFkField', array(
                 'model'=>$model, 
                 'attribute'=>'usuarios_usuario_id', //the FK field (from CJuiInputWidget)
@@ -31,8 +31,8 @@
                 'showFKField'=>false,
                 // display size of the FK field.  only matters if not hidden.  defaults to 10
                 'FKFieldSize'=>1, 
-                'relName'=>'usuariosUsuario', // the relation name defined above
-                'displayAttr'=>'apellido',  // attribute or pseudo-attribute to display
+                'relName'=>'usuarios', // the relation name defined above
+                'displayAttr'=>'FullNameDniAddress',  // attribute or pseudo-attribute to display
                 // length of the AutoComplete/display field, defaults to 50
                 'autoCompleteLength'=>60,
                 // any attributes of CJuiAutoComplete and jQuery JUI AutoComplete widget may 
@@ -100,8 +100,25 @@
     <?php echo $form->error($model,'tipos_monitoreo_tipo_monitoreo_id'); ?>
     </div>
 
-    
+    <?php
+    echo CHtml::link('Agregar Zona', '#', array('id' => 'loadChildByAjax'));
+    ?>
+    <div id="zonas">
+        <?php
+        $index = 0;
+        foreach ($model->zonas as $id => $zonas):
+            $this->renderPartial('zonas/_form', array(
+                'model' => $zonas,
+                'index' => $id,
+                'display' => 'block'
+            ));
+            $index++;
+        endforeach;
+        ?>
+    </div>
 
+    
+    <div style="clear:both;"></div>
     <div class="row buttons">
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
     </div>
@@ -109,3 +126,27 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+
+<?php
+Yii::app()->clientScript->registerCoreScript('jquery');
+Yii::app()->clientScript->registerScript('loadchild', '
+var _index = ' . $index . ';
+$("#loadChildByAjax").click(function(e){
+    e.preventDefault();
+    var _url = "' . Yii::app()->controller->createUrl("loadChildByAjax", array("load_for" => $this->action->id)) . '&index="+_index;
+    $.ajax({
+        url: _url,
+        success:function(response){
+            $("#zonas").append(response);
+            $("#zonas .crow").last().animate({
+                opacity : 1, 
+                left: "+50", 
+                height: "toggle"
+            });
+        }
+    });
+    _index++;
+});
+', CClientScript::POS_END);
+?>
