@@ -26,6 +26,8 @@ class Sensores extends CActiveRecord
 		return 'sensores';
 	}
 
+	public $tipoSensorNombre;
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -35,10 +37,10 @@ class Sensores extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('tipos_sensores_tipo_sensor_id, zonas_zona_id', 'required'),
-			array('baterias_bateria_id, tipos_sensores_tipo_sensor_id, modelos_modelo_id, zonas_zona_id', 'length', 'max'=>11),
+			array('tipos_sensores_tipo_sensor_id, modelos_modelo_id, zonas_zona_id', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('sensor_id, baterias_bateria_id, tipos_sensores_tipo_sensor_id, modelos_modelo_id, zonas_zona_id', 'safe', 'on'=>'search'),
+			array('sensor_id, tipos_sensores_tipo_sensor_id, modelos_modelo_id, zonas_zona_id, tipoSensorNombre', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,7 +53,6 @@ class Sensores extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'tiposSensoresTipoSensor' => array(self::BELONGS_TO, 'TiposSensores', 'tipos_sensores_tipo_sensor_id'),
-			'bateriasBateria' => array(self::BELONGS_TO, 'Baterias', 'baterias_bateria_id'),
 			'zonasZona' => array(self::BELONGS_TO, 'Zonas', 'zonas_zona_id'),
 			'modelosModelo' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
 		);
@@ -64,7 +65,6 @@ class Sensores extends CActiveRecord
 	{
 		return array(
 			'sensor_id' => 'Sensor',
-			'baterias_bateria_id' => 'Baterias Bateria',
 			'tipos_sensores_tipo_sensor_id' => 'Tipos Sensores Tipo Sensor',
 			'modelos_modelo_id' => 'Modelos Modelo',
 			'zonas_zona_id' => 'Zonas Zona',
@@ -90,7 +90,6 @@ class Sensores extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('sensor_id',$this->sensor_id,true);
-		$criteria->compare('baterias_bateria_id',$this->baterias_bateria_id,true);
 		$criteria->compare('tipos_sensores_tipo_sensor_id',$this->tipos_sensores_tipo_sensor_id,true);
 		$criteria->compare('modelos_modelo_id',$this->modelos_modelo_id,true);
 		$criteria->compare('zonas_zona_id',$this->zonas_zona_id,true);
@@ -98,6 +97,18 @@ class Sensores extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	public function getTipoSensorNombre(){
+
+	$criteria=new CDbCriteria;
+	$criteria->select='nombre_sensor';
+	$criteria->condition = 'tipo_sensor_id = '.$this->tipos_sensores_tipo_sensor_id;
+
+	$modelo = TiposSensores::model()->find($criteria);
+
+	return $modelo->nombre_sensor;
+
 	}
 
 	/**

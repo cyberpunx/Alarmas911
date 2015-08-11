@@ -57,12 +57,9 @@ class Baterias extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'accesorioses' => array(self::HAS_MANY, 'Accesorios', 'baterias_bateria_id'),
 			'sistemaAlarmasSistemaAlarma' => array(self::BELONGS_TO, 'SistemaAlarmas', 'sistema_alarmas_sistema_alarma_id'),
 			'tiposBateriasTipoBateria' => array(self::BELONGS_TO, 'TiposBaterias', 'tipos_baterias_tipo_bateria_id'),
 			'modelosModelo' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
-			'paneles' => array(self::HAS_MANY, 'Paneles', 'baterias_bateria_id'),
-			'sensores' => array(self::HAS_MANY, 'Sensores', 'baterias_bateria_id'),
 		);
 	}
 

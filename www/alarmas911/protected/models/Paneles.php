@@ -52,7 +52,6 @@ class Paneles extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'bateriasBateria' => array(self::BELONGS_TO, 'Baterias', 'baterias_bateria_id'),
 			'modelosModelo' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
 			'sistemaAlarmasSistemaAlarma' => array(self::BELONGS_TO, 'SistemaAlarmas', 'sistema_alarmas_sistema_alarma_id'),
 		);

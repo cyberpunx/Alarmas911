@@ -3,8 +3,9 @@
 /* @var $model Zonas */
 
 $this->breadcrumbs=array(
-	'Zonases'=>array('index'),
-	$model->zona_id,
+	$model->sistemaAlarmas->nombre_sistema_alarma=>array('sistemaAlarmas/view','id'=>$model->sistema_alarmas_sistema_alarma_id),
+	'Zonas'=>array('listZonasBySistema','id_sistema'=>$model->sistema_alarmas_sistema_alarma_id),
+	$model->nombre_zona,
 );
 
 $this->menu=array(
@@ -16,14 +17,20 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Zonas #<?php echo $model->zona_id; ?></h1>
+<h1>View Zonas "<?php echo $model->nombre_zona; ?>"</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'zona_id',
-		'sistema_alarmas_sistema_alarma_id',
-		'nombre_zona',
+		//'zona_id',
+		array(
+            'label'=>'Sistema de Alarmas',
+            'type'=>'raw',
+            'value'=>CHtml::link(CHtml::encode($model->sistemaAlarmas->nombre_sistema_alarma),
+                                 array('sistemaAlarmas/view','id'=>$model->sistema_alarmas_sistema_alarma_id)),
+        ),
+		'nombre_zona',		
+		//'sistemaAlarmas.nombre_sistema_alarma',
 		'observaciones_zona',
 	),
 )); ?>

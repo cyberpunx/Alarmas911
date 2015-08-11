@@ -126,9 +126,27 @@ class SistemaAlarmas extends CActiveRecord
 
     public function getRelatedZonas(){
 		$out=CHtml::listData($this->zonas,'zona_id','nombre_zona');
+
+		
+
+		//$lineaAux = CHtml::listData($this->zonas->relatedSensores);
+
 		$linea = '<ul>';
 		foreach($out as $key=>$value){ 
 			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('zonas/view', 'id' => $key)));
+
+			$criteria = new CDbCriteria;
+			$criteria->condition = 'zonas_zona_id ='.$key; 
+			$sensoresList = new Sensores;
+			
+			$out2 = CHtml::listData( $sensoresList->findAll($criteria),'sensor_id','TipoSensorNombre' );
+			$index = 1;
+			foreach($out2 as $key2=>$value2){
+				$linea .= '<ul>';
+				$linea .= sprintf('<li>Sensor #'.$index.' %s</li>', CHtml::link($value2, array('sensores/view', 'id' => $key2)));
+				$linea .= '</ul>';
+				$index++;
+			}
 		}
 		$linea .= '</ul>';
 		return $linea;

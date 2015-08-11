@@ -21,7 +21,21 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'sistema_alarmas_sistema_alarma_id'); ?>
-		<?php echo $form->textField($model,'sistema_alarmas_sistema_alarma_id',array('size'=>11,'maxlength'=>11)); ?>
+		<?php
+			$this->widget('EJuiAutoCompleteFkField', array(
+				'model'=>$model, 
+				'attribute'=>'sistema_alarmas_sistema_alarma_id',
+				'sourceUrl'=>Yii::app()->createUrl('/ordenesServicio/findSistemaAlarmas'), 
+				'showFKField'=>true,
+				'FKFieldSize'=>1, 
+				'relName'=>'sistemaAlarmas',
+				'displayAttr'=>'nombre_sistema_alarma', 
+				'autoCompleteLength'=>60,
+				'options'=>array(
+					'minLength'=>0, 
+				),
+			));
+		?>
 		<?php echo $form->error($model,'sistema_alarmas_sistema_alarma_id'); ?>
 	</div>
 
@@ -38,24 +52,24 @@
 	</div>
 
 	<?php
-    echo CHtml::link('Agregar Sensor', '#', array('id' => 'loadChildByAjax'));
-    ?>
-    <div id="sensores">
-        <?php
-        $index = 0;
-        foreach ($model->sensores as $id => $sensores):
-            $this->renderPartial('sensores/_form', array(
-                'model' => $sensores,
-                'index' => $id,
-                'display' => 'block'
-            ));
-            $index++;
-        endforeach;
-        ?>
-    </div>
+	echo CHtml::link('Agregar Sensor a esta Zona', '#', array('id' => 'loadChildByAjax'));
+	?>
+	<div id="sensores">
+		<?php
+		$index = 0;
+		foreach ($model->sensores as $id => $sensores):
+			$this->renderPartial('sensores/_form', array(
+				'model' => $sensores,
+				'index' => $id,
+				'display' => 'block'
+			));
+			$index++;
+		endforeach;
+		?>
+	</div>
 
-    
-    <div style="clear:both;"></div>
+	
+	<div style="clear:both;"></div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
@@ -74,20 +88,20 @@ Yii::app()->clientScript->registerCoreScript('jquery');
 Yii::app()->clientScript->registerScript('loadchild', '
 var _index = ' . $index . ';
 $("#loadChildByAjax").click(function(e){
-    e.preventDefault();
-    var _url = "' . Yii::app()->controller->createUrl("loadChildByAjax", array("load_for" => $this->action->id)) . '&index="+_index;
-    $.ajax({
-        url: _url,
-        success:function(response){
-            $("#sensores").append(response);
-            $("#sensores .crow").last().animate({
-                opacity : 1, 
-                left: "+50", 
-                height: "toggle"
-            });
-        }
-    });
-    _index++;
+	e.preventDefault();
+	var _url = "' . Yii::app()->controller->createUrl("loadChildByAjax", array("load_for" => $this->action->id)) . '&index="+_index;
+	$.ajax({
+		url: _url,
+		success:function(response){
+			$("#sensores").append(response);
+			$("#sensores .crow").last().animate({
+				opacity : 1, 
+				left: "+50", 
+				height: "toggle"
+			});
+		}
+	});
+	_index++;
 });
 ', CClientScript::POS_END);
 ?>

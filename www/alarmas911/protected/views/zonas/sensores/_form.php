@@ -1,29 +1,36 @@
 
 <div style="margin-bottom: 20px; display: <?php echo!empty($display) ? $display : 'none'; ?>; width:100%; clear:left;" class="crow">
- 
-    <div class="row" style="width:200px;float: left;">
-        <?php echo CHtml::activeLabelEx($model, '[' . $index . ']baterias_bateria_id'); ?>
-        <?php echo CHtml::activeTextField($model, '[' . $index . ']baterias_bateria_id', array('size' => 20, 'maxlength' => 255)); ?>
-        <?php echo CHtml::error($model, '[' . $index . ']baterias_bateria_id'); ?>
-    </div>
+
+
+
+
 
     <div class="row" style="width:200px;float: left;">
-        <?php echo CHtml::activeLabelEx($model, '[' . $index . ']tipos_sensores_tipo_sensor_id'); ?>
-        <?php echo CHtml::activeTextField($model, '[' . $index . ']tipos_sensores_tipo_sensor_id', array('size' => 20, 'maxlength' => 255)); ?>
-        <?php echo CHtml::error($model, '[' . $index . ']tipos_sensores_tipo_sensor_id'); ?>
+    <?php echo CHtml::activelabelEx($model, '[' . $index . ']tipos_sensores_tipo_sensor_id'); ?>
+    <?php
+        $tipoSensores_list = CHtml::listData(TiposSensores::model()->findAll(), 'tipo_sensor_id', 'nombre_sensor');
+        $options = array(
+                'tabindex' => '0',
+                'empty' => '(not set)',
+        );
+    ?>
+    <?php echo CHtml::activeDropDownList($model, '[' . $index . ']tipos_sensores_tipo_sensor_id', $tipoSensores_list, $options); ?>
+    <?php echo CHtml::error($model, '[' . $index . ']tipos_sensores_tipo_sensor_id'); ?>
+    </div>
+   
+    <div class="row" style="width:200px;float: left;">
+    <?php echo CHtml::activelabelEx($model, '[' . $index . ']modelos_modelo_id'); ?>
+    <?php
+        $modelos_list = CHtml::listData(Modelos::model()->findAll(), 'modelo_id', 'nombre_modelo');
+        $options = array(
+                'tabindex' => '0',
+                'empty' => '(not set)',
+        );
+    ?>
+    <?php echo CHtml::activeDropDownList($model, '[' . $index . ']modelos_modelo_id', $modelos_list, $options); ?>
+    <?php echo CHtml::error($model, '[' . $index . ']modelos_modelo_id'); ?>
     </div>
 
-    <div class="row" style="width:200px;float: left;">
-        <?php echo CHtml::activeLabelEx($model, '[' . $index . ']modelos_modelo_id'); ?>
-        <?php echo CHtml::activeTextField($model, '[' . $index . ']modelos_modelo_id', array('size' => 20, 'maxlength' => 255)); ?>
-        <?php echo CHtml::error($model, '[' . $index . ']modelos_modelo_id'); ?>
-    </div>
- 
-    <div class="row" style="width:100px;float: left;">
-        <br />
-        <?php echo CHtml::link('Delete', '#', array('onclick' => 'deleteChild(this, ' . $index . '); return false;'));
-        ?>
-    </div>
 </div>
  
 <?php

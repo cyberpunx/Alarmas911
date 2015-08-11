@@ -33,7 +33,7 @@ class ZonasController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'loadChildByAjax'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'loadChildByAjax', 'listZonasBySistema'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -151,6 +151,25 @@ class ZonasController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+
+	public function actionListZonasBySistema()
+	{
+		$q = $_GET['id_sistema'];
+		if (isset($q)) {
+			//$criteria = new CDbCriteria;
+			//$criteria->condition = "sistema_alarmas_sistema_alarma_id = ".$q;
+			$modelSearch = new Zonas;
+
+			$modelSearch->searchListZonasBySistema($q);
+			$modelSearch->unsetAttributes();  // clear any default values
+			if(isset($_GET['Zonas']))
+				$modelSearch->attributes=$_GET['Zonas'];
+
+			$this->render('ListZonasBySistema',array(
+				'modelSearch'=>$modelSearch,
+			));
+		}
 	}
 
 	/**
