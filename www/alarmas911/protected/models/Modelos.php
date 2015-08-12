@@ -28,6 +28,8 @@ class Modelos extends CActiveRecord
 		return 'modelos';
 	}
 
+	public $modeloMarca;
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -42,7 +44,7 @@ class Modelos extends CActiveRecord
 			array('observaciones_modelo', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('modelo_id, marcas_marca_id, nombre_modelo, observaciones_modelo, discriminante', 'safe', 'on'=>'search'),
+			array('modelo_id, marcas_marca_id, nombre_modelo, observaciones_modelo, discriminante, modeloMarca', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,7 +58,7 @@ class Modelos extends CActiveRecord
 		return array(
 			'accesorioses' => array(self::HAS_MANY, 'Accesorios', 'modelos_modelo_id'),
 			'bateriases' => array(self::HAS_MANY, 'Baterias', 'modelos_modelo_id'),
-			'marcasIdMarca' => array(self::BELONGS_TO, 'Marcas', 'marcas_marca_id'),
+			'marcas' => array(self::BELONGS_TO, 'Marcas', 'marcas_marca_id'),
 			'paneles' => array(self::HAS_MANY, 'Paneles', 'modelos_modelo_id'),
 			'sensores' => array(self::HAS_MANY, 'Sensores', 'modelos_modelo_id'),
 			'sistemaAlarmases' => array(self::HAS_MANY, 'SistemaAlarmas', 'modelos_modelo_id'),
@@ -104,6 +106,10 @@ class Modelos extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	public function getModeloMarca(){
+		return $this->marcas->nombre_marca.' - '.$this->nombre_modelo;
 	}
 
 	/**

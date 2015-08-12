@@ -34,3 +34,33 @@ $this->menu=array(
 		'observaciones_zona',
 	),
 )); ?>
+
+
+<!-- 
+<br>
+
+<div class="button_list">
+	<ul>
+	</ul>
+	<ul>
+	</ul>
+	<ul>
+	</ul>
+	<ul>
+	</ul>
+	<ul>
+		<li>
+			<a class="grey" href="index.php?r=zonas/listZonasBySistema<?php echo "&id_sistema=".$model->sistema_alarmas_sistema_alarma_id?>">
+				<span class="icon icon-magnifier">Ver Zonas de este Sistema</span>
+			</a>
+		</li>
+		<li>
+			<a class="grey" href="index.php?r=zonas/update<?php echo "&id=".$model->zona_id?>#loadChildByAjax">
+				<span class="icon icon-add">Agregar Sensores a esta Zona</span>
+			</a>
+		</li>
+	</ul>
+	<br style="clear:left">
+</div>
+
+-->

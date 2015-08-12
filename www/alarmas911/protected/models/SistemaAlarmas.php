@@ -152,6 +152,26 @@ class SistemaAlarmas extends CActiveRecord
 		return $linea;
 	}
 
+	public function getRelatedAccesorios(){
+		$out=CHtml::listData($this->accesorios,'accesorio_id','nombre_accesorio');
+		$linea = '<ul>';
+		foreach($out as $key=>$value){ 
+			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('accesorios/view', 'id' => $key)));
+		}
+		$linea .= '</ul>';
+		return $linea;
+	}
+
+	public function getRelatedPaneles(){
+		$out=CHtml::listData($this->paneles,'panel_id','nombre_panel');
+		$linea = '<ul>';
+		foreach($out as $key=>$value){ 
+			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('paneles/view', 'id' => $key)));
+		}
+		$linea .= '</ul>';
+		return $linea;
+	}
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

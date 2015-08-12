@@ -3,7 +3,7 @@
 /* @var $model SistemaAlarmas */
 
 $this->breadcrumbs=array(
-	'Sistema de Alarmas'=>array('index'),
+	'Sistema de Alarmas'=>array('admin'),
 	$model->nombre_sistema_alarma,
 );
 
@@ -22,28 +22,73 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'sistema_alarma_id',
-		'nombre_sistema_alarma',
+		array(
+			'label' => 'Cliente',
+			'value' => CHtml::link($model->usuarios->FullName, '?r=usuarios/view&id='.$model->usuarios->usuario_id),
+			'type' => 'raw',
+		),
+		
 		'observaciones_sistema_alarma',
 		array(
-			'label' => $model->modelos->getAttributeLabel('nombre_modelo'),
+			'label' => 'Modelo',
 			'value' => $model->modelos->nombre_modelo
 		),
 		array(
-			'label' => $model->barrios->getAttributeLabel('nombre_barrio'),
+			'label' => 'Barrio',
 			'value' => $model->barrios->nombre_barrio
 		),
 		array(
-			'label' => $model->tiposMonitoreo->getAttributeLabel('nombre_tipo_monitoreo'),
+			'label' => 'Tipo de Monitoreo',
 			'value' => $model->tiposMonitoreo->nombre_tipo_monitoreo
 		),
-		array(
-			'label' => $model->usuarios->getAttributeLabel('nombre'),
-			'value' => $model->usuarios->FullName
-		),
+		'nombre_sistema_alarma',
 		array(
 			'name'=>'Zonas',
 			'type'=>'html',
 			'value'=>$model->relatedZonas,
 		),
+		array(
+			'name'=>'Paneles',
+			'type'=>'html',
+			'value'=>$model->relatedPaneles,
+		),
+		array(
+			'name'=>'Accesorios',
+			'type'=>'html',
+			'value'=>$model->relatedAccesorios,
+		),
 	),
 )); ?>
+
+
+
+<br>
+
+<div class="button_list">
+	<ul>
+	</ul>
+	<ul>
+	</ul>
+	<ul>
+	</ul>
+	<ul>
+	</ul>
+	<ul>
+		<li>
+			<a class="grey" href="index.php?r=paneles/create">
+				<span class="icon icon-add">Agregar Paneles</span>
+			</a>
+		</li>
+		<li>
+			<a class="grey" href="index.php?r=accesorios/create">
+				<span class="icon icon-add">Agregar Accesorios</span>
+			</a>
+		</li>
+		<li>
+			<a class="grey" href="index.php?r=baterias/create">
+				<span class="icon icon-add">Agregar Batería</span>
+			</a>
+		</li>	
+	<br style="clear:left">
+</div>
+

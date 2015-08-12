@@ -35,12 +35,12 @@ class Paneles extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('sistema_alarmas_sistema_alarma_id, nombre_panel', 'required'),
-			array('baterias_bateria_id, modelos_modelo_id, sistema_alarmas_sistema_alarma_id', 'length', 'max'=>11),
+			array('modelos_modelo_id, sistema_alarmas_sistema_alarma_id', 'length', 'max'=>11),
 			array('nombre_panel', 'length', 'max'=>128),
 			array('observaciones_panel', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('panel_id, baterias_bateria_id, modelos_modelo_id, sistema_alarmas_sistema_alarma_id, nombre_panel, observaciones_panel', 'safe', 'on'=>'search'),
+			array('panel_id, modelos_modelo_id, sistema_alarmas_sistema_alarma_id, nombre_panel, observaciones_panel', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,7 +53,7 @@ class Paneles extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'modelosModelo' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
-			'sistemaAlarmasSistemaAlarma' => array(self::BELONGS_TO, 'SistemaAlarmas', 'sistema_alarmas_sistema_alarma_id'),
+			'sistemaAlarmas' => array(self::BELONGS_TO, 'SistemaAlarmas', 'sistema_alarmas_sistema_alarma_id'),
 		);
 	}
 
@@ -64,11 +64,10 @@ class Paneles extends CActiveRecord
 	{
 		return array(
 			'panel_id' => 'Panel',
-			'baterias_bateria_id' => 'Baterias Bateria',
-			'modelos_modelo_id' => 'Modelos Modelo',
+			'modelos_modelo_id' => 'Modelo',
 			'sistema_alarmas_sistema_alarma_id' => 'Sistema Alarmas Sistema Alarma',
-			'nombre_panel' => 'Nombre Panel',
-			'observaciones_panel' => 'Observaciones Panel',
+			'nombre_panel' => 'Nombre',
+			'observaciones_panel' => 'Observaciones',
 		);
 	}
 
@@ -91,7 +90,6 @@ class Paneles extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('panel_id',$this->panel_id,true);
-		$criteria->compare('baterias_bateria_id',$this->baterias_bateria_id,true);
 		$criteria->compare('modelos_modelo_id',$this->modelos_modelo_id,true);
 		$criteria->compare('sistema_alarmas_sistema_alarma_id',$this->sistema_alarmas_sistema_alarma_id,true);
 		$criteria->compare('nombre_panel',$this->nombre_panel,true);

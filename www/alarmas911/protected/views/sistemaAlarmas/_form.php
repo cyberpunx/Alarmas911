@@ -64,7 +64,7 @@
     <div class="row">
     <?php echo $form->labelEx($model,'modelos_modelo_id'); ?>
     <?php
-    $modelos_list = CHtml::listData(Modelos::model()->findAll(), 'modelo_id', 'nombre_modelo');
+    $modelos_list = CHtml::listData(Modelos::model()->findAll(), 'modelo_id', 'ModeloMarca');
     $options = array(
             'tabindex' => '0',
             'empty' => '(not set)',
@@ -128,6 +128,37 @@
 </div><!-- form -->
 
 
+<br>
+
+<div class="button_list">
+    <ul>
+    </ul>
+    <ul>
+    </ul>
+    <ul>
+    </ul>
+    <ul>
+    </ul>
+    <ul>
+        <li>
+            <a class="grey" href="index.php?r=paneles/create">
+                <span class="icon icon-add">Agregar Paneles</span>
+            </a>
+        </li>
+        <li>
+            <a class="grey" href="index.php?r=accesorios/create">
+                <span class="icon icon-add">Agregar Accesorios</span>
+            </a>
+        </li>   
+        <li>
+            <a class="grey" href="index.php?r=baterias/create">
+                <span class="icon icon-add">Agregar Batería</span>
+            </a>
+        </li>
+    <br style="clear:left">
+</div>
+
+
 <?php
 Yii::app()->clientScript->registerCoreScript('jquery');
 Yii::app()->clientScript->registerScript('loadchild', '
@@ -150,3 +181,4 @@ $("#loadChildByAjax").click(function(e){
 });
 ', CClientScript::POS_END);
 ?>
+

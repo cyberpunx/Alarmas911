@@ -113,6 +113,7 @@
 				'relName'=>'sistemaAlarmas',
 				'displayAttr'=>'nombre_sistema_alarma', 
 				'autoCompleteLength'=>60,
+				'htmlOptions'=>array('size'=>50,'placeholder'=>'Ingresar nombre del sistema de alarmas'),
 				'options'=>array(
 					'minLength'=>0, 
 				),
