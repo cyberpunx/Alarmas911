@@ -3,19 +3,19 @@
 /* @var $model TiposServicio */
 
 $this->breadcrumbs=array(
-	'Tipos Servicios'=>array('index'),
+	'Tipos Servicio'=>array('admin'),
 	$model->tipo_servicio_id=>array('view','id'=>$model->tipo_servicio_id),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List TiposServicio', 'url'=>array('index')),
-	array('label'=>'Create TiposServicio', 'url'=>array('create')),
-	array('label'=>'View TiposServicio', 'url'=>array('view', 'id'=>$model->tipo_servicio_id)),
-	array('label'=>'Manage TiposServicio', 'url'=>array('admin')),
+	//array('label'=>'List TiposServicio', 'url'=>array('index')),
+	array('label'=>'Crear Tipos Servicio', 'url'=>array('create')),
+	array('label'=>'Ver Tipo Servicio', 'url'=>array('view', 'id'=>$model->tipo_servicio_id)),
+	array('label'=>'Administrar Tipos Servicio', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update TiposServicio <?php echo $model->tipo_servicio_id; ?></h1>
+<h1>Actualizar Tipos de Servicio #<?php echo $model->tipo_servicio_id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

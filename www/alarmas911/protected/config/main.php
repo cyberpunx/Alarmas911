@@ -11,7 +11,8 @@ return array(
 	'theme'=>'shadow_dancer',
 	// preloading 'log' component
 	'preload'=>array('log'),
-
+	//lenguajes del yii
+	'language'=>'es',
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',

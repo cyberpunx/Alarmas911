@@ -9,15 +9,15 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Zonas', 'url'=>array('index')),
-	array('label'=>'Create Zonas', 'url'=>array('create')),
-	array('label'=>'Update Zonas', 'url'=>array('update', 'id'=>$model->zona_id)),
-	array('label'=>'Delete Zonas', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->zona_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Zonas', 'url'=>array('admin')),
+	//array('label'=>'List Zonas', 'url'=>array('index')),
+	array('label'=>'Crear Zona', 'url'=>array('create')),
+	array('label'=>'Actualizar Zona', 'url'=>array('update', 'id'=>$model->zona_id)),
+	//array('label'=>'Delete Zonas', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->zona_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Administrar Zonas', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View Zonas "<?php echo $model->nombre_zona; ?>"</h1>
+<h1>Ver Zona "<?php echo $model->nombre_zona; ?>"</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

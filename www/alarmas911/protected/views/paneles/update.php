@@ -3,19 +3,19 @@
 /* @var $model Paneles */
 
 $this->breadcrumbs=array(
-	'Paneles'=>array('index'),
+	'Paneles'=>array('admin'),
 	$model->panel_id=>array('view','id'=>$model->panel_id),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List Paneles', 'url'=>array('index')),
-	array('label'=>'Create Paneles', 'url'=>array('create')),
-	array('label'=>'View Paneles', 'url'=>array('view', 'id'=>$model->panel_id)),
-	array('label'=>'Manage Paneles', 'url'=>array('admin')),
+	//array('label'=>'List Paneles', 'url'=>array('index')),
+	array('label'=>'Crear Panel', 'url'=>array('create')),
+	array('label'=>'Ver Panel', 'url'=>array('view', 'id'=>$model->panel_id)),
+	array('label'=>'Administrar Paneles', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Paneles <?php echo $model->panel_id; ?></h1>
+<h1>Actualizar Paneles <?php echo $model->panel_id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

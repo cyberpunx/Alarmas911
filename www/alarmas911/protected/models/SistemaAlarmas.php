@@ -77,9 +77,9 @@ class SistemaAlarmas extends CActiveRecord
 	{
 		return array(
 			'sistema_alarma_id' => 'Sistema Alarma ID',
-			'nombre_sistema_alarma' => 'Nombre del Sistema',
+			'nombre_sistema_alarma' => 'Nombre del sistema',
 			'observaciones_sistema_alarma' => 'Observaciones',
-			'modelos_modelo_id' => 'Modelo',
+			'modelos_modelo_id' => 'Modelo de alarma',
 			'barrios_barrio_id' => 'Barrio',
 			'tipos_monitoreo_tipo_monitoreo_id' => 'Tipo de Monitoreo',
 			'usuarios_usuario_id' => 'Nombre del Cliente',

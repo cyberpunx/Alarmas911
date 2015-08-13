@@ -3,19 +3,19 @@
 /* @var $model TiposPago */
 
 $this->breadcrumbs=array(
-	'Tipos Pagos'=>array('index'),
+	'Tipos Pago'=>array('admin'),
 	$model->tipo_pago_id=>array('view','id'=>$model->tipo_pago_id),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List TiposPago', 'url'=>array('index')),
-	array('label'=>'Create TiposPago', 'url'=>array('create')),
-	array('label'=>'View TiposPago', 'url'=>array('view', 'id'=>$model->tipo_pago_id)),
-	array('label'=>'Manage TiposPago', 'url'=>array('admin')),
+	//array('label'=>'List TiposPago', 'url'=>array('index')),
+	array('label'=>'Crear Tipos Pago', 'url'=>array('create')),
+	array('label'=>'Ver Tipo Pago', 'url'=>array('view', 'id'=>$model->tipo_pago_id)),
+	array('label'=>'Administrar Tipos Pago', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update TiposPago <?php echo $model->tipo_pago_id; ?></h1>
+<h1>Actualizar Tipos de Pago <?php echo $model->tipo_pago_id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

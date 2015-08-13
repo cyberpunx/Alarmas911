@@ -3,16 +3,16 @@
 /* @var $model Paneles */
 
 $this->breadcrumbs=array(
-	'Paneles'=>array('index'),
-	'Create',
+	'Paneles'=>array('admin'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List Paneles', 'url'=>array('index')),
-	array('label'=>'Manage Paneles', 'url'=>array('admin')),
+	//array('label'=>'List Paneles', 'url'=>array('index')),
+	array('label'=>'Administrar Paneles', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Paneles</h1>
+<h1>Crear Paneles</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

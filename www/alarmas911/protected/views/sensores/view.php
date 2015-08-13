@@ -3,20 +3,20 @@
 /* @var $model Sensores */
 
 $this->breadcrumbs=array(
-	'Sensores'=>array('index'),
+	'Sensores'=>array('admin'),
 	$model->sensor_id,
 );
 
 $this->menu=array(
-	array('label'=>'List Sensores', 'url'=>array('index')),
-	array('label'=>'Create Sensores', 'url'=>array('create')),
-	array('label'=>'Update Sensores', 'url'=>array('update', 'id'=>$model->sensor_id)),
-	array('label'=>'Delete Sensores', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->sensor_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Sensores', 'url'=>array('admin')),
+	//array('label'=>'List Sensores', 'url'=>array('index')),
+	array('label'=>'Crear Sensor', 'url'=>array('create')),
+	array('label'=>'Actualizar Sensor', 'url'=>array('update', 'id'=>$model->sensor_id)),
+	array('label'=>'Eliminar Sensor', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->sensor_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Administrar Sensores', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View Sensores #<?php echo $model->sensor_id; ?></h1>
+<h1>Ver Sensor #<?php echo $model->sensor_id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

@@ -19,7 +19,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<h1>Datos Personales</h1>
+	<h1>Datos personales</h1>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'nombre'); ?>
@@ -94,7 +94,7 @@
 		<?php echo $form->error($model,'comentarios'); ?>
 	</div>
 
-	<h1>Datos de Cliente</h1>
+	<h1>Datos de cliente</h1>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'cliente_direccion_cobro'); ?>
@@ -139,7 +139,7 @@
 	<?php echo $form->error($model,'tipos_cliente_tipo_cliente_id'); ?>
 	</div>	
 
-	<h1>Datos de Empleado</h1>
+	<h1>Datos de empleado</h1>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'empleado_funcion'); ?>
@@ -162,7 +162,7 @@
 	
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'CREAR' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Save'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -3,16 +3,16 @@
 /* @var $model SistemaAlarmas */
 
 $this->breadcrumbs=array(
-	'Sistema de Alarmas'=>array('admin'),
+	'Sistema Alarmas'=>array('admin'),
 	$model->nombre_sistema_alarma,
 );
 
 $this->menu=array(
-	array('label'=>'Listar Sistemas', 'url'=>array('index')),
-	array('label'=>'Crear Sistema', 'url'=>array('create')),
-	array('label'=>'Actualizar Sistema', 'url'=>array('update', 'id'=>$model->sistema_alarma_id)),
-	array('label'=>'Borrar Sistema', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->sistema_alarma_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Admin Sistema', 'url'=>array('admin')),
+	//array('label'=>'Listar Sistemas', 'url'=>array('index')),
+	array('label'=>'Crear Sistema de Alarma', 'url'=>array('create')),
+	array('label'=>'Actualizar Sistema de Alarma', 'url'=>array('update', 'id'=>$model->sistema_alarma_id)),
+	//array('label'=>'Borrar Sistema', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->sistema_alarma_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Administrar Sistemas de Alarmas', 'url'=>array('admin')),
 );
 ?>
 

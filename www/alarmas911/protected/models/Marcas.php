@@ -56,8 +56,8 @@ class Marcas extends CActiveRecord
 	{
 		return array(
 			'marca_id' => 'Id Marca',
-			'nombre_marca' => 'Nombre Marca',
-			'observaciones_marca' => 'Observaciones Marca',
+			'nombre_marca' => 'Marca',
+			'observaciones_marca' => 'Observaciones de la marca',
 		);
 	}
 

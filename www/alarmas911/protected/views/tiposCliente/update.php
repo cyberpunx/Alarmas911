@@ -3,19 +3,19 @@
 /* @var $model TiposCliente */
 
 $this->breadcrumbs=array(
-	'Tipos Clientes'=>array('index'),
+	'Tipos Cliente'=>array('admin'),
 	$model->tipo_cliente_id=>array('view','id'=>$model->tipo_cliente_id),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List TiposCliente', 'url'=>array('index')),
-	array('label'=>'Create TiposCliente', 'url'=>array('create')),
-	array('label'=>'View TiposCliente', 'url'=>array('view', 'id'=>$model->tipo_cliente_id)),
-	array('label'=>'Manage TiposCliente', 'url'=>array('admin')),
+	//array('label'=>'List TiposCliente', 'url'=>array('index')),
+	array('label'=>'Crear Tipos Cliente', 'url'=>array('create')),
+	array('label'=>'Ver  Tipo Cliente', 'url'=>array('view', 'id'=>$model->tipo_cliente_id)),
+	array('label'=>'Administrar Tipos Cliente', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update TiposCliente <?php echo $model->tipo_cliente_id; ?></h1>
+<h1>Actualizar Tipos de Cliente <?php echo $model->tipo_cliente_id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

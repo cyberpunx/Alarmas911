@@ -3,16 +3,16 @@
 /* @var $model Barrios */
 
 $this->breadcrumbs=array(
-	'Barrioses'=>array('index'),
-	'Create',
+	'Barrios'=>array('admin'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List Barrios', 'url'=>array('index')),
-	array('label'=>'Manage Barrios', 'url'=>array('admin')),
+	//array('label'=>'List Barrios', 'url'=>array('index')),
+	array('label'=>'Administrar Barrios', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Barrios</h1>
+<h1>Crear Barrio</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

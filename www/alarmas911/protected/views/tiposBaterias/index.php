@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Tipos Bateriases',
+	'Tipos Baterias',
 );
 
 $this->menu=array(

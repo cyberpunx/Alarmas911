@@ -3,19 +3,19 @@
 /* @var $model Zonas */
 
 $this->breadcrumbs=array(
-	'Zonases'=>array('index'),
+	'Zonas'=>array('admin'),
 	$model->zona_id=>array('view','id'=>$model->zona_id),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List Zonas', 'url'=>array('index')),
-	array('label'=>'Create Zonas', 'url'=>array('create')),
-	array('label'=>'View Zonas', 'url'=>array('view', 'id'=>$model->zona_id)),
-	array('label'=>'Manage Zonas', 'url'=>array('admin')),
+	//array('label'=>'List Zonas', 'url'=>array('index')),
+	array('label'=>'Crear Zona', 'url'=>array('create')),
+	array('label'=>'Ver Zona', 'url'=>array('view', 'id'=>$model->zona_id)),
+	array('label'=>'Administrar Zonas', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Zonas <?php echo $model->zona_id; ?></h1>
+<h1>Actualizar Zona  #<?php echo $model->zona_id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

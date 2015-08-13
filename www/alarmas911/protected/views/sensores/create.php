@@ -3,16 +3,16 @@
 /* @var $model Sensores */
 
 $this->breadcrumbs=array(
-	'Sensores'=>array('index'),
-	'Create',
+	'Sensores'=>array('admin'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List Sensores', 'url'=>array('index')),
-	array('label'=>'Manage Sensores', 'url'=>array('admin')),
+	//array('label'=>'List Sensores', 'url'=>array('index')),
+	array('label'=>'Administrar Sensores', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Sensores</h1>
+<h1>Crear Sensores</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

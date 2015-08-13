@@ -88,3 +88,6 @@ CHANGELOG:
 
 02:34 p.m. 01/08/2015
 	Funcionando el Detalle Ordenes Servicio con el método Father/Children
+
+12:50 p.m. 13/08/2015
+	Editada las vistas del peoyecto. Cambiado el idioma. 

@@ -3,16 +3,16 @@
 /* @var $model Marcas */
 
 $this->breadcrumbs=array(
-	'Marcases'=>array('index'),
-	'Create',
+	'Marcas'=>array('admin'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List Marcas', 'url'=>array('index')),
-	array('label'=>'Manage Marcas', 'url'=>array('admin')),
+	//array('label'=>'List Marcas', 'url'=>array('index')),
+	array('label'=>'Administrar Marcas', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Marcas</h1>
+<h1>Crear Marca</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

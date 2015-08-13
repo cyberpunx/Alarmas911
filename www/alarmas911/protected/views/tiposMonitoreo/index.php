@@ -12,7 +12,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Tipos Monitoreos</h1>
+<h1>Tipos Monitoreo</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

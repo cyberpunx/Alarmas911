@@ -56,7 +56,7 @@ class TiposBaterias extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'tipo_bateria_id' => 'Tipo Bateria',
+			'tipo_bateria_id' => 'Id Tipo Bateria',
 			'nombre' => 'Nombre',
 			'observaciones' => 'Observaciones',
 		);

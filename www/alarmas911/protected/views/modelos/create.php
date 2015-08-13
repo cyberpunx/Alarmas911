@@ -3,16 +3,16 @@
 /* @var $model Modelos */
 
 $this->breadcrumbs=array(
-	'Modeloses'=>array('index'),
-	'Create',
+	'Modelos'=>array('admin'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List Modelos', 'url'=>array('index')),
-	array('label'=>'Manage Modelos', 'url'=>array('admin')),
+	//array('label'=>'List Modelos', 'url'=>array('index')),
+	array('label'=>'Administrar Modelos', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Modelos</h1>
+<h1>Crear Modelo</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -25,7 +25,7 @@
 </div>
     <div class="row" style="float: left;">
         <br />
-        <?php echo CHtml::link('Delete', '#', array('onclick' => 'deleteChild(this, ' . $index . '); return false;'));
+        <?php echo CHtml::link('Borrar', '#', array('onclick' => 'deleteChild(this, ' . $index . '); return false;'));
         ?>
     </div>
 </div>

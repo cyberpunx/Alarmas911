@@ -3,16 +3,16 @@
 /* @var $model OrdenesServicio */
 
 $this->breadcrumbs=array(
-	'Ordenes Servicios'=>array('index'),
-	'Create',
+	'Ordenes Servicios'=>array('admin'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List OrdenesServicio', 'url'=>array('index')),
-	array('label'=>'Manage OrdenesServicio', 'url'=>array('admin')),
+	//array('label'=>'List OrdenesServicio', 'url'=>array('index')),
+	array('label'=>'Administrar Ordenes de Servicio', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create OrdenesServicio</h1>
+<h1>Crear Ordenes de Servicios</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

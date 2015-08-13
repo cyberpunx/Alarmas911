@@ -3,20 +3,20 @@
 /* @var $model Baterias */
 
 $this->breadcrumbs=array(
-	'Bateriases'=>array('index'),
+	'Baterias'=>array('admin'),
 	$model->bateria_id,
 );
 
 $this->menu=array(
-	array('label'=>'List Baterias', 'url'=>array('index')),
-	array('label'=>'Create Baterias', 'url'=>array('create')),
-	array('label'=>'Update Baterias', 'url'=>array('update', 'id'=>$model->bateria_id)),
-	array('label'=>'Delete Baterias', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->bateria_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Baterias', 'url'=>array('admin')),
+	//array('label'=>'List Baterias', 'url'=>array('index')),
+	array('label'=>'Crear Bateria', 'url'=>array('create')),
+	array('label'=>'Actualizar Bateria', 'url'=>array('update', 'id'=>$model->bateria_id)),
+	array('label'=>'Eliminar Bateria', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->bateria_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Administrar Baterias', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View Baterias #<?php echo $model->bateria_id; ?></h1>
+<h1>Ver Bateria #<?php echo $model->bateria_id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

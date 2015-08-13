@@ -3,16 +3,16 @@
 /* @var $model TiposMonitoreo */
 
 $this->breadcrumbs=array(
-	'Tipos Monitoreos'=>array('index'),
-	'Create',
+	'Tipos Monitoreo'=>array('admin'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List TiposMonitoreo', 'url'=>array('index')),
-	array('label'=>'Manage TiposMonitoreo', 'url'=>array('admin')),
+	//array('label'=>'List TiposMonitoreo', 'url'=>array('index')),
+	array('label'=>'Administrar Tipos Monitoreo', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create TiposMonitoreo</h1>
+<h1>Crear  Tipos de Monitoreo</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

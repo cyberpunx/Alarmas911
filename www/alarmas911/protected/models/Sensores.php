@@ -64,10 +64,10 @@ class Sensores extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'sensor_id' => 'Sensor',
-			'tipos_sensores_tipo_sensor_id' => 'Tipos Sensores Tipo Sensor',
-			'modelos_modelo_id' => 'Modelos Modelo',
-			'zonas_zona_id' => 'Zonas Zona',
+			'sensor_id' => 'Id Sensor',
+			'tipos_sensores_tipo_sensor_id' => 'Tipo Sensor',
+			'modelos_modelo_id' => 'Modelo',
+			'zonas_zona_id' => 'Zona',
 		);
 	}
 

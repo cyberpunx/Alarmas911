@@ -3,20 +3,20 @@
 /* @var $model OrdenesServicio */
 
 $this->breadcrumbs=array(
-	'Ordenes Servicios'=>array('index'),
+	'Ordenes Servicios'=>array('admin'),
 	$model->orden_servicio_id=>array('view','id'=>$model->orden_servicio_id),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List OrdenesServicio', 'url'=>array('index')),
-	array('label'=>'Create OrdenesServicio', 'url'=>array('create')),
-	array('label'=>'View OrdenesServicio', 'url'=>array('view', 'id'=>$model->orden_servicio_id)),
-	array('label'=>'Manage OrdenesServicio', 'url'=>array('admin')),
+	//array('label'=>'List OrdenesServicio', 'url'=>array('index')),
+	array('label'=>'Crear Ordenes de Servicio', 'url'=>array('create')),
+	array('label'=>'Ver Orden de Servicio', 'url'=>array('view', 'id'=>$model->orden_servicio_id)),
+	array('label'=>'Administrar Ordenes de Servicio', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update OrdenesServicio <?php echo $model->orden_servicio_id; ?></h1>
+<h1>Actualizar Ordenes de Servicio <?php echo $model->orden_servicio_id; ?></h1>
 
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

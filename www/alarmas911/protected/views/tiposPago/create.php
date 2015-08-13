@@ -3,16 +3,16 @@
 /* @var $model TiposPago */
 
 $this->breadcrumbs=array(
-	'Tipos Pagos'=>array('index'),
-	'Create',
+	'Tipos Pago'=>array('admin'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List TiposPago', 'url'=>array('index')),
-	array('label'=>'Manage TiposPago', 'url'=>array('admin')),
+	//array('label'=>'List TiposPago', 'url'=>array('index')),
+	array('label'=>'Administrar Tipos de Pago', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create TiposPago</h1>
+<h1>Crear Tipos de Pago</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
