@@ -53,7 +53,7 @@ class Accesorios extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'sistemaAlarmas' => array(self::BELONGS_TO, 'SistemaAlarmas', 'sistema_alarmas_sistema_alarma_id'),
-			'modelosModelo' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
+			'modelos' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
 		);
 	}
 

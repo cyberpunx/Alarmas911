@@ -72,7 +72,7 @@ class Usuarios extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'sistemaAlarmas' => array(self::HAS_MANY, 'SistemaAlarmas', 'personas_persona_id'),
+			'sistemaAlarmas' => array(self::HAS_MANY, 'SistemaAlarmas', 'usuarios_usuario_id'),
 			'tiposClienteTipoCliente' => array(self::BELONGS_TO, 'TiposCliente', 'tipos_cliente_tipo_cliente_id'),
 			'usuariosHasOrdenesServicios' => array(self::HAS_MANY, 'UsuariosHasOrdenesServicio', 'usuarios_usuario_id'),
 			'usuariosPagosFechas' => array(self::HAS_MANY, 'UsuariosPagosFecha', 'usuarios_usuario_id'),
@@ -85,7 +85,7 @@ class Usuarios extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'usuario_id' => 'Usuario',
+			'usuario_id' => 'Usuario ID',
 			'nombre' => 'Nombre',
 			'apellido' => 'Apellido',
 			'email' => 'Email',
@@ -210,6 +210,16 @@ class Usuarios extends CActiveRecord
  	public function getFullNameDniAddress(){
  		return $this->nombre.' '.$this->apellido.' (DNI: '.$this->dni.') - '.$this->direccion;
  	}
+
+ 	public function getRelatedSistemasAlarmas(){
+		$out=CHtml::listData($this->sistemaAlarmas,'sistema_alarma_id','nombre_sistema_alarma');
+		$linea = '<ul>';
+		foreach($out as $key=>$value){ 
+			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('sistemaAlarmas/view', 'id' => $key)));
+		}
+		$linea .= '</ul>';
+		return $linea;
+	}
 
 	/**
 	 * Returns the static model of the specified AR class.

@@ -3,6 +3,7 @@
 /* @var $model SistemaAlarmas */
 
 $this->breadcrumbs=array(
+	$model->usuarios->FullName=>array('usuarios/view','id'=>$model->usuarios->usuario_id),
 	'Sistema Alarmas'=>array('admin'),
 	$model->nombre_sistema_alarma,
 );
@@ -56,6 +57,11 @@ $this->menu=array(
 			'name'=>'Accesorios',
 			'type'=>'html',
 			'value'=>$model->relatedAccesorios,
+		),
+		array(
+			'name'=>'Baterias',
+			'type'=>'html',
+			'value'=>$model->relatedBaterias,
 		),
 	),
 )); ?>

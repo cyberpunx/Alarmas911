@@ -3,6 +3,7 @@
 /* @var $model Baterias */
 
 $this->breadcrumbs=array(
+	$model->sistemaAlarmas->nombre_sistema_alarma=>array('sistemaAlarmas/view','id'=>$model->sistema_alarmas_sistema_alarma_id),
 	'Baterias'=>array('admin'),
 	$model->bateria_id=>array('view','id'=>$model->bateria_id),
 	'Actualizar',
@@ -16,6 +17,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Actualizar Bateria #<?php echo $model->bateria_id; ?></h1>
+<h1>Actualizar Bateria: <?php echo $model->sistemaAlarmas->nombre_sistema_alarma.'/Batería ID '.$model->bateria_id;  ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

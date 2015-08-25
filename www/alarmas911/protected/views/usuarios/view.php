@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Usuarios'=>array('admin'),
-	$model->usuario_id,
+	$model->FullName,
 );
 
 $this->menu=array(
@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Ver datos de usuario #<?php echo $model->usuario_id; ?></h1>
+<h1>Ver datos de usuario: <?php echo $model->FullName; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -41,6 +41,15 @@ $this->menu=array(
 		'cliente_factura',
 		'cliente_razon_social',
 		'cliente_cuit',
-		'tipos_cliente_tipo_cliente_id',
+		array(
+			'name'=>'Tipo de Cliente',
+			//'type'=>'html',
+			'value'=>$model->tiposClienteTipoCliente->nombre_tipo_cliente,
+		),
+		array(
+			'name'=>'Sistemas de Alarmas',
+			'type'=>'html',
+			'value'=>$model->relatedSistemasAlarmas,
+		),
 	),
 )); ?>

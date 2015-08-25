@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Sistema Alarmas'=>array('admin'),
-	$model->sistema_alarma_id=>array('view','id'=>$model->sistema_alarma_id),
+	$model->nombre_sistema_alarma=>array('view','id'=>$model->sistema_alarma_id),
 	'Actualizar',
 );
 
@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Actualizar datos del sistema de alarma #<?php echo $model->sistema_alarma_id; ?></h1>
+<h1>Actualizar datos del sistema de alarmas: <?php echo $model->nombre_sistema_alarma; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

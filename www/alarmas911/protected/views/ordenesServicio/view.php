@@ -16,18 +16,35 @@ $this->menu=array(
 );
 ?>
 
-<h1>Ver datos de Orden de Servicio #<?php echo $model->orden_servicio_id; ?></h1>
+<h1>Ver datos de Orden de Servicio:  <?php echo $model->sistemaAlarmas->nombre_sistema_alarma.' / ID: '.$model->orden_servicio_id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'orden_servicio_id',
+		array(
+			'label'=>'Cliente',
+			'type'=>'raw',
+			'value'=>CHtml::link(CHtml::encode($model->sistemaAlarmas->usuarios->FullName),
+								 array('usuarios/view','id'=>$model->sistemaAlarmas->usuarios->usuario_id)),
+		),
+		array(
+			'label'=>'Sistema de Alarmas',
+			'type'=>'raw',
+			'value'=>CHtml::link(CHtml::encode($model->sistemaAlarmas->nombre_sistema_alarma),
+								 array('sistemaAlarmas/view','id'=>$model->sistemaAlarmas->sistema_alarma_id)),
+		),
 		'fecha_emision',
 		'fecha_cierre',
 		'importe',
 		'observaciones_orden_servicio',
 		'vencimiento_orden',
 		'prioridad',
-		'sistema_alarmas_sistema_alarma_id',
+		
+		array(
+			'label'=>'Detalle',
+			'type'=>'raw',
+			'value'=>$model->DetallesOrdenServicio,
+		),
 	),
 )); ?>

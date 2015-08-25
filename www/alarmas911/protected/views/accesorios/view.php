@@ -1,10 +1,14 @@
+
+
+
 <?php
 /* @var $this AccesoriosController */
 /* @var $model Accesorios */
 
 $this->breadcrumbs=array(
+	$model->sistemaAlarmas->nombre_sistema_alarma=>array('sistemaAlarmas/view','id'=>$model->sistema_alarmas_sistema_alarma_id),
 	'Accesorios'=>array('admin'),
-	$model->accesorio_id,
+	$model->nombre_accesorio,
 );
 
 $this->menu=array(
@@ -16,15 +20,23 @@ $this->menu=array(
 );
 ?>
 
-<h1>Ver Accesorio #<?php echo $model->accesorio_id; ?></h1>
+<h1>Ver Accesorio: <?php echo $model->sistemaAlarmas->nombre_sistema_alarma.'/'.$model->nombre_accesorio; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'accesorio_id',
-		'modelos_modelo_id',
-		'baterias_bateria_id',
-		'sistema_alarmas_sistema_alarma_id',
+		//'accesorio_id',
+		array(
+			'label'=>'Modelo',
+			'type'=>'raw',
+			'value'=>$model->modelos->ModeloMarca,
+		),
+		array(
+			'label'=>'Sistema de Alarmas',
+			'type'=>'raw',
+			'value'=>CHtml::link(CHtml::encode($model->sistemaAlarmas->nombre_sistema_alarma),
+								 array('sistemaAlarmas/view','id'=>$model->sistemaAlarmas->sistema_alarma_id)),
+		),
 		'nombre_accesorio',
 		'observaciones_accesorio',
 	),

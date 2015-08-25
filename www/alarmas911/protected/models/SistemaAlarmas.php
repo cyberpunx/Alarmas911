@@ -172,6 +172,17 @@ class SistemaAlarmas extends CActiveRecord
 		return $linea;
 	}
 
+	public function getRelatedBaterias(){
+		$out=CHtml::listData($this->baterias,'bateria_id','modelos.ModeloMarca');
+		$linea = '<ul>';
+		foreach($out as $key=>$value){ 
+			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('baterias/view', 'id' => $key)));
+		}
+		$linea .= '</ul>';
+		return $linea;
+	}
+
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

@@ -3,6 +3,7 @@
 /* @var $model Baterias */
 
 $this->breadcrumbs=array(
+	$model->sistemaAlarmas->nombre_sistema_alarma=>array('sistemaAlarmas/view','id'=>$model->sistema_alarmas_sistema_alarma_id),
 	'Baterias'=>array('admin'),
 	$model->bateria_id,
 );
@@ -16,15 +17,28 @@ $this->menu=array(
 );
 ?>
 
-<h1>Ver Bateria #<?php echo $model->bateria_id; ?></h1>
+<h1>Ver Bateria: <?php echo $model->sistemaAlarmas->nombre_sistema_alarma.'/Batería ID '.$model->bateria_id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'bateria_id',
-		'sistema_alarmas_sistema_alarma_id',
-		'modelos_modelo_id',
-		'tipos_baterias_tipo_bateria_id',
+		array(
+			'label'=>'Sistema de Alarmas',
+			'type'=>'raw',
+			'value'=>CHtml::link(CHtml::encode($model->sistemaAlarmas->nombre_sistema_alarma),
+								 array('sistemaAlarmas/view','id'=>$model->sistemaAlarmas->sistema_alarma_id)),
+		),
+		array(
+			'label'=>'Modelo',
+			'type'=>'raw',
+			'value'=>$model->modelos->ModeloMarca,
+		),
+		array(
+			'label'=>'Tipo de Batería',
+			'type'=>'raw',
+			'value'=>$model->tiposBaterias->nombre,
+		),
 		'observaciones_bateria',
 		'vida_util',
 		'fecha_alta',

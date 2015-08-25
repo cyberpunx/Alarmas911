@@ -73,7 +73,7 @@ class OrdenesServicio extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'orden_servicio_id' => 'Orden Servicio',
+			'orden_servicio_id' => 'Orden Servicio ID',
 			'fecha_emision' => 'Fecha de Emision',
 			'fecha_cierre' => 'Fecha de Cierre',
 			'importe' => 'Importe',
@@ -129,6 +129,16 @@ class OrdenesServicio extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function getDetallesOrdenServicio(){
+		$out=CHtml::listData($this->detalleOrdenesServicios,'detalle_orden_servicio_id','descripcion_detalle_orden_servicio');
+		$linea = '<ul>';
+		foreach($out as $key=>$value){ 
+			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('detalleOrdenesServicio/view', 'id' => $key)));
+		}
+		$linea .= '</ul>';
+		return $linea;
 	}
 
 	public function behaviors()

@@ -20,28 +20,45 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'baterias_bateria_id'); ?>
-		<?php echo $form->textField($model,'baterias_bateria_id',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'baterias_bateria_id'); ?>
-	</div>
+    <?php echo $form->labelEx($model,'tipos_sensores_tipo_sensor_id'); ?>
+    <?php
+    $tipoSensor_list = CHtml::listData(TiposSensores::model()->findAll(), 'tipo_sensor_id', 'nombre_sensor');
+    $options = array(
+            'tabindex' => '0',
+            'empty' => '(not set)',
+    );
+    ?>
+    <?php echo $form->dropDownList($model,'tipos_sensores_tipo_sensor_id', $tipoSensor_list, $options); ?>
+    <?php echo $form->error($model,'tipos_sensores_tipo_sensor_id'); ?>
+    </div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'tipos_sensores_tipo_sensor_id'); ?>
-		<?php echo $form->textField($model,'tipos_sensores_tipo_sensor_id',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'tipos_sensores_tipo_sensor_id'); ?>
-	</div>
+    <?php echo $form->labelEx($model,'modelos_modelo_id'); ?>
+    <?php
+    $modelos_list = CHtml::listData(Modelos::model()->findAll(), 'modelo_id', 'ModeloMarca');
+    $options = array(
+            'tabindex' => '0',
+            'empty' => '(not set)',
+    );
+    ?>
+    <?php echo $form->dropDownList($model,'modelos_modelo_id', $modelos_list, $options); ?>
+    <?php echo $form->error($model,'modelos_modelo_id'); ?>
+    </div>
+
+
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'modelos_modelo_id'); ?>
-		<?php echo $form->textField($model,'modelos_modelo_id',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'modelos_modelo_id'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'zonas_zona_id'); ?>
-		<?php echo $form->textField($model,'zonas_zona_id',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'zonas_zona_id'); ?>
-	</div>
+    <?php echo $form->labelEx($model,'zonas_zona_id'); ?>
+    <?php
+    $zonas_list = CHtml::listData(Zonas::model()->findAll(array("condition"=>"zona_id = $model->zonas_zona_id")), 'zona_id', 'nombre_zona');
+    $options = array(
+            'tabindex' => '0',
+            'readonly'=> 'true',
+    );
+    ?>
+    <?php echo $form->dropDownList($model,'zonas_zona_id', $zonas_list, $options); ?>
+    <?php echo $form->error($model,'zonas_zona_id'); ?>
+    </div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Save'); ?>

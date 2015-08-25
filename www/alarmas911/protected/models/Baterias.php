@@ -58,8 +58,8 @@ class Baterias extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'sistemaAlarmas' => array(self::BELONGS_TO, 'SistemaAlarmas', 'sistema_alarmas_sistema_alarma_id'),
-			'tiposBateriasTipoBateria' => array(self::BELONGS_TO, 'TiposBaterias', 'tipos_baterias_tipo_bateria_id'),
-			'modelosModelo' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
+			'tiposBaterias' => array(self::BELONGS_TO, 'TiposBaterias', 'tipos_baterias_tipo_bateria_id'),
+			'modelos' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
 		);
 	}
 
@@ -69,7 +69,7 @@ class Baterias extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'bateria_id' => 'Bateria',
+			'bateria_id' => 'Bateria ID',
 			'sistema_alarmas_sistema_alarma_id' => 'Sistema de Alarmas',
 			'modelos_modelo_id' => 'Modelo',
 			'tipos_baterias_tipo_bateria_id' => 'Tipo de Batería',

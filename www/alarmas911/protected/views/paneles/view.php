@@ -3,6 +3,7 @@
 /* @var $model Paneles */
 
 $this->breadcrumbs=array(
+	$model->sistemaAlarmas->nombre_sistema_alarma=>array('sistemaAlarmas/view','id'=>$model->sistema_alarmas_sistema_alarma_id),
 	'Paneles'=>array('admin'),
 	$model->panel_id,
 );

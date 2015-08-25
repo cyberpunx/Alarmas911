@@ -3,8 +3,9 @@
 /* @var $model Accesorios */
 
 $this->breadcrumbs=array(
+	$model->sistemaAlarmas->nombre_sistema_alarma=>array('sistemaAlarmas/view','id'=>$model->sistema_alarmas_sistema_alarma_id),
 	'Accesorios'=>array('admin'),
-	$model->accesorio_id=>array('view','id'=>$model->accesorio_id),
+	$model->nombre_accesorio=>array('view','id'=>$model->accesorio_id),
 	'Actualizar',
 );
 
@@ -16,6 +17,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Actualizar Accesorio #<?php echo $model->accesorio_id; ?></h1>
+<h1>Actualizar Accesorio: <?php echo $model->sistemaAlarmas->nombre_sistema_alarma.'/'.$model->nombre_accesorio;  ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

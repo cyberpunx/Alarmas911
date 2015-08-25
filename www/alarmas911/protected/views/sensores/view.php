@@ -3,6 +3,8 @@
 /* @var $model Sensores */
 
 $this->breadcrumbs=array(
+	$model->zonas->sistemaAlarmas->nombre_sistema_alarma=>array('sistemaAlarmas/view','id'=>$model->zonas->sistemaAlarmas->sistema_alarma_id),
+	$model->zonas->nombre_zona=>array('zonas/view','id'=>$model->zonas->zona_id),
 	'Sensores'=>array('admin'),
 	$model->sensor_id,
 );
@@ -16,15 +18,33 @@ $this->menu=array(
 );
 ?>
 
-<h1>Ver Sensor #<?php echo $model->sensor_id; ?></h1>
+<h1>Ver Sensor: <?php echo $model->zonas->sistemaAlarmas->nombre_sistema_alarma.'/'.$model->zonas->nombre_zona.'/'.$model->tiposSensores->nombre_sensor.' ID #'.$model->sensor_id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'sensor_id',
-		'baterias_bateria_id',
-		'tipos_sensores_tipo_sensor_id',
-		'modelos_modelo_id',
-		'zonas_zona_id',
+		//'sensor_id',
+		array(
+			'label'=>'Tipo de Sensor',
+			'type'=>'raw',
+			'value'=>$model->tiposSensores->nombre_sensor,
+		),
+		array(
+			'label'=>'Modelo',
+			'type'=>'raw',
+			'value'=>$model->modelos->ModeloMarca,
+		),
+		array(
+			'label'=>'Zona',
+			'type'=>'raw',
+			'value'=>CHtml::link(CHtml::encode($model->zonas->nombre_zona),
+								 array('zonas/view','id'=>$model->zonas_zona_id)),
+		),
+		array(
+			'label'=>'Sistema de Alarmas',
+			'type'=>'raw',
+			'value'=>CHtml::link(CHtml::encode($model->zonas->sistemaAlarmas->nombre_sistema_alarma),
+								 array('sistemaAlarmas/view','id'=>$model->zonas->sistemaAlarmas->sistema_alarma_id)),
+		),
 	),
 )); ?>

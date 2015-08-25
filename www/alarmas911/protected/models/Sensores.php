@@ -52,9 +52,9 @@ class Sensores extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tiposSensoresTipoSensor' => array(self::BELONGS_TO, 'TiposSensores', 'tipos_sensores_tipo_sensor_id'),
-			'zonasZona' => array(self::BELONGS_TO, 'Zonas', 'zonas_zona_id'),
-			'modelosModelo' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
+			'tiposSensores' => array(self::BELONGS_TO, 'TiposSensores', 'tipos_sensores_tipo_sensor_id'),
+			'zonas' => array(self::BELONGS_TO, 'Zonas', 'zonas_zona_id'),
+			'modelos' => array(self::BELONGS_TO, 'Modelos', 'modelos_modelo_id'),
 		);
 	}
 
@@ -64,8 +64,8 @@ class Sensores extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'sensor_id' => 'Id Sensor',
-			'tipos_sensores_tipo_sensor_id' => 'Tipo Sensor',
+			'sensor_id' => 'Sensor ID',
+			'tipos_sensores_tipo_sensor_id' => 'Tipo de Sensor',
 			'modelos_modelo_id' => 'Modelo',
 			'zonas_zona_id' => 'Zona',
 		);

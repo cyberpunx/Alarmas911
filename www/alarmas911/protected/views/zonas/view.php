@@ -17,7 +17,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Ver Zona "<?php echo $model->nombre_zona; ?>"</h1>
+<h1>Ver Zona: <?php echo $model->sistemaAlarmas->nombre_sistema_alarma.'/'.$model->nombre_zona; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
