@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Usuarios'=>array('admin'),
-	$model->FullName,
+	$model->FullName=>array('view', 'id'=>$model->usuario_id),
 );
 
 $this->menu=array(
@@ -25,42 +25,24 @@ $this->menu=array(
 		'usuario_id',
 		'nombre',
 		'apellido',
-		'email',
-		'password',
-		'direccion',
-		'dni',
-		'telefono_celular',
-		'telefono_fijo',
-		'telefono_alt',
-		'rol',
-		'comentarios',
-		'empleado_funcion',
-		'empleado_temporal',
-		'empleado_activo',
-		'cliente_direccion_cobro',
-		'cliente_sistema_secundario_id',
-		'cliente_factura',
-		'cliente_razon_social',
-		'cliente_cuit',
-		array(
-			'name'=>'Tipo de Cliente',
-			//'type'=>'html',
-			'value'=>$model->tiposClienteTipoCliente->nombre_tipo_cliente,
-		),
 		array(
 			'name'=>'Sistemas de Alarmas',
 			'type'=>'html',
 			'value'=>$model->relatedSistemasAlarmas,
 		),
-		array(
-			'name'=>'Pagos',
-			'type'=>'html',
-			'value'=>$model->relatedPagos,
-		),
-		array(
-			'name'=>'Ordenes de Servicio',
-			'type'=>'html',
-			'value'=>$model->relatedOrdenesServicio,
-		),
 	),
 )); ?>
+
+
+<!-- 
+	/*******************/
+	/ ESTADO DE CUENTA 	/
+	/*******************/
+
+	CSS de la tabla en:
+		\themes\shadow_dancer\css\table.css
+-->
+
+<br><br><br>
+<?php echo $model->estadoContable?>
+			

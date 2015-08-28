@@ -63,7 +63,6 @@ class OrdenesServicio extends CActiveRecord
 			'detalleOrdenesServicios' => array(self::HAS_MANY, 'DetalleOrdenesServicio', 'ordenes_servicio_orden_servicio_id'),
 			'sistemaAlarmas' => array(self::BELONGS_TO, 'SistemaAlarmas', 'sistema_alarmas_sistema_alarma_id'),
 			'pagos' => array(self::HAS_MANY, 'Pagos', 'ordenes_servicio_orden_servicio_id'),
-			'usuariosHasOrdenesServicio' => array(self::HAS_ONE, 'UsuariosHasOrdenesServicio', 'ordenes_servicio_orden_servicio_id'),
 		);
 	}
 

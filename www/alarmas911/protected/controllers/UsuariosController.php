@@ -33,7 +33,7 @@ class UsuariosController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update','listClientes'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update','listClientes', 'estadoCuenta', 'estadoCuentaGrid'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -155,6 +155,12 @@ class UsuariosController extends Controller
 		));
 	}
 
+	public function actionEstadoCuenta($id)
+	{
+		$this->render('estadoCuenta',array(
+			'model'=>$this->loadModel($id),
+		));
+	}
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

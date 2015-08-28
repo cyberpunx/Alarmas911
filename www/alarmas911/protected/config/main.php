@@ -18,6 +18,8 @@ return array(
 		'application.models.*',
 		'application.components.*',
 		'application.extensions.*',
+		'ext.KeenActiveDataProvider', // Alias to right location.
+        'ext.RelatedSearchBehavior',  // Alias to right location.
 	),
 
 	'modules'=>array(

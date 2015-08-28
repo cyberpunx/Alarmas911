@@ -74,8 +74,7 @@ class Usuarios extends CActiveRecord
 		return array(
 			'sistemaAlarmas' => array(self::HAS_MANY, 'SistemaAlarmas', 'usuarios_usuario_id'),
 			'tiposClienteTipoCliente' => array(self::BELONGS_TO, 'TiposCliente', 'tipos_cliente_tipo_cliente_id'),
-			'usuariosHasOrdenesServicios' => array(self::HAS_MANY, 'UsuariosHasOrdenesServicio', 'usuarios_usuario_id'),
-			'usuariosPagosFechas' => array(self::HAS_MANY, 'UsuariosPagosFecha', 'usuarios_usuario_id'),
+			'pagos' => array(self::HAS_MANY, 'Pagos', 'usuarios_usuario_id'),
 		);
 	}
 
@@ -202,22 +201,188 @@ class Usuarios extends CActiveRecord
 	}
 
 	// Esto se usa para obtener el nombre completo de la persona
- 	// usado en la vista admin por ejemplo
- 	public function getFullName(){
- 		return $this->nombre.' '.$this->apellido;
- 	}
+	// usado en la vista admin por ejemplo
+	public function getFullName(){
+		return $this->nombre.' '.$this->apellido;
+	}
 
- 	public function getFullNameDniAddress(){
- 		return $this->nombre.' '.$this->apellido.' (DNI: '.$this->dni.') - '.$this->direccion;
- 	}
+	public function getFullNameDniAddress(){
+		return $this->nombre.' '.$this->apellido.' (DNI: '.$this->dni.') - '.$this->direccion;
+	}
 
- 	public function getRelatedSistemasAlarmas(){
+	//public function getNombreSistemaAlarmas(){
+	//	return $this->sistemaAlarmas->nombre_sistema_alarma;
+	//}
+
+	public function getRelatedSistemasAlarmas(){
 		$out=CHtml::listData($this->sistemaAlarmas,'sistema_alarma_id','nombre_sistema_alarma');
 		$linea = '<ul>';
 		foreach($out as $key=>$value){ 
 			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('sistemaAlarmas/view', 'id' => $key)));
 		}
 		$linea .= '</ul>';
+		return $linea;
+	}
+
+	public function getRelatedPagos(){
+		$out=CHtml::listData($this->pagos,'pago_id','importe');
+		$linea = '<ul>';
+		foreach($out as $key=>$value){ 
+			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('pagos/view', 'id' => $key)));
+		}
+		$linea .= '</ul>';
+		return $linea;
+	}
+
+	public function getRelatedOrdenesServicio(){
+		$out=CHtml::listData($this->sistemaAlarmas,'sistema_alarma_id','nombre_sistema_alarma');
+
+		$linea = '<ul>';
+		foreach($out as $key=>$value){ 
+			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('sistemaAlarmas/view', 'id' => $key)));
+
+			$criteria = new CDbCriteria;
+			$criteria->condition = 'sistema_alarmas_sistema_alarma_id ='.$key; 
+			$ordenesLst = new OrdenesServicio;
+			
+			$out2 = CHtml::listData( $ordenesLst->findAll($criteria),'orden_servicio_id','importe' );
+			$index = 1;
+			foreach($out2 as $key2=>$value2){
+				$linea .= '<ul>';
+				$linea .= sprintf('<li>'.$index.') Orden de Servicio importe: %s</li>', CHtml::link($value2, array('ordenesServicio/view', 'id' => $key2)));
+				$linea .= '</ul>';
+				$index++;
+			}
+		}
+		$linea .= '</ul>';
+		return $linea;
+	}
+
+	
+
+	
+
+	public function getEstadoContable(){
+
+		$linea = "";
+		$lineaAlt = false;
+
+		$ordenes_Lst= Yii::app()->db->createCommand('
+			select * from sistema_alarmas
+			left join ordenes_servicio OS on OS.sistema_alarmas_sistema_alarma_id = sistema_alarma_id
+			where usuarios_usuario_id = '.$this->usuario_id.'
+			order by fecha_emision DESC
+		')->queryAll();
+
+		$pagos_Lst= Yii::app()->db->createCommand('
+			select * from pagos
+			where usuarios_usuario_id = '.$this->usuario_id.'
+			order by fecha DESC
+		')->queryAll();
+
+		$totalDeuda = 0;
+		$totalPagos = 0;
+
+		foreach ($ordenes_Lst as $row) {
+			$totalDeuda +=  (float) $row['importe'];
+		}
+
+		foreach ($pagos_Lst as $row) {
+			$totalPagos += (float) $row['importe'];
+		}
+
+		$saldo = - $totalDeuda + $totalPagos;
+
+		if($saldo>0){
+			$linea.= '<h1 align="right">Saldo: <span style="color:green">'.$saldo.'$</span></h1>';
+		}
+		if($saldo==0){
+			$linea.= '<h1 align="right">Saldo: <span>'.$saldo.'$</span></h1>';
+		}
+		if($saldo<0){
+			$linea.= '<h1 align="right">Saldo: <span style="color:red">'.$saldo.'$</span></h1>';
+		}
+
+		
+
+
+		$linea.='<h5>Ordenes de Servicio</h5>
+
+				<div class="datagrid"> 
+					<table>
+					
+						<thead>
+							<tr><th>Fecha</th><th>Sistema</th><th>Importe</th></tr>
+						</thead>
+
+						<tfoot>
+							<tr>
+								<td colspan="3">
+									<div id="paging" >
+										<ul>
+											<li><b>TOTAL:</b> '.$totalDeuda.' $</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</tfoot>
+
+						<tbody>';
+
+		foreach ($ordenes_Lst as $row) {
+
+			if($lineaAlt){ $linea .= '<tr class="alt">'; }
+			else{ $linea .= '<tr>'; }	
+
+			$linea.= '<td>'.$row['fecha_emision'].'</td>'; 
+			$linea.= '<td>'.$row['nombre_sistema_alarma'].'</td>';
+			$linea.= '<td>'.$row['importe'].'</td>'; 			
+			$linea .= '</tr>';
+			$lineaAlt = !$lineaAlt;
+		}
+
+		$linea.='</tbody>
+					</table>	
+				</div>
+
+				<br><br><br>
+				<h5>Pagos</h5>
+
+				<div class="datagrid"> 
+					<table>
+					
+						<thead>
+							<tr><th>Fecha</th><th>Importe</th></tr>
+						</thead>
+
+						<tfoot>
+							<tr>
+								<td colspan="3">
+									<div id="paging">
+										<ul>
+											<li><b>TOTAL:</b> '.$totalPagos.' $</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</tfoot>
+		<tbody>';
+
+		foreach ($pagos_Lst as $row) {
+
+			if($lineaAlt){ $linea .= '<tr class="alt">'; }
+			else{ $linea .= '<tr>'; }	
+
+			$linea.= '<td>'.$row['fecha'].'</td>'; 
+			$linea.= '<td>'.$row['importe'].'</td>'; 			
+			$linea .= '</tr>';
+			$lineaAlt = !$lineaAlt;
+		}	
+		
+		$linea.='</tbody>
+				</table>
+				</div>';
+
 		return $linea;
 	}
 

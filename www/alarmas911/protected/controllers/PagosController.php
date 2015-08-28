@@ -1,6 +1,6 @@
 <?php
 
-class BarriosController extends Controller
+class PagosController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -33,7 +33,7 @@ class BarriosController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findUsuario'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -59,16 +59,16 @@ class BarriosController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Barrios;
+		$model=new Pagos;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Barrios']))
+		if(isset($_POST['Pagos']))
 		{
-			$model->attributes=$_POST['Barrios'];
+			$model->attributes=$_POST['Pagos'];
 			if($model->save())
-				$this->redirect(array('admin'));
+				$this->redirect(array('view','id'=>$model->pago_id));
 		}
 
 		$this->render('create',array(
@@ -88,11 +88,11 @@ class BarriosController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Barrios']))
+		if(isset($_POST['Pagos']))
 		{
-			$model->attributes=$_POST['Barrios'];
+			$model->attributes=$_POST['Pagos'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->barrio_id));
+				$this->redirect(array('view','id'=>$model->pago_id));
 		}
 
 		$this->render('update',array(
@@ -119,7 +119,7 @@ class BarriosController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Barrios');
+		$dataProvider=new CActiveDataProvider('Pagos');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -130,10 +130,10 @@ class BarriosController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Barrios('search');
+		$model=new Pagos('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Barrios']))
-			$model->attributes=$_GET['Barrios'];
+		if(isset($_GET['Pagos']))
+			$model->attributes=$_GET['Pagos'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -144,24 +144,53 @@ class BarriosController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Barrios the loaded model
+	 * @return Pagos the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Barrios::model()->findByPk($id);
+		$model=Pagos::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
 
+	// data provider for EJuiAutoCompleteFkField for usuario_id field
+	public function actionFindUsuario() {
+		$q = $_GET['term'];
+		if (isset($q)) {
+			$criteria = new CDbCriteria;
+
+			$criteria->condition = 'apellido like :q OR nombre like :q'; 
+			$criteria->order = 'apellido asc'; 
+			$criteria->limit = 10; 
+
+			$criteria->params = array(':q' => trim($q) . '%'); 
+			$usuarios = Usuarios::model()->findAll($criteria);
+
+		   if (!empty($usuarios)) {
+				$out = array();
+				foreach ($usuarios as $p) {
+					$out[] = array(
+						// expression to give the string for the autoComplete drop-down
+						'label' => $p->FullNameDniAddress,  
+						'value' => $p->FullName,
+						'id' => $p->usuario_id, // return value from autocomplete
+					);
+				}
+				echo CJSON::encode($out);
+				Yii::app()->end();
+			}
+		}
+	}
+
 	/**
 	 * Performs the AJAX validation.
-	 * @param Barrios $model the model to be validated
+	 * @param Pagos $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='barrios-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='pagos-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
