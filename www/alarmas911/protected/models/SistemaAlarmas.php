@@ -33,6 +33,11 @@ class SistemaAlarmas extends CActiveRecord
 		return 'sistema_alarmas';
 	}
 
+	public $modeloMarca;
+	public $nombre_barrio;
+	public $tipo_monitoreo_search;
+	public $nombre_usuario_search;
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -46,7 +51,7 @@ class SistemaAlarmas extends CActiveRecord
 			array('modelos_modelo_id, barrios_barrio_id, tipos_monitoreo_tipo_monitoreo_id, usuarios_usuario_id', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('sistema_alarma_id, nombre_sistema_alarma, observaciones_sistema_alarma, modelos_modelo_id, barrios_barrio_id, tipos_monitoreo_tipo_monitoreo_id, usuarios_usuario_id', 'safe', 'on'=>'search'),
+			array('sistema_alarma_id, nombre_sistema_alarma, observaciones_sistema_alarma, modelos_modelo_id, barrios_barrio_id, tipos_monitoreo_tipo_monitoreo_id, usuarios_usuario_id, modeloMarca, nombre_barrio, tipo_monitoreo_search, nombre_usuario_search', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -103,6 +108,12 @@ class SistemaAlarmas extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+
+		$criteria->with = array( 'modelos', 'barrios', 'tiposMonitoreo', 'usuarios' );
+		$criteria->compare( 'modelos.nombre_modelo', $this->modeloMarca, true );	
+		$criteria->compare( 'barrios.nombre_barrio', $this->nombre_barrio, true );	
+		$criteria->compare( 'tiposMonitoreo.nombre_tipo_monitoreo', $this->tipo_monitoreo_search, true );
+		$criteria->addcondition("(usuarios.nombre LIKE '%".$this->nombre_usuario_search."%' OR usuarios.apellido LIKE '%".$this->nombre_usuario_search."%')");
 
 		$criteria->compare('sistema_alarma_id',$this->sistema_alarma_id,true);
 		$criteria->compare('nombre_sistema_alarma',$this->nombre_sistema_alarma,true);

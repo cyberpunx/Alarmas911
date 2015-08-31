@@ -52,15 +52,15 @@ $this->menu=array(
 			'type'=>'html',
 			'value'=>$model->relatedSistemasAlarmas,
 		),
-		array(
-			'name'=>'Pagos',
-			'type'=>'html',
-			'value'=>$model->relatedPagos,
-		),
-		array(
-			'name'=>'Ordenes de Servicio',
-			'type'=>'html',
-			'value'=>$model->relatedOrdenesServicio,
-		),
+		//array(
+		//	'name'=>'Pagos',
+		//	'type'=>'html',
+		//	'value'=>$model->relatedPagos,
+		//),
+		//array(
+		//	'name'=>'Ordenes de Servicio',
+		//	'type'=>'html',
+		//	'value'=>$model->relatedOrdenesServicio,
+		//),
 	),
 )); ?>

@@ -44,12 +44,31 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'sistema_alarma_id',
+		//'sistema_alarma_id',
 		'nombre_sistema_alarma',
+		array(
+			'header' => 'Usuario',
+			'name' => 'nombre_usuario_search',
+			'value' => '$data->usuarios->FullName',
+		),
+		array(
+			'header' => 'Barrio',
+			'name' => 'nombre_barrio',
+			'value' => '$data->barrios->nombre_barrio',
+		),
+		//'barrios_barrio_id',
 		'observaciones_sistema_alarma',
-		'modelos_modelo_id',
-		'barrios_barrio_id',
-		'tipos_monitoreo_tipo_monitoreo_id',
+		array(
+			'header' => 'Modelo',
+			'name' => 'modeloMarca',
+			'value' => '$data->modelos->ModeloMarca',
+		),
+		array(
+			'header' => 'Tipo de Monitoreo',
+			'name' => 'tipo_monitoreo_search',
+			'value' => '$data->tiposMonitoreo->nombre_tipo_monitoreo',
+		),
+		//'tipos_monitoreo_tipo_monitoreo_id',
 		/*
 		'usuarios_usuario_id',
 		*/

@@ -97,6 +97,8 @@ class Modelos extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->addSearchCondition('concat(nombre_modelo, " "marcas.nombre_marca)', $this->modeloMarca);
+
 		$criteria->compare('modelo_id',$this->modelo_id,true);
 		$criteria->compare('marcas_marca_id',$this->marcas_marca_id,true);
 		$criteria->compare('nombre_modelo',$this->nombre_modelo,true);

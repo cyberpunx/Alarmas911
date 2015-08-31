@@ -276,6 +276,7 @@ class Usuarios extends CActiveRecord
 
 		$pagos_Lst= Yii::app()->db->createCommand('
 			select * from pagos
+			left join tipos_pago TP on TP.tipo_pago_id = pagos.tipos_pago_tipo_pago_id
 			where usuarios_usuario_id = '.$this->usuario_id.'
 			order by fecha DESC
 		')->queryAll();
@@ -312,12 +313,12 @@ class Usuarios extends CActiveRecord
 					<table>
 					
 						<thead>
-							<tr><th>Fecha</th><th>Sistema</th><th>Importe</th></tr>
+							<tr><th>Fecha</th><th>Sistema de Alarmas</th><th>Detalle</th><th>Importe</th></tr>
 						</thead>
 
 						<tfoot>
 							<tr>
-								<td colspan="3">
+								<td colspan="4">
 									<div id="paging" >
 										<ul>
 											<li><b>TOTAL:</b> '.$totalDeuda.' $</li>
@@ -336,6 +337,9 @@ class Usuarios extends CActiveRecord
 
 			$linea.= '<td>'.$row['fecha_emision'].'</td>'; 
 			$linea.= '<td>'.$row['nombre_sistema_alarma'].'</td>';
+			$linea.= '<td> <a class="view" title="Ver" href="/alarmas911/index.php?r=ordenesServicio/view&id='.$row['orden_servicio_id'].'">
+							<img src="/alarmas911/assets/d05ed542/gridview/view.png" alt="Ver">
+							</a></td>';
 			$linea.= '<td>'.$row['importe'].'</td>'; 			
 			$linea .= '</tr>';
 			$lineaAlt = !$lineaAlt;
@@ -352,12 +356,12 @@ class Usuarios extends CActiveRecord
 					<table>
 					
 						<thead>
-							<tr><th>Fecha</th><th>Importe</th></tr>
+							<tr><th>Fecha</th><th>Forma de Pago</th><th>Información Adicional</th><th>Importe</th></tr>
 						</thead>
 
 						<tfoot>
 							<tr>
-								<td colspan="3">
+								<td colspan="4">
 									<div id="paging">
 										<ul>
 											<li><b>TOTAL:</b> '.$totalPagos.' $</li>
@@ -374,6 +378,8 @@ class Usuarios extends CActiveRecord
 			else{ $linea .= '<tr>'; }	
 
 			$linea.= '<td>'.$row['fecha'].'</td>'; 
+			$linea.= '<td>'.$row['nombre_tipo_pago'].'</td>'; 
+			$linea.= '<td>'.$row['informacion_pago'].'</td>';
 			$linea.= '<td>'.$row['importe'].'</td>'; 			
 			$linea .= '</tr>';
 			$lineaAlt = !$lineaAlt;

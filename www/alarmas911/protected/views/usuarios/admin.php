@@ -48,6 +48,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 	'filter'=>$model,
 	'columns'=>array(
 		array(
+			'header' => 'Nombre y Apellido',
 			'name' => 'fullName',
 			'value' => '$data->getFullName()',
 		),
@@ -104,7 +105,26 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		//'tipos_cliente_tipo_cliente_id',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{view}{update}',
+			'header' => 'Acciones',
+			'template'=>'{view}{update}{estadoCuenta}{verSistemas}',
+			 'buttons'=>array(
+			 	'view' => array(
+					'imageUrl'=>Yii::app()->request->baseUrl.'/themes/shadow_dancer/images/small_icons/magnifier.png',
+				),
+				'update' => array(
+					'imageUrl'=>Yii::app()->request->baseUrl.'/themes/shadow_dancer/images/small_icons/pencil.png',
+				),
+				'estadoCuenta' => array(
+					'label'=>'Ver Estado Contable',
+					'imageUrl'=>Yii::app()->request->baseUrl.'/themes/shadow_dancer/images/small_icons/money.png',
+					'url'=>'Yii::app()->createUrl("usuarios/estadoCuenta", array("id"=>$data->usuario_id))',
+				),
+				'verSistemas' => array(
+					'label'=>'Ver Sistemas de Alarmas',
+					'imageUrl'=>Yii::app()->request->baseUrl.'/themes/shadow_dancer/images/small_icons/bell.png',
+					'url'=>'Yii::app()->createUrl("sistemaAlarmas/admin", array("usuarios_usuario_id"=>$data->usuario_id))',
+				),
+			),
 		),
 	),
 )); ?>

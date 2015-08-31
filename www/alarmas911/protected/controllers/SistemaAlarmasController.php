@@ -150,8 +150,17 @@ class SistemaAlarmasController extends Controller
 	{
 		$model=new SistemaAlarmas('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['SistemaAlarmas']))
-			$model->attributes=$_GET['SistemaAlarmas'];
+		
+		
+		if(isset($_GET['usuarios_usuario_id'])){ 
+        	$model->usuarios_usuario_id = $_GET['usuarios_usuario_id'];
+        }else{
+        	
+        	if(isset($_GET['SistemaAlarmas'])){
+				$model->attributes=$_GET['SistemaAlarmas'];
+			}
+		}
+    
 
 		$this->render('admin',array(
 			'model'=>$model,
