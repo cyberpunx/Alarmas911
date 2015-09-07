@@ -81,18 +81,23 @@ $this->menu=array(
 	</ul>
 	<ul>
 		<li>
-			<a class="grey" href="index.php?r=paneles/create">
+			<a class="grey" href="index.php?r=paneles/createFromSistemas&id=<?php echo $model->sistema_alarma_id?>">
 				<span class="icon icon-add">Agregar Paneles</span>
 			</a>
 		</li>
 		<li>
-			<a class="grey" href="index.php?r=accesorios/create">
+			<a class="grey" href="index.php?r=accesorios/createFromSistemas&id=<?php echo $model->sistema_alarma_id?>">
 				<span class="icon icon-add">Agregar Accesorios</span>
 			</a>
 		</li>
 		<li>
-			<a class="grey" href="index.php?r=baterias/create">
+			<a class="grey" href="index.php?r=baterias/createFromSistemas&id=<?php echo $model->sistema_alarma_id?>">
 				<span class="icon icon-add">Agregar Batería</span>
+			</a>
+		</li>
+		<li>
+			<a class="grey" href="index.php?r=zonas/createFromSistemas&id=<?php echo $model->sistema_alarma_id?>">
+				<span class="icon icon-add">Agregar Zona</span>
 			</a>
 		</li>	
 	<br style="clear:left">

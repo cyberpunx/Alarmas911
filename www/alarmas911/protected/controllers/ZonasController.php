@@ -33,7 +33,7 @@ class ZonasController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'loadChildByAjax', 'listZonasBySistema'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'loadChildByAjax', 'listZonasBySistema', 'createFromSistemas'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -79,6 +79,33 @@ class ZonasController extends Controller
         }
  
         $this->render('create', array(
+            'model' => $model,
+        ));
+	}
+
+	public function actionCreateFromSistemas()
+	{
+		$model = new Zonas;
+ 
+        // Uncomment the following line if AJAX validation is needed
+        $this->performAjaxValidation($model);
+ 
+        if (isset($_POST['Zonas']))
+        {
+            $model->attributes = $_POST['Zonas'];
+            $model->sistema_alarmas_sistema_alarma_id = $_GET['id'];
+ 
+            if (isset($_POST['Sensores']))
+            {
+                $model->sensores = $_POST['Sensores'];
+            }
+            if ($model->saveWithRelated('sensores'))
+                $this->redirect(array('view', 'id' => $model->zona_id));
+            else
+                $model->addError('sensores', 'Error occured while saving sensores.');
+        }
+ 
+        $this->render('createFromSistemas', array(
             'model' => $model,
         ));
 	}

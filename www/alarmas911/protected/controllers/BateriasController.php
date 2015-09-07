@@ -29,15 +29,12 @@ class BateriasController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'roles'=>array('CLIENTE')
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+			
+			array('allow', // ADMISNITRADOR HACE TODO
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'createFromSistemas'),
+				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -78,6 +75,27 @@ class BateriasController extends Controller
 			'model'=>$model,
 		));
 	}
+
+	public function actionCreateFromSistemas()
+	{
+		$model=new Baterias;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Baterias']))
+		{
+			$model->attributes=$_POST['Baterias'];
+			$model->sistema_alarmas_sistema_alarma_id = $_GET['id'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->bateria_id));
+		}
+
+		$this->render('createFromSistemas',array(
+			'model'=>$model,
+		));
+	}
+
 
 	/**
 	 * Updates a particular model.
