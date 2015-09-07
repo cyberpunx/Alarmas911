@@ -85,7 +85,17 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 				}
 			},
 		),
-		'importe',
+		//'importe',
+		array(
+			'header' => 'Importe',
+			'name' => 'importe',
+			'value'=>function($data) {
+					if($data->importe)
+						return "$".$data->importe;
+					else
+						return " - ";
+					},
+		),
 		'observaciones_orden_servicio',		
 		/*
 		'prioridad',

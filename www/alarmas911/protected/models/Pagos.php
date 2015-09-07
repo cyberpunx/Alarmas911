@@ -27,6 +27,9 @@ class Pagos extends CActiveRecord
 		return 'pagos';
 	}
 
+	public $nombre_usuario_search;
+	public $nombre_tipo_pago;
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -42,7 +45,7 @@ class Pagos extends CActiveRecord
 			array('fecha', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('pago_id, usuarios_usuario_id, importe, ordenes_servicio_orden_servicio_id, fecha, tipos_pago_tipo_pago_id, informacion_pago', 'safe', 'on'=>'search'),
+			array('pago_id, usuarios_usuario_id, importe, ordenes_servicio_orden_servicio_id, fecha, tipos_pago_tipo_pago_id, informacion_pago, nombre_usuario_search, nombre_tipo_pago', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -93,6 +96,11 @@ class Pagos extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+
+		$criteria->with = array( 'usuarios' , 'tiposPago');
+
+		$criteria->compare( 'tiposPago.nombre_tipo_pago', $this->nombre_tipo_pago, true );	
+		$criteria->addcondition("(usuarios.nombre LIKE '%".$this->nombre_usuario_search."%' OR usuarios.apellido LIKE '%".$this->nombre_usuario_search."%')");
 
 		$criteria->compare('pago_id',$this->pago_id,true);
 		$criteria->compare('usuarios_usuario_id',$this->usuarios_usuario_id,true);

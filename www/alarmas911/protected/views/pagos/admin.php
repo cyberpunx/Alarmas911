@@ -3,13 +3,13 @@
 /* @var $model Pagos */
 
 $this->breadcrumbs=array(
-	'Pagoses'=>array('index'),
-	'Manage',
+	'Pagos'=>array('admin'),
+	'Administrar',
 );
 
 $this->menu=array(
-	array('label'=>'List Pagos', 'url'=>array('index')),
-	array('label'=>'Create Pagos', 'url'=>array('create')),
+	//array('label'=>'List Pagos', 'url'=>array('index')),
+	array('label'=>'Crear un Pago', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,14 +26,14 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Pagoses</h1>
+<h1>Administrar  Pagos</h1>
 
 <p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+Opcionalmente, puede introducir un operador de comparación (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar cómo se debe hacer la comparación.
 </p>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link('Búsqueda avanzada','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
@@ -45,17 +45,46 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'pago_id',
-		'usuarios_usuario_id',
-		'importe',
-		'ordenes_servicio_orden_servicio_id',
+		//'pago_id',
+		//'usuarios_usuario_id',
 		'fecha',
-		'tipos_pago_tipo_pago_id',
+		array(
+			'header' => 'Nombre y Apellido',
+			'name' => 'nombre_usuario_search',
+			'value' => '$data->usuarios->FullName',
+		),
+		//'importe',
+		array(
+			'header' => 'Importe',
+			'name' => 'importe',
+			'value'=>function($data) {
+						return "$".$data->importe;
+					},
+		),
+		array(
+			'header' => 'Tipo de Pago',
+			'name' => 'nombre_tipo_pago',
+			'value' => '$data->tiposPago->nombre_tipo_pago',
+		),
+		//'ordenes_servicio_orden_servicio_id',
+		
+		//'tipos_pago_tipo_pago_id',
+		
 		/*
 		'informacion_pago',
 		*/
 		array(
 			'class'=>'CButtonColumn',
+			'header' => 'Acciones',
+			'template'=>'{view}{update}',
+			 'buttons'=>array(
+			 	'view' => array(
+					'imageUrl'=>Yii::app()->request->baseUrl.'/themes/shadow_dancer/images/small_icons/magnifier.png',
+				),
+				'update' => array(
+					'imageUrl'=>Yii::app()->request->baseUrl.'/themes/shadow_dancer/images/small_icons/pencil.png',
+				),
+			),
 		),
 	),
 )); ?>
