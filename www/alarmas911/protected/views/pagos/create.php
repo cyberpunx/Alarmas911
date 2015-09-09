@@ -3,16 +3,16 @@
 /* @var $model Pagos */
 
 $this->breadcrumbs=array(
-	'Pagoses'=>array('index'),
-	'Create',
+	'Pagos'=>array('admin'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List Pagos', 'url'=>array('index')),
-	array('label'=>'Manage Pagos', 'url'=>array('admin')),
+	array('label'=>'Admin Pagos', 'url'=>array('admin')),
+	//array('label'=>'Manage Pagos', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Pagos</h1>
+<h1>Crear Pago</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

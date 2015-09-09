@@ -128,36 +128,6 @@
 </div><!-- form -->
 
 
-<br>
-
-<div class="button_list">
-    <ul>
-    </ul>
-    <ul>
-    </ul>
-    <ul>
-    </ul>
-    <ul>
-    </ul>
-    <ul>
-        <li>
-            <a class="grey" href="index.php?r=paneles/create">
-                <span class="icon icon-add">Agregar Paneles</span>
-            </a>
-        </li>
-        <li>
-            <a class="grey" href="index.php?r=accesorios/create">
-                <span class="icon icon-add">Agregar Accesorios</span>
-            </a>
-        </li>   
-        <li>
-            <a class="grey" href="index.php?r=baterias/create">
-                <span class="icon icon-add">Agregar Batería</span>
-            </a>
-        </li>
-    <br style="clear:left">
-</div>
-
 
 <?php
 Yii::app()->clientScript->registerCoreScript('jquery');

@@ -69,7 +69,7 @@ class Pagos extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'pago_id' => 'Pago',
+			'pago_id' => 'Pago ID',
 			'usuarios_usuario_id' => 'Usuarios Usuario',
 			'importe' => 'Importe',
 			'ordenes_servicio_orden_servicio_id' => 'Ordenes Servicio Orden Servicio',

@@ -36,7 +36,12 @@ $this->menu=array(
 		),
 		'fecha_emision',
 		'fecha_cierre',
-		'importe',
+		//'importe',
+		array(
+			'label'=>'Importe',
+			'type'=>'raw',
+			'value'=>"$".$model->importe,
+		),
 		'observaciones_orden_servicio',
 		'vencimiento_orden',
 		'prioridad',

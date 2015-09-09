@@ -3,16 +3,16 @@
 /* @var $model Pagos */
 
 $this->breadcrumbs=array(
-	'Pagoses'=>array('index'),
+	'Pagos'=>array('admin'),
 	$model->pago_id=>array('view','id'=>$model->pago_id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'List Pagos', 'url'=>array('index')),
-	array('label'=>'Create Pagos', 'url'=>array('create')),
-	array('label'=>'View Pagos', 'url'=>array('view', 'id'=>$model->pago_id)),
-	array('label'=>'Manage Pagos', 'url'=>array('admin')),
+	array('label'=>'Admin Pagos', 'url'=>array('admin')),
+	array('label'=>'Crear Pago', 'url'=>array('create')),
+	array('label'=>'Ver Pago', 'url'=>array('view', 'id'=>$model->pago_id)),
+	//array('label'=>'Manage Pagos', 'url'=>array('admin')),
 );
 ?>
 

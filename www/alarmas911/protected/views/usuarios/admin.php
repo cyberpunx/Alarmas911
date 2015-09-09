@@ -27,7 +27,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Adminstrar Usuarios</h1>
+<h1>Administrar Usuarios</h1>
 
 <p>
 
