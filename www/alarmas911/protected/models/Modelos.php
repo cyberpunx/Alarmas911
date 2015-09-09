@@ -38,7 +38,7 @@ class Modelos extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('marcas_marca_id, nombre_modelo, discriminante', 'required'),
+			array('marcas_marca_id, nombre_modelo', 'required'),
 			array('marcas_marca_id', 'length', 'max'=>11),
 			array('nombre_modelo, discriminante', 'length', 'max'=>128),
 			array('observaciones_modelo', 'safe'),
