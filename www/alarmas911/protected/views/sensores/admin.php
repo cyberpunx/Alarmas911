@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List Sensores', 'url'=>array('index')),
-	array('label'=>'Crear Sensor', 'url'=>array('create')),
+	//array('label'=>'Crear Sensor', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

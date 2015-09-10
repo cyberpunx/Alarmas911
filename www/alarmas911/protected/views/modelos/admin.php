@@ -45,13 +45,44 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'modelo_id',
-		'marcas_marca_id',
+		//'modelo_id',
+		//'marcas_marca_id',
+		//'discriminante',
+		array(
+			'header' => 'Discriminante',
+			'name' => 'discriminante',
+			'value'=>function($data) {
+				switch ($data->discriminante) {
+					case "ACC":
+						echo "Accesorios";
+						break;
+					case "BAT":
+						echo "Baterías";
+						break;
+					case "SEN":
+						echo "Sensores";
+						break;
+					case "PAN":
+						echo "Paneles";
+						break;
+					case "SIA":
+						echo "Sist. de Alarmas";
+						break;
+				}
+			},
+		),
+		array(
+			'header' => 'Marca',
+			'name' => 'nombre_marca',
+			'value' => '$data->marcas->nombre_marca',
+		),
 		'nombre_modelo',
 		'observaciones_modelo',
-		'discriminante',
+		
 		array(
 			'class'=>'CButtonColumn',
+			'header' => 'Acciones',
+			'template'=>'{update}',
 		),
 	),
 )); ?>

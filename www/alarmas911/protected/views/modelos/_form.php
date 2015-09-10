@@ -26,11 +26,24 @@
 	$marcas_list = CHtml::listData(Marcas::model()->findAll(), 'marca_id', 'nombre_marca');
 	$options = array(
 	        'tabindex' => '0',
-	        'empty' => '(not set)',
+	        'empty' => '(Elija una Marca)',
 	);
 	?>
 	<?php echo $form->dropDownList($model,'marcas_marca_id', $marcas_list, $options); ?>
 	<?php echo $form->error($model,'marcas_marca_id'); ?>
+	</div>
+
+    <div class="row">
+	<?php echo $form->labelEx($model,'discriminante'); ?>
+	<?php
+	$discriminante_list =  $model->discriminanteList;
+	$options = array(
+	        'tabindex' => '0',
+	        'empty' => '(Elija un Tipo de Producto)',
+	);
+	?>
+	<?php echo $form->dropDownList($model,'discriminante', $discriminante_list, $options); ?>
+	<?php echo $form->error($model,'discriminante'); ?>
 	</div>
 
 	<div class="row">
@@ -43,12 +56,6 @@
 		<?php echo $form->labelEx($model,'observaciones_modelo'); ?>
 		<?php echo $form->textArea($model,'observaciones_modelo',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'observaciones_modelo'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'discriminante'); ?>
-		<?php echo $form->textField($model,'discriminante',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'discriminante'); ?>
 	</div>
 
 	<div class="row buttons">

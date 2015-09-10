@@ -28,7 +28,7 @@
 	<div class="row">
 	<?php echo $form->labelEx($model,'modelos_modelo_id'); ?>
 	<?php
-		$modelos_list = CHtml::listData(Modelos::model()->findAll(), 'modelo_id', 'ModeloMarca');
+		$modelos_list = CHtml::listData(Modelos::model()->findAll(array("condition"=>"discriminante = 'PAN' ")), 'modelo_id', 'ModeloMarca');
 			$options = array(
 			        'tabindex' => '0',
 			        'empty' => '(not set)',

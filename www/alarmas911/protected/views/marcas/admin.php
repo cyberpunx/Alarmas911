@@ -45,12 +45,12 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'marca_id',
+		//'marca_id',
 		'nombre_marca',
 		'observaciones_marca',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{view}{update}',
+			'template'=>'{update}',
 		),
 	),
 )); ?>

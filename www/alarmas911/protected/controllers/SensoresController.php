@@ -33,7 +33,7 @@ class SensoresController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'CreateFromSistemas'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -72,6 +72,27 @@ class SensoresController extends Controller
 		}
 
 		$this->render('create',array(
+			'model'=>$model,
+		));
+	}
+
+
+	public function actionCreateFromSistemas()
+	{
+		$model=new Sensores;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Sensores']))
+		{
+			$model->attributes=$_POST['Sensores'];
+			$model->zonas_zona_id = $_GET['id'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->sensor_id));
+		}
+
+		$this->render('createFromSistemas',array(
 			'model'=>$model,
 		));
 	}

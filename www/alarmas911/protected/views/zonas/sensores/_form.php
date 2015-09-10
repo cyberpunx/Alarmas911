@@ -21,7 +21,7 @@
     <div class="row" style="width:200px;float: left;">
     <?php echo CHtml::activelabelEx($model, '[' . $index . ']modelos_modelo_id'); ?>
     <?php
-        $modelos_list = CHtml::listData(Modelos::model()->findAll(), 'modelo_id', 'ModeloMarca');
+        $modelos_list = CHtml::listData(Modelos::model()->findAll(array("condition"=>"discriminante = 'SEN' ")), 'modelo_id', 'ModeloMarca');
         $options = array(
                 'tabindex' => '0',
                 'empty' => '(not set)',

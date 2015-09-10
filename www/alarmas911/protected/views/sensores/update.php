@@ -12,7 +12,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List Sensores', 'url'=>array('index')),
-	array('label'=>'Crear Sensor', 'url'=>array('create')),
+	//array('label'=>'Crear Sensor', 'url'=>array('create')),
 	array('label'=>'Ver Sensor', 'url'=>array('view', 'id'=>$model->sensor_id)),
 	array('label'=>'Administrar Sensores', 'url'=>array('admin')),
 );

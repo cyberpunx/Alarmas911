@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List Sensores', 'url'=>array('index')),
-	array('label'=>'Crear Sensor', 'url'=>array('create')),
+	//array('label'=>'Crear Sensor', 'url'=>array('create')),
 	array('label'=>'Actualizar Sensor', 'url'=>array('update', 'id'=>$model->sensor_id)),
 	array('label'=>'Eliminar Sensor', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->sensor_id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Administrar Sensores', 'url'=>array('admin')),

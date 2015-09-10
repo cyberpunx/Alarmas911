@@ -29,6 +29,7 @@ class Modelos extends CActiveRecord
 	}
 
 	public $modeloMarca;
+	public $nombre_marca;
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -38,13 +39,13 @@ class Modelos extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('marcas_marca_id, nombre_modelo', 'required'),
+			array('marcas_marca_id, nombre_modelo, discriminante', 'required'),
 			array('marcas_marca_id', 'length', 'max'=>11),
 			array('nombre_modelo, discriminante', 'length', 'max'=>128),
 			array('observaciones_modelo', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('modelo_id, marcas_marca_id, nombre_modelo, observaciones_modelo, discriminante, modeloMarca', 'safe', 'on'=>'search'),
+			array('modelo_id, marcas_marca_id, nombre_modelo, observaciones_modelo, discriminante, modeloMarca, nombre_marca', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -96,7 +97,8 @@ class Modelos extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+		$criteria->with = array( 'marcas' );
+		$criteria->compare( 'marcas.nombre_marca', $this->nombre_marca, true );	
 		$criteria->addSearchCondition('concat(nombre_modelo, " "marcas.nombre_marca)', $this->modeloMarca);
 
 		$criteria->compare('modelo_id',$this->modelo_id,true);
@@ -112,6 +114,16 @@ class Modelos extends CActiveRecord
 
 	public function getModeloMarca(){
 		return $this->marcas->nombre_marca.' - '.$this->nombre_modelo;
+	}
+
+	public function getDiscriminanteList(){
+    	return array(
+    				'ACC' => 'Accesorios', 
+    				'BAT' => 'Baterías',
+    				'PAN' => 'Paneles',
+    				'SEN' => 'Sensores',
+    				'SIA' => 'Sistemas de Alarmas',
+    			);
 	}
 
 	/**

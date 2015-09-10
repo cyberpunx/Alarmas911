@@ -88,6 +88,7 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Inicio', 'url'=>array('/site/index')),
+				array('label'=>'Componentes', 'url'=>array('/site/tipos')),
 				//array('label'=>'Usuarios', 'url'=>array('/usuarios/index')),
 				array('label'=>'Página de ejemplo', 'url'=>array('/site/example')),
 				//array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
