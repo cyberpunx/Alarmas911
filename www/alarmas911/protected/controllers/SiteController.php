@@ -29,7 +29,23 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		//if(Yii::app()->user->isGuest){
+		//	
+		//}
+
+		if(Yii::app()->user->checkAccess('ADMINISTRADOR')){
+			$this->render('adminMain'); // vista ADMIN
+		}
+		elseif(Yii::app()->user->checkAccess('CLIENTE')){
+				$this->render('index'); //vista CLIENTE
+		}
+		else{
+			$this->redirect('?r=site/login');	// Si no hay sesión -> LOGIN
+		}
+
+
+
+		
 	}
 
 	public function actionExample()
@@ -39,11 +55,18 @@ class SiteController extends Controller
 		$this->render('example');
 	}
 
-	public function actionTipos()
+	public function actionAdminTipos()
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('tipos');
+		$this->render('adminTipos');
+	}
+
+	public function actionAdminMain()
+	{
+		// renders the view file 'protected/views/site/index.php'
+		// using the default layout 'protected/views/layouts/main.php'
+		$this->render('adminMain');
 	}
 
 	/**

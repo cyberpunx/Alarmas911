@@ -57,42 +57,17 @@
 	<div id="header">
 		<div id="logo"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/logo.png"></img><?php //echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
-    <!--
-<?php /*$this->widget('application.extensions.mbmenu.MbMenu',array(
-            'items'=>array(
-                array('label'=>'Dashboard', 'url'=>array('/site/index'),'itemOptions'=>array('class'=>'test')),
-                array('label'=>'Theme Pages',
-                  'items'=>array(
-                    array('label'=>'Graphs & Charts', 'url'=>array('/site/page', 'view'=>'graphs'),'itemOptions'=>array('class'=>'icon_chart')),
-					array('label'=>'Form Elements', 'url'=>array('/site/page', 'view'=>'forms')),
-					array('label'=>'Interface Elements', 'url'=>array('/site/page', 'view'=>'interface')),
-					array('label'=>'Error Pages', 'url'=>array('/site/page', 'view'=>'Demo 404 page')),
-					array('label'=>'Calendar', 'url'=>array('/site/page', 'view'=>'calendar')),
-					array('label'=>'Buttons & Icons', 'url'=>array('/site/page', 'view'=>'buttons_and_icons')),
-                  ),
-                ),
-                array('label'=>'Gii Generated Module',
-                  'items'=>array(
-                    array('label'=>'Items', 'url'=>array('/theme/index')),
-                    array('label'=>'Create Item', 'url'=>array('/theme/create')),
-					array('label'=>'Manage Items', 'url'=>array('/theme/admin')),
-                  ),
-                ),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-            ),
-    )); */?> --->
+
 	<div id="mainmenu">
     
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Inicio', 'url'=>array('/site/index')),
-				array('label'=>'Componentes', 'url'=>array('/site/tipos')),
+				array('label'=>'Admin', 'url'=>array('/site/adminMain'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+				array('label'=>'Componentes', 'url'=>array('/site/AdminTipos'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 				//array('label'=>'Usuarios', 'url'=>array('/usuarios/index')),
 				array('label'=>'Página de ejemplo', 'url'=>array('/site/example')),
-				//array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Contacto', 'url'=>array('/site/contact')),
 				//array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
 				
 			),
