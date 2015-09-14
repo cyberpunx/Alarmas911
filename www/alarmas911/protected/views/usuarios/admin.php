@@ -11,6 +11,7 @@ $this->menu=array(
 	//array('label'=>'Listar Todos', 'url'=>array('index')),
 	array('label'=>'Crear Usuarios', 'url'=>array('create')),
 	array('label'=>'Listar Clientes Factura A', 'url'=>array('listClientes')),
+	array('label'=>'Listar Saldos', 'url'=>array('ListSaldo')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

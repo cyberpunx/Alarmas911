@@ -33,7 +33,7 @@ class UsuariosController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update','listClientes', 'estadoCuenta', 'estadoCuentaGrid'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update','listClientes', 'estadoCuenta', 'ListSaldo'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -159,6 +159,14 @@ class UsuariosController extends Controller
 	{
 		$this->render('estadoCuenta',array(
 			'model'=>$this->loadModel($id),
+		));
+	}
+
+	public function actionListSaldo()
+	{
+		$dataProvider=new CActiveDataProvider('Usuarios');
+		$this->render('listSaldo',array(
+			'dataProvider'=>$dataProvider,
 		));
 	}
 
