@@ -188,4 +188,6 @@ class BateriasController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	
 }

@@ -47,8 +47,32 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 	'columns'=>array(
 		'panel_id',
 		'baterias_bateria_id',
-		'modelos_modelo_id',
-		'sistema_alarmas_sistema_alarma_id',
+		array(
+			
+			'name'=>'modelosName',
+			'header'=>'Modelo',
+			'value'=>function($data) {
+				if(strlen($data->modelosModelo->nombre_modelo) > 20){
+					return substr($data->modelosModelo->nombre_modelo, 0, 20)."...";
+				} else {
+					return $data->modelosModelo->nombre_modelo;
+				}
+			},
+		),
+		//'modelos_modelo_id',
+		array(
+			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
+			'name'=>'sistemaAlarmasName',
+			'header'=>'Sistema de Alarmas',
+			'value'=>function($data) {
+				if(strlen($data->sistemaAlarmas->nombre_sistema_alarma) > 20){
+					return substr($data->sistemaAlarmas->nombre_sistema_alarma, 0, 20)."...";
+				} else {
+					return $data->sistemaAlarmas->nombre_sistema_alarma;
+				}
+			},
+		),
+		//'sistema_alarmas_sistema_alarma_id',
 		'nombre_panel',
 		'observaciones_panel',
 		array(

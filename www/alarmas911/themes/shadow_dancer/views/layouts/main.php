@@ -84,9 +84,9 @@
 	<?php echo $content; ?>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by webapplicationthemes.com<br/>
+		Copyright &copy; <?php echo date('Y'); ?> Alarmas 911<br/>
 		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		
 	</div><!-- footer -->
 
 </div><!-- page -->

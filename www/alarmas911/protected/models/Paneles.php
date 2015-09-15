@@ -18,6 +18,9 @@
  */
 class Paneles extends CActiveRecord
 {
+	public $sistemaAlarmasName;
+	public $modelosName;
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -88,6 +91,11 @@ class Paneles extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+		$criteria->with = 'sistemaAlarmas';
+		$criteria->compare('sistemaAlarmas.nombre_sistema_alarma', $this->sistemaAlarmasName, true);
+
+		$criteria->with = 'modelosModelo';
+		$criteria->compare('modelosModelo.nombre_modelo', $this->modelosName, true);
 
 		$criteria->compare('panel_id',$this->panel_id,true);
 		$criteria->compare('modelos_modelo_id',$this->modelos_modelo_id,true);
