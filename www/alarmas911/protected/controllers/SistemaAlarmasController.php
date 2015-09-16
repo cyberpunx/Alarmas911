@@ -153,6 +153,7 @@ class SistemaAlarmasController extends Controller
 		
 		
 		if(isset($_GET['usuarios_usuario_id'])){ 
+			//$model->attributes=$_GET['usuarios_usuario_id'];
         	$model->usuarios_usuario_id = $_GET['usuarios_usuario_id'];
         }else{
         	

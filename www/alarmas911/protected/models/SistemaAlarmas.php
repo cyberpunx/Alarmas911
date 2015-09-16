@@ -121,7 +121,11 @@ class SistemaAlarmas extends CActiveRecord
 		$criteria->compare('modelos_modelo_id',$this->modelos_modelo_id,true);
 		$criteria->compare('barrios_barrio_id',$this->barrios_barrio_id,true);
 		$criteria->compare('tipos_monitoreo_tipo_monitoreo_id',$this->tipos_monitoreo_tipo_monitoreo_id,true);
-		$criteria->compare('usuarios_usuario_id',$this->usuarios_usuario_id,true);
+		$criteria->compare('usuarios_usuario_id',$this->usuarios_usuario_id,true);		
+
+		if(isset($_GET['usuarios_usuario_id'])){ 
+			$criteria->condition = 'usuarios_usuario_id ='.$_GET['usuarios_usuario_id']; 
+		}
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

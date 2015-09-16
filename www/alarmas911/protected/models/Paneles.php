@@ -43,7 +43,7 @@ class Paneles extends CActiveRecord
 			array('observaciones_panel', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('panel_id, modelos_modelo_id, sistema_alarmas_sistema_alarma_id, nombre_panel, observaciones_panel', 'safe', 'on'=>'search'),
+			array('panel_id, modelos_modelo_id, sistema_alarmas_sistema_alarma_id, nombre_panel, observaciones_panel, modelosName', 'safe', 'on'=>'search'),
 		);
 	}
 
