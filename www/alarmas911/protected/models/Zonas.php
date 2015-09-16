@@ -15,6 +15,7 @@
  */
 class Zonas extends CActiveRecord
 {
+	public $sistemaAlarmasName;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -39,7 +40,7 @@ class Zonas extends CActiveRecord
 			array('observaciones_zona', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('zona_id, sistema_alarmas_sistema_alarma_id, nombre_zona, observaciones_zona, relatedSensores, sistemaAlarmas.nombre_sistema_alarma', 'safe', 'on'=>'search'),
+			array('zona_id, sistemaAlarmasName, nombre_zona, observaciones_zona, relatedSensores, sistemaAlarmas.nombre_sistema_alarma', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -86,6 +87,9 @@ class Zonas extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+
+		$criteria->with = array( 'sistemaAlarmas', 'sensores');
+		$criteria->compare('sistemaAlarmas.nombre_sistema_alarma', $this->sistemaAlarmasName, true);
 
 		$criteria->compare('zona_id',$this->zona_id,true);
 		$criteria->compare('sistema_alarmas_sistema_alarma_id',$this->sistema_alarmas_sistema_alarma_id,true);

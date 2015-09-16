@@ -24,7 +24,7 @@
 class Baterias extends CActiveRecord
 {	
 	public $sistemaAlarmasName;
-	public $modelosName;
+	public $modeloMarca;
 	public $tiposBateriaName;
 	/**
 	 * @return string the associated database table name
@@ -48,7 +48,7 @@ class Baterias extends CActiveRecord
 			array('fecha_alta, fecha_baja', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('bateria_id, sistema_alarmas_sistema_alarma_id, modelos_modelo_id, tipos_baterias_tipo_bateria_id, observaciones_bateria, vida_util, fecha_alta, fecha_baja', 'safe', 'on'=>'search'),
+			array('bateria_id, sistemaAlarmasName,modeloMarca,tiposBateriaName, observaciones_bateria, vida_util, fecha_alta, fecha_baja', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -100,10 +100,10 @@ class Baterias extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-		$criteria->with = 'sistemaAlarmas';
-		$criteria->compare('modelos.nombre_modelo', $this->modelosName, true);
+		$criteria->with = array('sistemaAlarmas','modelos','tiposBaterias');
+		$criteria->compare('modelos.nombre_modelo', $this->modeloMarca, true);
 		$criteria->compare('sistemaAlarmas.nombre_sistema_alarma', $this->sistemaAlarmasName, true);	
-		
+		$criteria->compare('tiposBaterias.nombre', $this->tiposBateriaName, true);
 		$criteria->compare('bateria_id',$this->bateria_id,true);
 		$criteria->compare('sistema_alarmas_sistema_alarma_id',$this->sistema_alarmas_sistema_alarma_id,true);
 		$criteria->compare('modelos_modelo_id',$this->modelos_modelo_id,true);

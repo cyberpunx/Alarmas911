@@ -100,9 +100,7 @@
     <?php echo $form->error($model,'tipos_monitoreo_tipo_monitoreo_id'); ?>
     </div>
 
-    <?php
-    echo CHtml::link('Agregar Zona', '#', array('id' => 'loadChildByAjax'));
-    ?>
+    
     <div id="zonas">
         <?php
         $index = 0;
@@ -119,8 +117,11 @@
 
     
     <div style="clear:both;"></div>
+    <?php
+    echo CHtml::link('Agregar Zona', '#', array('id' => 'loadChildByAjax'));
+    ?>
     <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Guardar'); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Guardar'); ?>
     </div>
 
 <?php $this->endWidget(); ?>

@@ -46,9 +46,25 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 	'filter'=>$model,
 	'columns'=>array(
 		'zona_id',
-		'sistema_alarmas_sistema_alarma_id',
+		//'sistema_alarmas_sistema_alarma_id',
+		array(
+			
+			'name'=>'sistemaAlarmasName',
+			'header'=>'Sistema de Alarmas',
+			'value'=>'$data->sistemaAlarmas->nombre_sistema_alarma',
+		),
 		'nombre_zona',
-		'observaciones_zona',
+		array(
+			'name'=>'observaciones_zona',
+			'value'=>function($data) {
+				if(strlen($data->observaciones_zona) > 20){
+					return substr($data->observaciones_zona, 0, 20)."...";
+				} else {
+					return $data->observaciones_zona;
+				}
+			},
+		),
+		// 'observaciones_zona',
 		array(
 			'class'=>'CButtonColumn',
 			'template'=>'{view},{update}',

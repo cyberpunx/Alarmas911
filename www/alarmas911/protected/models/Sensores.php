@@ -18,6 +18,9 @@
  */
 class Sensores extends CActiveRecord
 {
+	public $tiposSensoresName;
+	public $modeloMarca;
+	public $zonasName;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -40,7 +43,7 @@ class Sensores extends CActiveRecord
 			array('tipos_sensores_tipo_sensor_id, modelos_modelo_id, zonas_zona_id', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('sensor_id, tipos_sensores_tipo_sensor_id, modelos_modelo_id, zonas_zona_id, tipoSensorNombre', 'safe', 'on'=>'search'),
+			array('sensor_id, tipos_sensores_tipo_sensor_id, modelos_modelo_id, zonas_zona_id, tiposSensoresName, zonasName, modeloMarca', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +71,7 @@ class Sensores extends CActiveRecord
 			'tipos_sensores_tipo_sensor_id' => 'Tipo de Sensor',
 			'modelos_modelo_id' => 'Modelo',
 			'zonas_zona_id' => 'Zona',
+			
 		);
 	}
 
@@ -88,7 +92,10 @@ class Sensores extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
+		$criteria->with = array( 'modelos', 'zonas', 'tiposSensores');
+		$criteria->compare('tiposSensores.nombre_sensor', $this->tiposSensoresName, true);
+		$criteria->compare('modelos.nombre_modelo', $this->modeloMarca, true );
+		$criteria->compare('zonas.nombre_zona', $this->zonasName, true);
 		$criteria->compare('sensor_id',$this->sensor_id,true);
 		$criteria->compare('tipos_sensores_tipo_sensor_id',$this->tipos_sensores_tipo_sensor_id,true);
 		$criteria->compare('modelos_modelo_id',$this->modelos_modelo_id,true);

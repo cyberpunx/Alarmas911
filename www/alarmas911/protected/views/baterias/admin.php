@@ -50,39 +50,22 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
 			'name'=>'sistemaAlarmasName',
 			'header'=>'Sistema de Alarmas',
-			'value'=>function($data) {
-				if(strlen($data->sistemaAlarmas->nombre_sistema_alarma) > 20){
-					return substr($data->sistemaAlarmas->nombre_sistema_alarma, 0, 20)."...";
-				} else {
-					return $data->sistemaAlarmas->nombre_sistema_alarma;
-				}
-			},
+			'value'=>'$data->sistemaAlarmas->nombre_sistema_alarma',
 		),
 		//'sistema_alarmas_sistema_alarma_id',
 		array(
-			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
-			'name'=>'modelosName',
-			'header'=>'Modelo',
-			'value'=>function($data) {
-				if(strlen($data->modelos->nombre_modelo) > 20){
-					return substr($data->modelos->nombre_modelo, 0, 20)."...";
-				} else {
-					return $data->modelos->nombre_modelo;
-				}
-			},
+			
+			'header' => 'Modelo',
+			'name' => 'modeloMarca',
+			'value' => '$data->modelos->ModeloMarca',
+		
 		),
 		//'modelos_modelo_id',
 		array(
 			
 			'name'=>'tiposBateriaName',
 			'header'=>'Tipo de Bateria',
-			'value'=>function($data) {
-				if(strlen($data->tiposBaterias->nombre) > 20){
-					return substr($data->tiposBaterias->nombre, 0, 20)."...";
-				} else {
-					return $data->tiposBaterias->nombre;
-				}
-			},
+			'value'=>'$data->tiposBaterias->nombre',
 		),
 		//'tipos_baterias_tipo_bateria_id',
 		'observaciones_bateria',

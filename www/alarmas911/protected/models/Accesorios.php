@@ -17,7 +17,10 @@
  * @property Modelos $modelosModelo
  */
 class Accesorios extends CActiveRecord
-{
+{	
+	public $sistemaAlarmasName;
+	public $modeloMarca;
+	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -40,7 +43,7 @@ class Accesorios extends CActiveRecord
 			array('observaciones_accesorio', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('accesorio_id, modelos_modelo_id, sistema_alarmas_sistema_alarma_id, nombre_accesorio, observaciones_accesorio', 'safe', 'on'=>'search'),
+			array('accesorio_id, modeloMarca, sistemaAlarmasName, nombre_accesorio, observaciones_accesorio', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,6 +91,9 @@ class Accesorios extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
+		$criteria->with = array( 'modelos', 'sistemaAlarmas');
+		$criteria->compare('sistemaAlarmas.nombre_sistema_alarma', $this->sistemaAlarmasName, true);
+		$criteria->compare('modelos.nombre_modelo', $this->modeloMarca, true);
 
 		$criteria->compare('accesorio_id',$this->accesorio_id,true);
 		$criteria->compare('modelos_modelo_id',$this->modelos_modelo_id,true);

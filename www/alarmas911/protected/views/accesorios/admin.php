@@ -45,9 +45,19 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 	'filter'=>$model,
 	'columns'=>array(
 		'accesorio_id',
-		'modelos_modelo_id',
+		//'modelos_modelo_id',
+		array(
+			'header' => 'Modelo',
+			'name' => 'modeloMarca',
+			'value' => '$data->modelos->ModeloMarca',
+		),
 		'baterias_bateria_id',
-		'sistema_alarmas_sistema_alarma_id',
+		//'sistema_alarmas_sistema_alarma_id',
+		array(
+			'name'=>'sistemaAlarmasName',
+			'header'=>'Sistema de Alarma',
+			'value'=>'$data->sistemaAlarmas->nombre_sistema_alarma',
+		),
 		'nombre_accesorio',
 		'observaciones_accesorio',
 		array(

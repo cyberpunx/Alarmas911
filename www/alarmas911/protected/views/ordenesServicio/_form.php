@@ -132,9 +132,7 @@
 
 
 
-	<?php
-    echo CHtml::link('Agregar Linea de Detalle', '#', array('id' => 'loadDetalleByAjax'));
-    ?>
+
     <div id="detalleOrdenesServicios">
         <?php
         $index = 0;
@@ -150,8 +148,11 @@
     </div>
 
 	<div style="clear:both;"></div>
+	<?php
+    echo CHtml::link('Agregar Linea de Detalle', '#', array('id' => 'loadDetalleByAjax'));
+    ?>
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Guardar'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Guardar'); ?>
 	</div>
 
 

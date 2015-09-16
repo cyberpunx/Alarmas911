@@ -51,9 +51,7 @@
 		<?php echo $form->error($model,'observaciones_zona'); ?>
 	</div>
 
-	<?php
-	echo CHtml::link('Agregar Sensor a esta Zona', '#', array('id' => 'loadChildByAjax'));
-	?>
+	
 	<div id="sensores">
 		<?php
 		$index = 0;
@@ -67,12 +65,14 @@
 		endforeach;
 		?>
 	</div>
-
+	
 	
 	<div style="clear:both;"></div>
-
+	<?php
+	echo CHtml::link('Agregar Sensor a esta Zona', '#', array('id' => 'loadChildByAjax'));
+	?>
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Guardar'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Guardar' : 'Guardar'); ?>
 	</div>
 
 

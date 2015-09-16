@@ -46,10 +46,31 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 	'filter'=>$model,
 	'columns'=>array(
 		'sensor_id',
+
 		'baterias_bateria_id',
-		'tipos_sensores_tipo_sensor_id',
-		'modelos_modelo_id',
-		'zonas_zona_id',
+
+		//'tipos_sensores_tipo_sensor_id',
+		array(
+			//'filter'=>'tiposSensores.nombre_sensor',
+			'name'=>'tiposSensoresName',
+			'header'=>'Tipo de Sensor',
+			'value'=>'$data->tiposSensores->nombre_sensor',
+		),
+		//'modelos_modelo_id',
+		array(
+			'name'=>'modeloMarca',
+			'header'=>'Modelo',
+			'value'=>'$data->modelos->ModeloMarca',
+		),
+
+		//'zonas_zona_id',
+		array(
+			
+			'name'=>'zonasName',
+			'header'=>'Zona',
+			'value'=>'$data->zonas->nombre_zona',
+		),
+		
 		array(
 			'class'=>'CButtonColumn',
 		),

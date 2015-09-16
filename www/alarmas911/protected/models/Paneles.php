@@ -19,7 +19,7 @@
 class Paneles extends CActiveRecord
 {
 	public $sistemaAlarmasName;
-	public $modelosName;
+	public $modeloMarca;
 
 	/**
 	 * @return string the associated database table name
@@ -43,7 +43,7 @@ class Paneles extends CActiveRecord
 			array('observaciones_panel', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('panel_id, modelos_modelo_id, sistema_alarmas_sistema_alarma_id, nombre_panel, observaciones_panel, modelosName', 'safe', 'on'=>'search'),
+			array('panel_id, modelos_modelo_id, sistema_alarmas_sistema_alarma_id, sistemaAlarmasName, modeloMarca,nombre_panel, observaciones_panel', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -91,11 +91,10 @@ class Paneles extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-		$criteria->with = 'sistemaAlarmas';
+		$criteria->with = array( 'sistemaAlarmas', 'modelosModelo',);
 		$criteria->compare('sistemaAlarmas.nombre_sistema_alarma', $this->sistemaAlarmasName, true);
-
-		$criteria->with = 'modelosModelo';
-		$criteria->compare('modelosModelo.nombre_modelo', $this->modelosName, true);
+	
+		$criteria->compare('modelosModelo.nombre_modelo', $this->modeloMarca, true);
 
 		$criteria->compare('panel_id',$this->panel_id,true);
 		$criteria->compare('modelos_modelo_id',$this->modelos_modelo_id,true);
