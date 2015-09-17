@@ -400,18 +400,118 @@ class Usuarios extends CActiveRecord
 
 		$linea = "";
 		$lineaAlt = false;
-
 		$usuarios_Lst = Yii::app()->db->createCommand('
 			SELECT * from usuarios
+			ORDER BY apellido ASC
 		')->queryAll();
-
 		$linea.='
 
 				<div class="datagrid"> 
 					<table>
 					
 						<thead>
-							<tr><th>Nombre</th><th>Apellido</th><th>Saldo</th></tr>
+							<tr><th>Apellido y Nombre</th><th>Email</th><th>Saldo</th></tr>
+						</thead>				
+
+						<tbody>';
+		$totalDeuda = 0;
+		$totalAFavor = 0;
+		$totalBalance = 0;
+		foreach ($usuarios_Lst as $usuario){
+			$balance_lst= Yii::app()->db->createCommand('
+				SELECT usuario_id, nombre, apellido, sum(Subtotal) as Total FROM (
+
+					SELECT US.usuario_id, US.nombre, US.apellido, OS.importe, sum(OS.importe * -1) as Subtotal FROM usuarios US 
+						LEFT JOIN sistema_alarmas SA on SA.usuarios_usuario_id = usuario_id
+						LEFT JOIN ordenes_servicio OS on OS.sistema_alarmas_sistema_alarma_id = SA.sistema_alarma_id
+					WHERE US.usuario_id = '.$usuario['usuario_id'].'			
+
+					UNION 
+
+					select US2.usuario_id, US2.nombre, US2.apellido, P.importe, sum(P.importe) as Subtotal from usuarios US2
+						LEFT JOIN pagos P on P.usuarios_usuario_id = US2.usuario_id
+					WHERE US2.usuario_id = '.$usuario['usuario_id'].'				
+					
+				) x 
+				LIMIT 1
+			')->queryAll();
+			if($lineaAlt){ $linea .= '<tr class="alt">'; }
+			else{ $linea .= '<tr>'; }	
+			//$linea.= '<td>'.$usuario['usuario_id'].'</td>'; 
+			$linea.= '<td><a href="'.Yii::app()->baseUrl.'/index.php?r=usuarios/view&id='.$usuario['usuario_id'].'">'.$usuario['apellido'].', '.$usuario['nombre'].'.</a></td>';
+			//$linea.= '<td>'.$usuario['nombre'].'</td>'; 
+			$linea.= '<td>'.$usuario['email'].'</td>'; 
+			foreach($balance_lst as $balance_row){
+				if($balance_row['Total'] < 0){
+					$linea.= '<td style="color:red">'.$balance_row['Total'].'</td>'; 
+					$totalDeuda +=  (float) $balance_row['Total'];	
+				}
+				if($balance_row['Total'] > 0){
+					$linea.= '<td style="color:green">'.$balance_row['Total'].'</td>'; 
+					$totalAFavor +=  (float) $balance_row['Total'];	
+				}
+				if($balance_row['Total'] == 0){
+					$linea.= '<td>'.$balance_row['Total'].'</td>'; 	
+				}			
+			}						
+			$linea .= '</tr>';
+			$lineaAlt = !$lineaAlt;
+		}
+		$totalBalance = $totalAFavor + $totalDeuda; //Se suma porque la deuda viene con signo negativo
+		$linea.='</tbody>
+
+						<tfoot>
+							<tr>
+								<td colspan="3">
+									<div id="paging" >
+										<ul>
+											<li><b>TOTAL DEUDA:</b> '.$totalDeuda.' $</li>
+										</ul>
+										<ul>
+											<li><b>TOTAL A FAVOR:</b> '.$totalAFavor.' $</li>
+										</ul>
+										<ul>';
+		if($totalBalance < 0){
+			$linea.='<li style="color:red"><b>BALANCE TOTAL:</b> '.$totalBalance.' $</li>';
+		}
+		if($totalBalance > 0){
+			$linea.='<li style="color:green"><b>BALANCE TOTAL:</b> '.$totalBalance.' $</li>';
+		}
+		if($totalBalance == 0){		
+			$linea.='<li><b>BALANCE TOTAL:</b> '.$totalBalance.' $</li>';
+		}
+		$linea.='								
+											
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</tfoot>
+				</table>
+				</div>';
+
+		return $linea;
+	}
+
+
+
+
+	public function getBalanceListDeudores(){
+
+		$linea = "";
+		$lineaAlt = false;
+
+		$usuarios_Lst = Yii::app()->db->createCommand('
+			SELECT * from usuarios
+			ORDER BY apellido ASC
+		')->queryAll();
+
+		$linea.='
+				<div class="datagrid"> 
+					<table>
+					
+						<thead>
+							<tr><th>Apellido</th><th>Nombre</th><th>Saldo</th></tr>
 						</thead>				
 
 						<tbody>';
@@ -419,8 +519,38 @@ class Usuarios extends CActiveRecord
 		$totalDeuda = 0;
 		$totalAFavor = 0;
 		$totalBalance = 0;
+		$usuarios_deben_Lst = array();
 
 		foreach ($usuarios_Lst as $usuario){
+
+			$balance_lst= Yii::app()->db->createCommand('
+				SELECT usuario_id, nombre, apellido, sum(Subtotal) as Total FROM (
+
+					SELECT US.usuario_id, US.nombre, US.apellido, OS.importe, sum(OS.importe * -1) as Subtotal FROM usuarios US 
+						LEFT JOIN sistema_alarmas SA on SA.usuarios_usuario_id = usuario_id
+						LEFT JOIN ordenes_servicio OS on OS.sistema_alarmas_sistema_alarma_id = SA.sistema_alarma_id
+					WHERE US.usuario_id = '.$usuario['usuario_id'].'			
+
+					UNION 
+
+					select US2.usuario_id, US2.nombre, US2.apellido, P.importe, sum(P.importe) as Subtotal from usuarios US2
+						LEFT JOIN pagos P on P.usuarios_usuario_id = US2.usuario_id
+					WHERE US2.usuario_id = '.$usuario['usuario_id'].'				
+					
+				) x 
+				LIMIT 1
+			')->queryAll();
+
+			foreach($balance_lst as $balance_row){
+				if($balance_row['Total'] < 0){
+					$usuarios_deben_Lst[] = $usuario;
+				}
+			}
+		}
+
+
+
+		foreach($usuarios_deben_Lst as $usuario){
 
 			$balance_lst= Yii::app()->db->createCommand('
 				SELECT usuario_id, nombre, apellido, sum(Subtotal) as Total FROM (
@@ -444,8 +574,10 @@ class Usuarios extends CActiveRecord
 			else{ $linea .= '<tr>'; }	
 
 			//$linea.= '<td>'.$usuario['usuario_id'].'</td>'; 
-			$linea.= '<td>'.$usuario['nombre'].'</td>'; 
-			$linea.= '<td>'.$usuario['apellido'].'</td>';
+			$linea.= '<td><a href="'.Yii::app()->baseUrl.'/index.php?r=usuarios/view&id='.$usuario['usuario_id'].'">'.$usuario['apellido'].', '.$usuario['nombre'].'.</a></td>';
+			//$linea.= '<td>'.$usuario['nombre'].'</td>'; 
+			$linea.= '<td>'.$usuario['email'].'</td>'; 
+			
 
 			foreach($balance_lst as $balance_row){
 				if($balance_row['Total'] < 0){
@@ -507,6 +639,8 @@ class Usuarios extends CActiveRecord
 
 
 	}
+
+
 
 	/**
 	 * Returns the static model of the specified AR class.

@@ -10,6 +10,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	//array('label'=>'List OrdenesServicio', 'url'=>array('index')),
 	array('label'=>'Crear Ordenes de Servicio', 'url'=>array('create')),
+	array('label'=>'Cobrar Monitoreo Mensual', 'url'=>array('GenerarCobroMensual')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

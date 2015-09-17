@@ -33,7 +33,7 @@ class OrdenesServicioController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findSistemaAlarmas','loadDetalleByAjax',),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findSistemaAlarmas','loadDetalleByAjax','GenerarCobroMensual'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -217,6 +217,14 @@ class OrdenesServicioController extends Controller
 				Yii::app()->end();
 			}
 		}
+	}
+
+	public function actionGenerarCobroMensual()
+	{
+		$dataProvider=new CActiveDataProvider('OrdenesServicio');
+		$this->render('cobroMensual',array(
+			'dataProvider'=>$dataProvider,
+		));
 	}
 
 	/**
