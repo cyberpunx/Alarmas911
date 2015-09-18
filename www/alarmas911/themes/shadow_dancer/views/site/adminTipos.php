@@ -12,7 +12,7 @@
 <?php $this->pageTitle=Yii::app()->name; ?>
 
 
-<h1>Componentes.</h1>
+<h1>Componentes</h1>
 
 
 <div class="dashboardIcons span-23" style="margin-left:30px">

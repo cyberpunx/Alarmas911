@@ -221,6 +221,7 @@ class OrdenesServicioController extends Controller
 
 	public function actionGenerarCobroMensual()
 	{
+
 		$dataProvider=new CActiveDataProvider('OrdenesServicio');
 		$this->render('cobroMensual',array(
 			'dataProvider'=>$dataProvider,
