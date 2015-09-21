@@ -14,7 +14,8 @@
 
 
 
-<h1>Inicie sesión para comenzar</h1>
+<h1>Bienvenido <?php echo Yii::app()->user->name ?></h1>
+
 
 
 

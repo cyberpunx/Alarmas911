@@ -218,7 +218,11 @@ class Usuarios extends CActiveRecord
 		$out=CHtml::listData($this->sistemaAlarmas,'sistema_alarma_id','nombre_sistema_alarma');
 		$linea = '<ul>';
 		foreach($out as $key=>$value){ 
-			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('sistemaAlarmas/view', 'id' => $key)));
+			if(Yii::app()->user->checkAccess('ADMINISTRADOR')){
+				$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('sistemaAlarmas/view', 'id' => $key)));
+			}else{
+				$linea .= sprintf('<li>%s</li>', $value);
+			}			
 		}
 		$linea .= '</ul>';
 		return $linea;

@@ -62,6 +62,7 @@
     
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
+				//array('label'=>'Inicio', 'url'=>array('index'),'visible'=>Yii::app()->user->checkAccess('CLIENTE')),
 				array('label'=>'Admin', 'url'=>array('/site/adminMain'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 				array('label'=>'Componentes', 'url'=>array('/site/AdminTipos'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 				//array('label'=>'Usuarios', 'url'=>array('/usuarios/index')),

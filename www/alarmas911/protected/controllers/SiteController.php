@@ -34,18 +34,19 @@ class SiteController extends Controller
 		//}
 
 		if(Yii::app()->user->checkAccess('ADMINISTRADOR')){
-			$this->render('adminMain'); // vista ADMIN
+			$this->redirect('?r=site/adminMain'); // vista ADMIN
 		}
 		elseif(Yii::app()->user->checkAccess('CLIENTE')){
-				$this->render('index'); //vista CLIENTE
+				$this->redirect('?r=site/clienteMain'); //vista CLIENTE
 		}
 		else{
 			$this->redirect('?r=site/login');	// Si no hay sesión -> LOGIN
-		}
+		}		
+	}
 
-
-
-		
+	public function actionClienteMain()
+	{
+		$this->render('clienteMain');
 	}
 
 	public function actionExample()

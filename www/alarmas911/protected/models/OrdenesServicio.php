@@ -133,8 +133,12 @@ class OrdenesServicio extends CActiveRecord
 	public function getDetallesOrdenServicio(){
 		$out=CHtml::listData($this->detalleOrdenesServicios,'detalle_orden_servicio_id','descripcion_detalle_orden_servicio');
 		$linea = '<ul>';
-		foreach($out as $key=>$value){ 
-			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('detalleOrdenesServicio/view', 'id' => $key)));
+		foreach($out as $key=>$value){
+			if(Yii::app()->user->checkAccess('ADMINISTRADOR')){ 
+				$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('detalleOrdenesServicio/view', 'id' => $key)));
+			}else{
+				$linea .= sprintf('<li>%s</li>', $value);
+			}
 		}
 		$linea .= '</ul>';
 		return $linea;

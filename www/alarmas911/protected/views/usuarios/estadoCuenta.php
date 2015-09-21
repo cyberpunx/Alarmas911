@@ -9,13 +9,13 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List Usuarios', 'url'=>array('index')),
-	array('label'=>'Crear Usuarios', 'url'=>array('create')),
-	array('label'=>'Actualizar Usuario', 'url'=>array('update', 'id'=>$model->usuario_id)),
+	array('label'=>'Crear Usuarios', 'url'=>array('create'), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+	array('label'=>'Actualizar Usuario', 'url'=>array('update', 'id'=>$model->usuario_id), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 	//array('label'=>'Delete Usuarios', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->usuario_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Administrar Usuarios', 'url'=>array('admin')),
-	array('label'=>'Estado de Cuenta', 'url'=>array('estadoCuenta', 'id'=>$model->usuario_id)),
+	array('label'=>'Administrar Usuarios', 'url'=>array('admin'), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+	array('label'=>'Estado de Cuenta', 'url'=>array('estadoCuenta', 'id'=>$model->usuario_id), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 	//array('label'=>'Listar Clientes Factura A', 'url'=>array('listClientes')),
-	array('label'=>'Listar Saldos', 'url'=>array('ListSaldo')),
+	array('label'=>'Listar Saldos', 'url'=>array('ListSaldo'), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 );
 ?>
 

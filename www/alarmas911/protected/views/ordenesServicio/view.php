@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List OrdenesServicio', 'url'=>array('index')),
-	array('label'=>'Crear Ordenes de Servicio', 'url'=>array('create')),
-	array('label'=>'Actualizar Ordenes de Servicio', 'url'=>array('update', 'id'=>$model->orden_servicio_id)),
+	array('label'=>'Crear Ordenes de Servicio', 'url'=>array('create'), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR') ),
+	array('label'=>'Actualizar Ordenes de Servicio', 'url'=>array('update', 'id'=>$model->orden_servicio_id), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 	//array('label'=>'Delete OrdenesServicio', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->orden_servicio_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Administrar Ordenes de Servicio', 'url'=>array('admin')),
+	array('label'=>'Administrar Ordenes de Servicio', 'url'=>array('admin'), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 );
 ?>
 
@@ -27,12 +27,14 @@ $this->menu=array(
 			'type'=>'raw',
 			'value'=>CHtml::link(CHtml::encode($model->sistemaAlarmas->usuarios->FullName),
 								 array('usuarios/view','id'=>$model->sistemaAlarmas->usuarios->usuario_id)),
+			'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')
 		),
 		array(
 			'label'=>'Sistema de Alarmas',
 			'type'=>'raw',
 			'value'=>CHtml::link(CHtml::encode($model->sistemaAlarmas->nombre_sistema_alarma),
 								 array('sistemaAlarmas/view','id'=>$model->sistemaAlarmas->sistema_alarma_id)),
+			'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')
 		),
 		'fecha_emision',
 		'fecha_cierre',
