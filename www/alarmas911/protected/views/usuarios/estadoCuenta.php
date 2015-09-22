@@ -2,10 +2,19 @@
 /* @var $this UsuariosController */
 /* @var $model Usuarios */
 
-$this->breadcrumbs=array(
-	'Usuarios'=>array('admin'),
-	$model->FullName=>array('view', 'id'=>$model->usuario_id),
-);
+if(Yii::app()->user->checkAccess('ADMINISTRADOR')){
+	$this->breadcrumbs=array(
+		'Usuarios'=>array('admin'),
+		$model->FullName=>array('view', 'id'=>$model->usuario_id),
+	);
+}else{
+	$this->breadcrumbs=array(
+		//'Usuarios'=>array('admin'),
+		$model->FullName=>array('viewCliente'),
+	);
+}
+
+
 
 $this->menu=array(
 	//array('label'=>'List Usuarios', 'url'=>array('index')),

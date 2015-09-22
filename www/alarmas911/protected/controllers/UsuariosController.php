@@ -28,7 +28,7 @@ class UsuariosController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view', 'estadoCuenta', 'ViewCliente'),
+				'actions'=>array('index','view', 'estadoCuentaCliente', 'ViewCliente'),
 				'roles'=>array('CLIENTE')
 			),
 			
@@ -68,10 +68,24 @@ class UsuariosController extends Controller
 			else{
 				$this->redirect(array('site/error'));
 			}
+		}		
+	}
+
+	public function actionEstadoCuentaCliente()
+	{
+		if(Yii::app()->user->checkAccess('CLIENTE')){
+			$username = Yii::app()->user->name;
+			$model=new Usuarios;
+			$model=Usuarios::model()->find('email=\''.$username.'\' ');
+			if ($model){
+				$this->render('estadoCuenta',array(
+					'model'=>$this->loadModel($model->usuario_id),
+				));
+			}
+			else{
+				$this->redirect(array('site/error'));
+			}
 		}
-
-
-		
 	}
 
 	/**

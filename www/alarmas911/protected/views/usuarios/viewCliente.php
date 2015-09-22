@@ -12,7 +12,7 @@ $this->menu=array(
 	//array('label'=>'Actualizar Usuario', 'url'=>array('update', 'id'=>$model->usuario_id)),
 	//array('label'=>'Delete Usuarios', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->usuario_id),'confirm'=>'Are you sure you want to delete this item?')),
 	//array('label'=>'Administrar Usuarios', 'url'=>array('admin')),
-	array('label'=>'Estado de Cuenta', 'url'=>array('estadoCuenta', 'id'=>$model->usuario_id)),
+	array('label'=>'Pagos y Ordenes de Servicio', 'url'=>array('estadoCuentaCliente')),
 );
 ?>
 

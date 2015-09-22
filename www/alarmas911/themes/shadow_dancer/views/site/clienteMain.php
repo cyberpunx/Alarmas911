@@ -38,13 +38,8 @@
 	</div> 
 
 	<div class="dashIcon span-3">
-		<a href="?r=ordenesServicio/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-tools.png" alt="Ordenes de Servicio" /></a>
-		<div class="dashIconText"><a href="?r=ordenesServicio/admin">Mis Ordenes Servicio</a></div>
-	</div> 
-
-	<div class="dashIcon span-3">
-		<a href="?r=pagos/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-cash2.png" alt="pagos" /></a>
-		<div class="dashIconText"><a href="?r=pagos/admin">Mis Pagos y Operaciones</a></div>
+		<a href="?r=usuarios/estadoCuentaCliente"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-cash2.png" alt="pagos" /></a>
+		<div class="dashIconText"><a href="?r=usuarios/estadoCuentaCliente">Pagos y Ordenes de Servicio</a></div>
 	</div>
 
 	
