@@ -148,7 +148,12 @@ class SistemaAlarmas extends CActiveRecord
 
 		$linea = '<ul>';
 		foreach($out as $key=>$value){ 
-			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('zonas/view', 'id' => $key)));
+			if(Yii::app()->user->checkAccess('ADMINISTRADOR')){
+				$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('zonas/view', 'id' => $key)));
+			}else{
+				$linea .= sprintf('<li>%s</li>', $value);
+			}	
+			
 
 			$criteria = new CDbCriteria;
 			$criteria->condition = 'zonas_zona_id ='.$key; 
@@ -158,7 +163,12 @@ class SistemaAlarmas extends CActiveRecord
 			$index = 1;
 			foreach($out2 as $key2=>$value2){
 				$linea .= '<ul>';
-				$linea .= sprintf('<li>Sensor #'.$index.' %s</li>', CHtml::link($value2, array('sensores/view', 'id' => $key2)));
+				if(Yii::app()->user->checkAccess('ADMINISTRADOR')){
+					$linea .= sprintf('<li>Sensor #'.$index.' %s</li>', CHtml::link($value2, array('sensores/view', 'id' => $key2)));
+				}else{
+					$linea .= sprintf('<li>Sensor #'.$index.' %s</li>', $value2);
+				}	
+				
 				$linea .= '</ul>';
 				$index++;
 			}
@@ -171,7 +181,11 @@ class SistemaAlarmas extends CActiveRecord
 		$out=CHtml::listData($this->accesorios,'accesorio_id','nombre_accesorio');
 		$linea = '<ul>';
 		foreach($out as $key=>$value){ 
-			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('accesorios/view', 'id' => $key)));
+			if(Yii::app()->user->checkAccess('ADMINISTRADOR')){
+				$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('accesorios/view', 'id' => $key)));
+			}else{
+				$linea .= sprintf('<li>%s</li>', $value);
+			}			
 		}
 		$linea .= '</ul>';
 		return $linea;
@@ -181,7 +195,11 @@ class SistemaAlarmas extends CActiveRecord
 		$out=CHtml::listData($this->paneles,'panel_id','nombre_panel');
 		$linea = '<ul>';
 		foreach($out as $key=>$value){ 
-			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('paneles/view', 'id' => $key)));
+			if(Yii::app()->user->checkAccess('ADMINISTRADOR')){
+				$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('paneles/view', 'id' => $key)));
+			}else{
+				$linea .= sprintf('<li>%s</li>', $value);
+			}
 		}
 		$linea .= '</ul>';
 		return $linea;
@@ -191,7 +209,12 @@ class SistemaAlarmas extends CActiveRecord
 		$out=CHtml::listData($this->baterias,'bateria_id','modelos.ModeloMarca');
 		$linea = '<ul>';
 		foreach($out as $key=>$value){ 
-			$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('baterias/view', 'id' => $key)));
+			if(Yii::app()->user->checkAccess('ADMINISTRADOR')){
+				$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('baterias/view', 'id' => $key)));
+			}else{
+				$linea .= sprintf('<li>%s</li>', $value);
+			}
+			
 		}
 		$linea .= '</ul>';
 		return $linea;

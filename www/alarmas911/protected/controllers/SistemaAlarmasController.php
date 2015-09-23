@@ -28,7 +28,7 @@ class SistemaAlarmasController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'viewCliente', 'adminCliente'),
 				'roles'=>array('CLIENTE')
 			),
 			
@@ -51,6 +51,33 @@ class SistemaAlarmasController extends Controller
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
+	}
+
+	public function actionViewCliente($id)
+	{
+		
+		if(Yii::app()->user->checkAccess('CLIENTE')){
+			$username = Yii::app()->user->name;
+			$modelUsuario=new Usuarios;
+			$modelUsuario=Usuarios::model()->find('email=\''.$username.'\' ');
+			$user_id = $modelUsuario->usuario_id;
+			$model = new SistemaAlarmas;
+			$model = SistemaAlarmas::model()->find('sistema_alarma_id=\''.$id.'\' ');		
+			
+			if ($model){
+				if($model->usuarios_usuario_id == $user_id){
+					$this->render('viewCliente',array(
+						'model'=>$this->loadModel($id),
+					));
+				}
+				else{
+					throw new CHttpException(403,'The requested page does not exist.');
+				}
+			}
+			else{
+				throw new CHttpException(403,'The requested page does not exist.');
+			}
+		}		
 	}
 
 	/**
@@ -181,7 +208,7 @@ class SistemaAlarmasController extends Controller
 		if($model===null){
 			if (isset($_GET['id'])){
                // NOTE 'with()'
-               $this->model=SistemaAlarmas::model()->with('usuariosUsuario')->findbyPk($_GET['id']); 
+               $this->model=SistemaAlarmas::model()->with('usuarios')->findbyPk($_GET['id']); 
 			}
 
 			if($model===null){

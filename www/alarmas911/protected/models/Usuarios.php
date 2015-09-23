@@ -221,7 +221,7 @@ class Usuarios extends CActiveRecord
 			if(Yii::app()->user->checkAccess('ADMINISTRADOR')){
 				$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('sistemaAlarmas/view', 'id' => $key)));
 			}else{
-				$linea .= sprintf('<li>%s</li>', $value);
+				$linea .= sprintf('<li>%s</li>', CHtml::link($value, array('sistemaAlarmas/viewCliente', 'id' => $key)));
 			}			
 		}
 		$linea .= '</ul>';

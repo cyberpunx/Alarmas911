@@ -31,12 +31,12 @@
 		<a href="?r=usuarios/viewCliente"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-person.png" alt="Usuarios" /></a>
 		<div class="dashIconText"><a href="?r=usuarios/viewCliente">Mis Datos Personales</a></div>
 	</div>
-
+<!--
 	<div class="dashIcon span-3">
-		<a href="?r=sistemaAlarmas/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-bell.png" alt="sistemaAlarmas" /></a>
-		<div class="dashIconText"><a href="?r=sistemaAlarmas/admin">Mis Sistemas de Alarmas</a></div>
+		<a href="?r=sistemaAlarmas/adminCliente"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-bell.png" alt="sistemaAlarmas" /></a>
+		<div class="dashIconText"><a href="?r=sistemaAlarmas/adminCliente">Mis Sistemas de Alarmas</a></div>
 	</div> 
-
+-->
 	<div class="dashIcon span-3">
 		<a href="?r=usuarios/estadoCuentaCliente"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-cash2.png" alt="pagos" /></a>
 		<div class="dashIconText"><a href="?r=usuarios/estadoCuentaCliente">Pagos y Ordenes de Servicio</a></div>
