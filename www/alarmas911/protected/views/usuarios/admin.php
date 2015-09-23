@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	//array('label'=>'Listar Todos', 'url'=>array('index')),
 	array('label'=>'Crear Usuarios', 'url'=>array('create')),
-	array('label'=>'Listar Clientes Factura A', 'url'=>array('listClientes')),
+	array('label'=>'Listar Empleados', 'url'=>array('listEmpleados')),
 	array('label'=>'Listar Saldos', 'url'=>array('ListSaldo')),
 	array('label'=>'Listar Deudores', 'url'=>array('listSaldoDeuda')),
 );

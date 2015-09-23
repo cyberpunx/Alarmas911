@@ -156,12 +156,13 @@ class Usuarios extends CActiveRecord
 		));
 	}
 
-	public function searchListClientes()
+	public function searchListEmpleados()
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-		//$criteria->condition = "cliente_sistema_secundario_id IS NOT NULL AND cliente_factura = \"A\" ";
+		$criteria->with = array('tiposClienteTipoCliente');
+		$criteria->condition = "tiposClienteTipoCliente.nombre_tipo_cliente like \"empleado\" ";
 
 		$criteria->addSearchCondition('concat(nombre, " ", apellido)', $this->fullName);
 		$criteria->addSearchCondition('concat(nombre, " ", apellido, " ", dni, " ", direccion)', $this->fullNameDniAddress);

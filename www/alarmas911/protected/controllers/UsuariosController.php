@@ -33,7 +33,7 @@ class UsuariosController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update','listClientes', 'estadoCuenta', 'ListSaldo', 'ListSaldoDeuda'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update','listEmpleados', 'estadoCuenta', 'ListSaldo', 'ListSaldoDeuda'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -178,14 +178,14 @@ class UsuariosController extends Controller
 	/**
 	 * Devuelve los Clientes de la tabla de usuarios
 	 */
-	public function actionListClientes()
+	public function actionlistEmpleados()
 	{
-		$modelSearch=new Usuarios('searchListClientes');
+		$modelSearch=new Usuarios('searchListEmpleados');
 		$modelSearch->unsetAttributes();  // clear any default values
 		if(isset($_GET['Usuarios']))
 			$modelSearch->attributes=$_GET['Usuarios'];
 
-		$this->render('clientList',array(
+		$this->render('listEmpleados',array(
 			'modelSearch'=>$modelSearch,
 		));
 	}
