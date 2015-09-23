@@ -47,7 +47,11 @@ $this->menu=array(
 		'observaciones_orden_servicio',
 		'vencimiento_orden',
 		'prioridad',
-		
+		array(
+			'label'=>'Empleado Responsable',
+			'type'=>'raw',
+			'value'=>"".$model->usuarios->FullName,
+		),
 		array(
 			'label'=>'Detalle',
 			'type'=>'raw',

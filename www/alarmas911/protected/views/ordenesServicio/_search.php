@@ -51,6 +51,11 @@
 		<?php echo $form->textField($model,'sistema_alarmas_sistema_alarma_id',array('size'=>11,'maxlength'=>11)); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'usuarios_usuario_id'); ?>
+		<?php echo $form->textField($model,'usuarios_usuario_id',array('size'=>11,'maxlength'=>11)); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Buscar'); ?>
 	</div>

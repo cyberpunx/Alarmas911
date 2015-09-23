@@ -97,6 +97,18 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 						return " - ";
 					},
 		),
+		array(
+			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
+			'name'=>'empleadoName',
+			'header'=>'Emlpeado',
+			'value'=>function($data) {
+				if(strlen($data->usuarios->FullName) > 20){
+					return substr($data->usuarios->FullName, 0, 20)."...";
+				} else {
+					return $data->usuarios->FullName;
+				}
+			},
+		),
 		'observaciones_orden_servicio',		
 		/*
 		'prioridad',
@@ -105,6 +117,16 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		array(
     		'class'=>'CButtonColumn',
     		'template'=>'{update}{view}',
+    		//'buttons'=>array(
+			// 	'view' => array(
+			//		'imageUrl'=>Yii::app()->request->baseUrl.'/themes/shadow_dancer/images/small_icons/magnifier.png',
+			//		'url'=>'Yii::app()->createUrl("ordenesServicio/view", array("id"=>$data->orden_servicio_id))',
+			//	),
+			//	'update' => array(
+			//		'imageUrl'=>Yii::app()->request->baseUrl.'/themes/shadow_dancer/images/small_icons/pencil.png',
+			//		'url'=>'Yii::app()->createUrl("ordenesServicio/update", array("id"=>$data->orden_servicio_id))',
+			//	),
+			//),
 		),
 	),
 )); ?>

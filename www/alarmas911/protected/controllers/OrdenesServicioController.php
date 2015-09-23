@@ -33,7 +33,7 @@ class OrdenesServicioController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findSistemaAlarmas','loadDetalleByAjax','GenerarCobroMensual'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findSistemaAlarmas', 'findUsuario','loadDetalleByAjax','GenerarCobroMensual'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -176,18 +176,10 @@ class OrdenesServicioController extends Controller
 	 */
 	public function loadModel($id)
 	{
+		
 		$model=OrdenesServicio::model()->findByPk($id);
-		if($model===null){
-			if (isset($_GET['id'])){
-				// NOTE 'with()'
-				$this->model=OrdenesServicio::model()->with('usuariosUsuario')->findbyPk($_GET['id']); 
-			}
-
-			if($model===null){
-				throw new CHttpException(404,'The requested page does not exist.');
-			}
-		}
-
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
 
@@ -211,6 +203,38 @@ class OrdenesServicioController extends Controller
 						'label' => $p->nombre_sistema_alarma,  
 						'value' => $p->nombre_sistema_alarma,
 						'id' => $p->sistema_alarma_id, // return value from autocomplete
+					);
+				}
+				echo CJSON::encode($out);
+				Yii::app()->end();
+			}
+		}
+	}
+
+	public function actionFindUsuario() {
+		$q = $_GET['term'];
+		if (isset($q)) {
+			$criteria = new CDbCriteria;
+			$criteria->select = 't.*';
+			$criteria->join = 'LEFT JOIN tipos_cliente ON tipos_cliente.tipo_cliente_id = t.tipos_cliente_tipo_cliente_id ';
+			
+			//$criteria->condition = 't.apellido like :q OR t.nombre like :q'; 
+			$criteria->condition = '(t.apellido like :q OR t.nombre like :q )AND nombre_tipo_cliente like \'empleado\''; 
+			//$criteria->condition = 'nombre_tipo_cliente like \'empleado\''; // HARDCODE!!! FIXME
+			$criteria->order = 't.apellido asc'; 
+			$criteria->limit = 10; 
+
+			$criteria->params = array(':q' => trim($q) . '%'); 
+			$usuarios = Usuarios::model()->findAll($criteria);
+
+		   if (!empty($usuarios)) {
+				$out = array();
+				foreach ($usuarios as $p) {
+					$out[] = array(
+						// expression to give the string for the autoComplete drop-down
+						'label' => $p->FullName,  
+						'value' => $p->FullName,
+						'id' => $p->usuario_id, // return value from autocomplete
 					);
 				}
 				echo CJSON::encode($out);

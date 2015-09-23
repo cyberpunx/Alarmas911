@@ -23,6 +23,7 @@ class OrdenesServicio extends CActiveRecord
 {
 
 	public $sistemaAlarmasName;
+	public $empleadoName;
 
 	/**
 	 * @return string the associated database table name
@@ -43,12 +44,12 @@ class OrdenesServicio extends CActiveRecord
 			array('fecha_emision, sistema_alarmas_sistema_alarma_id', 'required'),
 			array('importe', 'numerical'),
 			array('observaciones_orden_servicio', 'length', 'max'=>128),
-			array('prioridad, sistema_alarmas_sistema_alarma_id', 'length', 'max'=>11),
+			array('prioridad, sistema_alarmas_sistema_alarma_id, usuarios_usuario_id', 'length', 'max'=>11),
 			array('fecha_cierre, vencimiento_orden', 'safe'),
 			array('fecha_cierre','compare','compareAttribute'=>'fecha_emision','operator'=>'>=','on'=>'insert, update','message'=>'La Fecha de Cierre no puede ser anterior a la Fecha de Emisión','allowEmpty'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('orden_servicio_id, fecha_emision, fecha_cierre, importe, observaciones_orden_servicio, vencimiento_orden, prioridad, sistema_alarmas_sistema_alarma_id, sistemaAlarmasName', 'safe', 'on'=>'search'),
+			array('orden_servicio_id, fecha_emision, fecha_cierre, importe, observaciones_orden_servicio, vencimiento_orden, prioridad, sistema_alarmas_sistema_alarma_id, sistemaAlarmasName, empleadoName, usuarios_usuario_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +62,7 @@ class OrdenesServicio extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'detalleOrdenesServicios' => array(self::HAS_MANY, 'DetalleOrdenesServicio', 'ordenes_servicio_orden_servicio_id'),
+			'usuarios' => array(self::BELONGS_TO, 'Usuarios', 'usuarios_usuario_id'),
 			'sistemaAlarmas' => array(self::BELONGS_TO, 'SistemaAlarmas', 'sistema_alarmas_sistema_alarma_id'),
 			'pagos' => array(self::HAS_MANY, 'Pagos', 'ordenes_servicio_orden_servicio_id'),
 		);
@@ -80,6 +82,7 @@ class OrdenesServicio extends CActiveRecord
 			'vencimiento_orden' => 'Fecha de Vencimiento',
 			'prioridad' => 'Prioridad',
 			'sistema_alarmas_sistema_alarma_id' => 'Sistema de Alarmas',
+			'usuarios_usuario_id' => 'Empleado Responsable',
 		);
 	}
 
@@ -102,8 +105,11 @@ class OrdenesServicio extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		
-		$criteria->with = 'sistemaAlarmas';
+		$criteria->with = array('sistemaAlarmas', 'usuarios');
 		$criteria->compare('sistemaAlarmas.nombre_sistema_alarma', $this->sistemaAlarmasName, true);
+
+		//$criteria->with = 'usuarios';
+		$criteria->addSearchCondition('concat(usuarios.nombre, " ", usuarios.apellido)', $this->empleadoName, true);
 
 		$criteria->compare('orden_servicio_id',$this->orden_servicio_id,true);
 		$criteria->compare('fecha_emision',$this->fecha_emision,true);
@@ -113,6 +119,7 @@ class OrdenesServicio extends CActiveRecord
 		$criteria->compare('vencimiento_orden',$this->vencimiento_orden,true);
 		$criteria->compare('prioridad',$this->prioridad,true);
 		$criteria->compare('sistema_alarmas_sistema_alarma_id',$this->sistema_alarmas_sistema_alarma_id,true);
+		$criteria->compare('usuarios_usuario_id',$this->usuarios_usuario_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

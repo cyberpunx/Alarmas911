@@ -122,6 +122,27 @@
 		<?php echo $form->error($model,'sistema_alarmas_sistema_alarma_id'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'usuarios_usuario_id'); ?>
+		<?php
+			$this->widget('EJuiAutoCompleteFkField', array(
+				'model'=>$model, 
+				'attribute'=>'usuarios_usuario_id',
+				'sourceUrl'=>Yii::app()->createUrl('/ordenesServicio/findUsuario'), 
+				'showFKField'=>true,
+				'FKFieldSize'=>1, 
+				'relName'=>'usuarios',
+				'displayAttr'=>'FullName', 
+				'autoCompleteLength'=>60,
+				'htmlOptions'=>array('size'=>50,'placeholder'=>'Ingresar nombre del empleado responsable'),
+				'options'=>array(
+					'minLength'=>0, 
+				),
+			));
+		?>
+		<?php echo $form->error($model,'usuarios_usuario_id'); ?>
+	</div>
+
 <!--
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Guardar'); ?>
