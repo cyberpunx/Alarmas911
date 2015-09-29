@@ -275,7 +275,7 @@ class Usuarios extends CActiveRecord
 		$ordenes_Lst= Yii::app()->db->createCommand('
 			select * from sistema_alarmas
 			left join ordenes_servicio OS on OS.sistema_alarmas_sistema_alarma_id = sistema_alarma_id
-			where usuarios_usuario_id = '.$this->usuario_id.'
+			where sistema_alarmas.usuarios_usuario_id = '.$this->usuario_id.'
 			order by fecha_emision DESC
 		')->queryAll();
 
