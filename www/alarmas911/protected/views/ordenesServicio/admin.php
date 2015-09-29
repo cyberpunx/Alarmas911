@@ -100,7 +100,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		array(
 			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
 			'name'=>'empleadoName',
-			'header'=>'Emlpeado',
+			'header'=>'Empleado',
 			'value'=>function($data) {
 				if(strlen($data->usuarios->FullName) > 20){
 					return substr($data->usuarios->FullName, 0, 20)."...";
@@ -108,6 +108,11 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 					return $data->usuarios->FullName;
 				}
 			},
+		),
+		array(
+			'header' => 'Barrio',
+			'name' => 'barrioName',
+			'value' => '$data->sistemaAlarmas->barrios->nombre_barrio',
 		),
 		'observaciones_orden_servicio',		
 		/*

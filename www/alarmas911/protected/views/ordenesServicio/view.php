@@ -36,6 +36,11 @@ $this->menu=array(
 								 array('sistemaAlarmas/view','id'=>$model->sistemaAlarmas->sistema_alarma_id)),
 			'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')
 		),
+		array(
+			'label'=>'Barrio',
+			'type'=>'raw',
+			'value'=>$model->sistemaAlarmas->barrios->nombre_barrio,
+		),
 		'fecha_emision',
 		'fecha_cierre',
 		//'importe',
@@ -57,5 +62,6 @@ $this->menu=array(
 			'type'=>'raw',
 			'value'=>$model->DetallesOrdenServicio,
 		),
+		
 	),
 )); ?>
