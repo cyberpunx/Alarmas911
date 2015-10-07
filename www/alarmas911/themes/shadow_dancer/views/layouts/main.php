@@ -66,7 +66,7 @@
 				array('label'=>'Admin', 'url'=>array('/site/adminMain'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 				array('label'=>'Componentes', 'url'=>array('/site/AdminTipos'),'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 				//array('label'=>'Usuarios', 'url'=>array('/usuarios/index')),
-				array('label'=>'Página de ejemplo', 'url'=>array('/site/example')),
+				//array('label'=>'Página de ejemplo', 'url'=>array('/site/example')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Contacto', 'url'=>array('/site/contact')),
 				//array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
