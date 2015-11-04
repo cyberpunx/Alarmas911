@@ -53,25 +53,10 @@
         <?php echo $form->error($model,'nombre_sistema_alarma'); ?>
     </div>
 
-
     <div class="row">
-        <?php echo $form->labelEx($model,'observaciones_sistema_alarma'); ?>
-        <?php echo $form->textField($model,'observaciones_sistema_alarma',array('size'=>60,'maxlength'=>128)); ?>
-        <?php echo $form->error($model,'observaciones_sistema_alarma'); ?>
-    </div>
-
-
-    <div class="row">
-    <?php echo $form->labelEx($model,'modelos_modelo_id'); ?>
-    <?php
-    $modelos_list = CHtml::listData(Modelos::model()->findAll(array("condition"=>"discriminante = 'SIA' ")), 'modelo_id', 'ModeloMarca');
-    $options = array(
-            'tabindex' => '0',
-            'empty' => '(not set)',
-    );
-    ?>
-    <?php echo $form->dropDownList($model,'modelos_modelo_id', $modelos_list, $options); ?>
-    <?php echo $form->error($model,'modelos_modelo_id'); ?>
+        <?php echo $form->labelEx($model,'direccion_sistema_alarma'); ?>
+        <?php echo $form->textField($model,'direccion_sistema_alarma',array('size'=>60,'maxlength'=>128)); ?>
+        <?php echo $form->error($model,'direccion_sistema_alarma'); ?>
     </div>
 
     <div class="row">
@@ -86,6 +71,27 @@
     <?php echo $form->dropDownList($model,'barrios_barrio_id', $barrios_list, $options); ?>
     <?php echo $form->error($model,'barrios_barrio_id'); ?>
     </div>
+
+    <div class="row">
+        <?php echo $form->labelEx($model,'observaciones_sistema_alarma'); ?>
+        <?php echo $form->textField($model,'observaciones_sistema_alarma',array('size'=>60,'maxlength'=>128)); ?>
+        <?php echo $form->error($model,'observaciones_sistema_alarma'); ?>
+    </div>
+
+    <div class="row">
+    <?php echo $form->labelEx($model,'modelos_modelo_id'); ?>
+    <?php
+    $modelos_list = CHtml::listData(Modelos::model()->findAll(array("condition"=>"discriminante = 'SIA' ")), 'modelo_id', 'ModeloMarca');
+    $options = array(
+            'tabindex' => '0',
+            'empty' => '(not set)',
+    );
+    ?>
+    <?php echo $form->dropDownList($model,'modelos_modelo_id', $modelos_list, $options); ?>
+    <?php echo $form->error($model,'modelos_modelo_id'); ?>
+    </div>
+
+    
 
     <div class="row">
     <?php echo $form->labelEx($model,'tipos_monitoreo_tipo_monitoreo_id'); ?>

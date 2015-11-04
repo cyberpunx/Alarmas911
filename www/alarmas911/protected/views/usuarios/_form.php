@@ -89,6 +89,19 @@
 	</div>
 
 	<div class="row">
+	<?php echo $form->labelEx($model,'tipos_cliente_tipo_cliente_id'); ?>
+	<?php
+	/*  Dropdown para el Tipo de Cliente del usuario */
+	$tiposCliente_list = CHtml::listData(TiposCliente::model()->findAll(), 'tipo_cliente_id', 'nombre_tipo_cliente');
+	$options = array(
+	        'tabindex' => '1',
+	);
+	?>
+	<?php echo $form->dropDownList($model,'tipos_cliente_tipo_cliente_id', $tiposCliente_list, $options); ?>
+	<?php echo $form->error($model,'tipos_cliente_tipo_cliente_id'); ?>
+	</div>	
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'comentarios'); ?>
 		<?php echo $form->textArea($model,'comentarios',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'comentarios'); ?>
@@ -125,19 +138,6 @@
 		<?php echo $form->textField($model,'cliente_cuit'); ?>
 		<?php echo $form->error($model,'cliente_cuit'); ?>
 	</div>
-
-	<div class="row">
-	<?php echo $form->labelEx($model,'tipos_cliente_tipo_cliente_id'); ?>
-	<?php
-	/*  Dropdown para el Tipo de Cliente del usuario */
-	$tiposCliente_list = CHtml::listData(TiposCliente::model()->findAll(), 'tipo_cliente_id', 'nombre_tipo_cliente');
-	$options = array(
-	        'tabindex' => '1',
-	);
-	?>
-	<?php echo $form->dropDownList($model,'tipos_cliente_tipo_cliente_id', $tiposCliente_list, $options); ?>
-	<?php echo $form->error($model,'tipos_cliente_tipo_cliente_id'); ?>
-	</div>	
 
 	<h1>Datos de empleado</h1>
 

@@ -94,7 +94,7 @@ class Usuarios extends CActiveRecord
 			'telefono_celular' => 'Nro. de Celular',
 			'telefono_fijo' => 'Nro. de Teléfono',
 			'telefono_alt' => 'Nro. de Telefono Alternativo',
-			'rol' => 'Tipo de Usuario',
+			'rol' => 'Rol',
 			'comentarios' => 'Comentarios',
 			'empleado_funcion' => 'Función',
 			'empleado_temporal' => 'Temporal',
@@ -104,7 +104,7 @@ class Usuarios extends CActiveRecord
 			'cliente_factura' => 'Tipo de Factura',
 			'cliente_razon_social' => 'Razon Social',
 			'cliente_cuit' => 'Nro de CUIT',
-			'tipos_cliente_tipo_cliente_id' => 'Tipo de Cliente',
+			'tipos_cliente_tipo_cliente_id' => 'Tipo de Usuario',
 		);
 	}
 

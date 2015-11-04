@@ -85,8 +85,47 @@ class OrdenesServicioController extends Controller
             {
                 $model->detalleOrdenesServicios = $_POST['DetalleOrdenesServicio'];
             }
-           if ($model->saveWithRelated('detalleOrdenesServicios'))
-                $this->redirect(array('OrdenesServicio/admin'));
+           if ($model->saveWithRelated('detalleOrdenesServicios')){
+
+           		$text = "";
+           		$text.= "<h1>Alarmas 911</h1>";
+           		$text.= "Estimado cliente, se le informa que se ha generado la siguiente Orden de Servicio.<br/>";
+           		$text.= "<br/><b>Nombre:</b> ".$model->sistemaAlarmas->usuarios->FullName;
+           		$text.= "<br/><b>Dirección:</b> ".$model->usuarios->direccion;
+           		$text.= "<br/><b>Barrio:</b> ".$model->sistemaAlarmas->barrios->nombre_barrio;
+           		$text.= "<br/><b>Fecha de alta:</b> ".$model->fecha_emision;
+           		$text.= "<br/><b>Fecha de vencimiento:</b> ".$model->vencimiento_orden;
+           		$text.= "<br/><b>Importe:</b> $".$model->importe;
+           		$text.= "<br/><b>Detalle:</b>";
+           			foreach($model->detalleOrdenesServicios as $detalle){
+           				$text.= "<br/>&nbsp;&nbsp;&nbsp;&nbsp;[".$detalle->tiposServicioTipoServicio->nombre_tipo_servicio."] ".$detalle->descripcion_detalle_orden_servicio;		
+           			}           		
+           		$text.= "<br/><b>Notas:</b> ".$model->observaciones_orden_servicio;
+           		$text.= "<br/><br/>No responda a este mensaje ya que ha sido generado automáticamente para su información.";
+                
+                // Envio el email de la orden de servicio creada
+				Yii::import('application.extensions.phpmailer.JPhpMailer');
+				$mail = new JPhpMailer;
+				$mail->SMTPKeepAlive = true;  
+      			$mail->Mailer = "smtp"; 
+				$mail->IsSMTP();
+				$mail->SMTPSecure = "ssl";
+				$mail->Host = 'smtp.gmail.com';
+				$mail->Port = '465';
+				//$mail->Host = 'smtp.googlemail.com:465';
+				$mail->SMTPAuth = true;
+				$mail->Username = 'alarmas911.test@gmail.com';
+				$mail->Password = 'alarmastest';
+				$mail->SetFrom('alarmas911.test@gmail.com', 'Alarmas 911 test');
+				$mail->Subject = 'Alarmas 911 - Orden de Servicio creada';
+				$mail->AltBody = 'To view the message, please use an HTML compatible email viewer!';
+				$mail->MsgHTML($text);
+				$mail->AddAddress('alarmas911.test@gmail.com');
+				$mail->SMTPDebug  = 1;
+				$mail->Send();
+
+                $this->redirect(array('OrdenesServicio/admin'));                
+            }
             else
                 $model->addError('detalleOrdenesServicios', 'Error occured while saving detalleOrdenesServicios.');
 		}
@@ -95,7 +134,10 @@ class OrdenesServicioController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 		));
+
 	}
+
+
 
 	/**
 	 * Updates a particular model.

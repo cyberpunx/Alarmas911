@@ -25,6 +25,7 @@ class OrdenesServicio extends CActiveRecord
 	public $sistemaAlarmasName;
 	public $empleadoName;
 	public $barrioName;
+	public $direccion_sistema_alarma_name;
 
 	/**
 	 * @return string the associated database table name
@@ -50,7 +51,7 @@ class OrdenesServicio extends CActiveRecord
 			array('fecha_cierre','compare','compareAttribute'=>'fecha_emision','operator'=>'>=','on'=>'insert, update','message'=>'La Fecha de Cierre no puede ser anterior a la Fecha de Emisión','allowEmpty'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('orden_servicio_id, fecha_emision, fecha_cierre, importe, observaciones_orden_servicio, vencimiento_orden, prioridad, sistema_alarmas_sistema_alarma_id, sistemaAlarmasName, empleadoName,barrioName, usuarios_usuario_id', 'safe', 'on'=>'search'),
+			array('orden_servicio_id, fecha_emision, fecha_cierre, importe, observaciones_orden_servicio, vencimiento_orden, prioridad, sistema_alarmas_sistema_alarma_id, sistemaAlarmasName, direccion_sistema_alarma_name, empleadoName,barrioName, usuarios_usuario_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -108,7 +109,7 @@ class OrdenesServicio extends CActiveRecord
 		
 		$criteria->with = array('usuarios');		
 		$criteria->compare('sistemaAlarmas.nombre_sistema_alarma', $this->sistemaAlarmasName, true);
-		
+		$criteria->compare('sistemaAlarmas.direccion_sistema_alarma', $this->direccion_sistema_alarma_name, true);
 		$criteria->with = array('sistemaAlarmas', 'sistemaAlarmas.barrios');
 		$criteria->compare('barrios.nombre_barrio', $this->barrioName, true);
 

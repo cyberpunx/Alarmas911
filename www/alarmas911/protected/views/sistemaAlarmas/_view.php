@@ -12,7 +12,10 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('nombre_sistema_alarma')); ?>:</b>
 	<?php echo CHtml::encode($data->nombre_sistema_alarma); ?>
 	<br />
-
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('direccion_sistema_alarma')); ?>:</b>
+	<?php echo CHtml::encode($data->direccion_sistema_alarma); ?>
+	<br />
 	<b><?php echo CHtml::encode($data->getAttributeLabel('observaciones_sistema_alarma')); ?>:</b>
 	<?php echo CHtml::encode($data->observaciones_sistema_alarma); ?>
 	<br />

@@ -60,6 +60,18 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 				}
 			},
 		),
+		array(
+			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
+			'name'=>'sistemaAlarmasName',
+			'header'=>'Dirección',
+			'value'=>function($data) {
+				if(strlen($data->sistemaAlarmas->direccion_sistema_alarma) > 20){
+					return substr($data->sistemaAlarmas->direccion_sistema_alarma, 0, 20)."...";
+				} else {
+					return $data->sistemaAlarmas->direccion_sistema_alarma;
+				}
+			},
+		),
 		//'fecha_cierre',
 		
 		array(

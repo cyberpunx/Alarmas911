@@ -35,6 +35,10 @@ $this->menu=array(
 			'value' => $model->modelos->nombre_modelo
 		),
 		array(
+			'label' => 'Dirección',
+			'value' => $model->direccion_sistema_alarma
+		),
+		array(
 			'label' => 'Barrio',
 			'value' => $model->barrios->nombre_barrio
 		),

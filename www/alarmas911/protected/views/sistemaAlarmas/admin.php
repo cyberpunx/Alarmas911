@@ -56,6 +56,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 			'name' => 'nombre_barrio',
 			'value' => '$data->barrios->nombre_barrio',
 		),
+		'direccion_sistema_alarma',
 		//'barrios_barrio_id',
 		'observaciones_sistema_alarma',
 		array(

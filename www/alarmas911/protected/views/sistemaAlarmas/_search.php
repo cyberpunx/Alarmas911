@@ -25,7 +25,11 @@
 		<?php echo $form->label($model,'observaciones_sistema_alarma'); ?>
 		<?php echo $form->textField($model,'observaciones_sistema_alarma',array('size'=>60,'maxlength'=>128)); ?>
 	</div>
-
+	
+	<div class="row">
+		<?php echo $form->label($model,'direccion_sistema_alarma'); ?>
+		<?php echo $form->textField($model,'direccion_sistema_alarma',array('size'=>60,'maxlength'=>128)); ?>
+	</div>
 	<div class="row">
 		<?php echo $form->label($model,'modelos_modelo_id'); ?>
 		<?php echo $form->textField($model,'modelos_modelo_id',array('size'=>11,'maxlength'=>11)); ?>
