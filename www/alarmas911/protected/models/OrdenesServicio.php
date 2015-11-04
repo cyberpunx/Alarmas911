@@ -164,90 +164,17 @@ class OrdenesServicio extends CActiveRecord
     }
 
 
-    public function confirmarCobrosMensuales(){
-
+    public function generarCobrosMensuales($flag){ 	// si flag == true -> hizo clic en boton confirmar
+    												// si flag == false -> aun no hizo clic en boton confirmar
     	$linea = "";
 		$lineaAlt = false;
 
-		$linea.='<div class="flash-notice">¿Desea generar los siguientes cobros?</div>';
-
-
-
-
-		$sistemas_Lst = Yii::app()->db->createCommand('
-			select * from sistema_alarmas sa
-				left join usuarios u on sa.usuarios_usuario_id = u.usuario_id
-				left join tipos_monitoreo tp on sa.tipos_monitoreo_tipo_monitoreo_id = tp.tipo_monitoreo_id
-			where tp.valor > 0
-		')->queryAll();
-
-		$importeTotal = 0;
-
-		$linea.='
-				<div class="datagrid"> 
-					<table>
-					
-						<thead>
-							<tr><th>Nombre Sistema</th><th>Cliente</th><th>Tipo de Monitoreo</th><th>Importe</th></tr>
-						</thead>				
-
-						<tbody>';
-
-		foreach($sistemas_Lst as $sistema){
-			if($lineaAlt){ $linea .= '<tr class="alt">'; }
-			else{ $linea .= '<tr>'; }	
-
-			$linea.= '<td>'.$sistema['nombre_sistema_alarma'].'</td>'; 
-			$linea.= '<td>'.$sistema['apellido'].', '.$sistema['nombre'].'</td>'; 
-			$linea.= '<td>'.$sistema['nombre_tipo_monitoreo'].'</td>'; 
-			$linea.= '<td>'.$sistema['valor'].'</td>'; 
-
-			$importeTotal += $sistema['valor'];
-
-			$qry = Yii::app()->db->createCommand("
-				INSERT INTO ordenes_servicio(fecha_emision,fecha_cierre,importe,observaciones_orden_servicio,vencimiento_orden,sistema_alarmas_sistema_alarma_id)
-				VALUES( 
-					'".date('Y-m-d')."',
-					'".date('Y-m-d')."',
-					'".$sistema['valor']."',
-					'Orden generada por el Sistema para cobrar el servicio de monitoreo.',
-					'".date('Y-m-d')."',
-					'".$sistema['sistema_alarma_id']."')
-			")->execute();
-
-			$linea .= '</tr>';
-			$lineaAlt = !$lineaAlt;
+		if($flag){
+			$linea.='<div class="flash-success">Se han generado Ordenes de Servicio satisfactoriamente para los siguientes Sistemas de Alarmas.</div>';
+		}else{
+			$linea.='<div class="flash-notice">¿Desea generar los siguientes cobros?</div>';
 		}
 
-		$linea.='</tbody>
-						<tfoot>
-							<tr>
-								<td colspan="4">
-									<div id="paging" >
-										<ul>
-											<li><b>TOTAL:</b> '.$importeTotal.'$</li>
-										</ul>
-										<ul>';
-		$linea.='								
-											
-										</ul>
-									</div>
-								</td>
-							</tr>
-						</tfoot>
-				</table>
-				</div>';
-		return $linea;
-    }
-
-
-
-
-    public function generarCobrosMensuales(){
-
-    	$linea = "";
-		$lineaAlt = false;
-
 		$sistemas_Lst = Yii::app()->db->createCommand('
 			select * from sistema_alarmas sa
 				left join usuarios u on sa.usuarios_usuario_id = u.usuario_id
@@ -257,8 +184,7 @@ class OrdenesServicio extends CActiveRecord
 
 		$importeTotal = 0;
 
-		$linea.='<div class="flash-success">Se han generado Ordenes de Servicio satisfactoriamente para los siguientes Sistemas de Alarmas.</div>';
-
+		
 		$linea.='
 				<div class="datagrid"> 
 					<table>
@@ -280,16 +206,19 @@ class OrdenesServicio extends CActiveRecord
 
 			$importeTotal += $sistema['valor'];
 
-			$qry = Yii::app()->db->createCommand("
-				INSERT INTO ordenes_servicio(fecha_emision,fecha_cierre,importe,observaciones_orden_servicio,vencimiento_orden,sistema_alarmas_sistema_alarma_id)
-				VALUES( 
-					'".date('Y-m-d')."',
-					'".date('Y-m-d')."',
-					'".$sistema['valor']."',
-					'Orden generada por el Sistema para cobrar el servicio de monitoreo.',
-					'".date('Y-m-d')."',
-					'".$sistema['sistema_alarma_id']."')
-			")->execute();
+			if($flag){
+				$qry = Yii::app()->db->createCommand("
+					INSERT INTO ordenes_servicio(fecha_emision,fecha_cierre,importe,observaciones_orden_servicio,vencimiento_orden,sistema_alarmas_sistema_alarma_id)
+					VALUES( 
+						'".date('Y-m-d')."',
+						'".date('Y-m-d')."',
+						'".$sistema['valor']."',
+						'Orden generada por el Sistema para cobrar el servicio de monitoreo.',
+						'".date('Y-m-d')."',
+						'".$sistema['sistema_alarma_id']."')
+				")->execute();
+			}
+			
 
 			$linea .= '</tr>';
 			$lineaAlt = !$lineaAlt;
