@@ -102,6 +102,11 @@
 		<a href="?r=barrios/admin"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-map2.png" alt="Barrios" style="width:50%; height 50%"/></a>
 		<div class="dashIconText"><a href="?r=barrios/admin">Barrios</a></div>
 	</div>
+
+	<div class="dashIcon span-3">
+		<a href="?r=activerecordlog/log"><img src="<?php echo Yii::app()->theme->baseUrl; ?>/images/big_icons/icon-log.png" alt="Historial" style="width:50%; height 50%"/></a>
+		<div class="dashIconText"><a href="?r=activerecordlog/log">Historial</a></div>
+	</div>
 	
 </div><!-- END OF .dashIcons -->
 

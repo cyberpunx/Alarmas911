@@ -1,24 +1,23 @@
 <?php
 /* @var $this ActiverecordlogController */
 /* @var $data Activerecordlog */
+
 ?>
 
-<div class="view">
+<tr class="<?php echo $index%2 ? 'alt' : '' ?>"> 
+
+	
+	<td><?php echo CHtml::encode($data->creationdate); ?></td>
+	<td><?php echo CHtml::encode($data->action); ?></td>
+	<td><?php echo CHtml::encode($data->userid); ?></td>
+	<td><?php echo CHtml::encode($data->description); ?></td>
+	<td><?php echo CHtml::encode($data->oldValue); ?></td>
+	<td><?php echo CHtml::encode($data->newValue); ?></td>
+	
+	<?  /*
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	<?php echo CHtml::encode($data->description); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('action')); ?>:</b>
-	<?php echo CHtml::encode($data->action); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('model')); ?>:</b>
-	<?php echo CHtml::encode($data->model); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('idModel')); ?>:</b>
@@ -27,25 +26,14 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('field')); ?>:</b>
 	<?php echo CHtml::encode($data->field); ?>
-	<br />
+	<br />	
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('creationdate')); ?>:</b>
-	<?php echo CHtml::encode($data->creationdate); ?>
-	<br />
-
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('userid')); ?>:</b>
 	<?php echo CHtml::encode($data->userid); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('oldValue')); ?>:</b>
-	<?php echo CHtml::encode($data->oldValue); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('newValue')); ?>:</b>
-	<?php echo CHtml::encode($data->newValue); ?>
-	<br />
+	<br /> 
 
 	*/ ?>
 
-</div>
+</tr>
+	
+
