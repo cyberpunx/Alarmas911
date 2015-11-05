@@ -128,4 +128,13 @@ class Sensores extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	 //Funcion para el Historial. 
+	public function behaviors()
+	{
+	    return array(
+	        // Classname => path to Class
+	        'ActiveRecordLogableBehavior'=>
+	            'application.behaviors.ActiveRecordLogableBehavior',
+	    );
+	}
 }

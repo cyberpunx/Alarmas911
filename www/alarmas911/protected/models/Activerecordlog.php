@@ -1,24 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "marcas".
+ * This is the model class for table "activerecordlog".
  *
- * The followings are the available columns in table 'marcas':
- * @property string $marca_id
- * @property string $nombre_marca
- * @property string $observaciones_marca
- *
- * The followings are the available model relations:
- * @property Modelos[] $modeloses
+ * The followings are the available columns in table 'activerecordlog':
+ * @property string $id
+ * @property string $description
+ * @property string $action
+ * @property string $model
+ * @property string $idModel
+ * @property string $field
+ * @property string $creationdate
+ * @property string $userid
+ * @property string $oldValue
+ * @property string $newValue
  */
-class Marcas extends CActiveRecord
+class Activerecordlog extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'marcas';
+		return 'activerecordlog';
 	}
 
 	/**
@@ -29,11 +33,14 @@ class Marcas extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre_marca', 'length', 'max'=>128),
-			array('observaciones_marca', 'safe'),
+			array('creationdate', 'required'),
+			array('description', 'length', 'max'=>255),
+			array('action, oldValue, newValue', 'length', 'max'=>20),
+			array('model, field, userid', 'length', 'max'=>45),
+			array('idModel', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('marca_id, nombre_marca, observaciones_marca', 'safe', 'on'=>'search'),
+			array('id, description, action, model, idModel, field, creationdate, userid, oldValue, newValue', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,7 +52,6 @@ class Marcas extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'modeloses' => array(self::HAS_MANY, 'Modelos', 'marcas_marca_id'),
 		);
 	}
 
@@ -55,9 +61,16 @@ class Marcas extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'marca_id' => 'Id Marca',
-			'nombre_marca' => 'Marca',
-			'observaciones_marca' => 'Observaciones de la marca',
+			'id' => 'ID',
+			'description' => 'Descripción',
+			'action' => 'Acción',
+			'model' => 'Modelo',
+			'idModel' => 'Id Modelo',
+			'field' => 'Atributo',
+			'creationdate' => 'Fecha de creación',
+			'userid' => 'Id Usuario',
+			'oldValue' => 'Valor antiguo',
+			'newValue' => 'Valor nuevo',
 		);
 	}
 
@@ -79,9 +92,16 @@ class Marcas extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('marca_id',$this->marca_id,true);
-		$criteria->compare('nombre_marca',$this->nombre_marca,true);
-		$criteria->compare('observaciones_marca',$this->observaciones_marca,true);
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('action',$this->action,true);
+		$criteria->compare('model',$this->model,true);
+		$criteria->compare('idModel',$this->idModel,true);
+		$criteria->compare('field',$this->field,true);
+		$criteria->compare('creationdate',$this->creationdate,true);
+		$criteria->compare('userid',$this->userid,true);
+		$criteria->compare('oldValue',$this->oldValue,true);
+		$criteria->compare('newValue',$this->newValue,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -92,19 +112,10 @@ class Marcas extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Marcas the static model class
+	 * @return Activerecordlog the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
-	}
-	 //Funcion para el Historial. 
-	public function behaviors()
-	{
-	    return array(
-	        // Classname => path to Class
-	        'ActiveRecordLogableBehavior'=>
-	            'application.behaviors.ActiveRecordLogableBehavior',
-	    );
 	}
 }

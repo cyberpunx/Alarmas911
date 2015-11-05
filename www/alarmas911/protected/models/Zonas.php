@@ -147,4 +147,5 @@ class Zonas extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	 
 }

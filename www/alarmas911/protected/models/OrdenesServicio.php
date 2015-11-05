@@ -244,4 +244,5 @@ class OrdenesServicio extends CActiveRecord
 				</div>';
 		return $linea;
     }
+    
 }

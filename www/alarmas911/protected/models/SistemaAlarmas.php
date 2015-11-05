@@ -232,4 +232,5 @@ class SistemaAlarmas extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
 }
