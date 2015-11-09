@@ -11,8 +11,10 @@
 	<td><?php echo CHtml::encode($data->action); ?></td>
 	<td><?php echo CHtml::encode($data->userid); ?></td>
 	<td><?php echo CHtml::encode($data->description); ?></td>
+	<td><?php echo CHtml::encode($data->field); ?></td>
 	<td><?php echo CHtml::encode($data->oldValue); ?></td>
 	<td><?php echo CHtml::encode($data->newValue); ?></td>
+	<td><?php echo $data->url; ?></td>
 	
 	<?  /*
 

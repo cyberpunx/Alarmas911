@@ -38,9 +38,10 @@ class Activerecordlog extends CActiveRecord
 			array('action, oldValue, newValue', 'length', 'max'=>20),
 			array('model, field, userid', 'length', 'max'=>45),
 			array('idModel', 'length', 'max'=>10),
+			array('url', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, description, action, model, idModel, field, creationdate, userid, oldValue, newValue', 'safe', 'on'=>'search'),
+			array('id, description, action, model, idModel, field, creationdate, userid, oldValue, newValue, url', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +72,7 @@ class Activerecordlog extends CActiveRecord
 			'userid' => 'Id Usuario',
 			'oldValue' => 'Valor antiguo',
 			'newValue' => 'Valor nuevo',
+			'url' => 'Link',
 		);
 	}
 
@@ -102,6 +104,7 @@ class Activerecordlog extends CActiveRecord
 		$criteria->compare('userid',$this->userid,true);
 		$criteria->compare('oldValue',$this->oldValue,true);
 		$criteria->compare('newValue',$this->newValue,true);
+		$criteria->compare('url',$this->url,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -20,7 +20,7 @@ $this->menu=array(
 	<table>
 	
 		<thead>
-			<tr><th>Fecha</th><th>Acción</th><th>Usuario</th><th>Detalle</th><th>Viejo valor</th><th>Nuevo Valor</th></tr>
+			<tr><th>Fecha</th><th>Acción</th><th>Usuario</th><th>Detalle</th><th>Campo</th><th>Viejo valor</th><th>Nuevo Valor</th><th>Ver</th></tr>
 		</thead>
 
 		<tbody>

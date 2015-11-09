@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `activerecordlog` (
   `userid` varchar(45) DEFAULT NULL,
   `oldValue` varchar(20) DEFAULT NULL,
   `newValue` varchar(20) DEFAULT NULL,
+  `url` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
 

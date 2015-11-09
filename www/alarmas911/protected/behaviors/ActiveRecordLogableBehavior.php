@@ -33,6 +33,8 @@ class ActiveRecordLogableBehavior extends CActiveRecordBehavior
                     $log->model=        get_class($this->Owner);
                     $log->idModel=      $this->Owner->getPrimaryKey();
                     $log->field=        $name;
+                   //$log->url = ''.Yii::app()->baseUrl.'/index.php?r='.get_class($this->Owner).'/view&id='.$this->Owner->getPrimaryKey();
+                    $log->url = CHtml::link('Link', array(''.get_class($this->Owner).'/view', 'id' => $this->Owner->getPrimaryKey()));
                     $log->creationdate= new CDbExpression('NOW()');
                     $log->userid=       Yii::app()->user->Name;
                     $log->oldValue=     $old;
@@ -50,7 +52,8 @@ class ActiveRecordLogableBehavior extends CActiveRecordBehavior
             $log->model=        get_class($this->Owner);
             $log->idModel=      $this->Owner->getPrimaryKey();
             $log->field=        '';
-            
+            //$log->url = ''.Yii::app()->baseUrl.'/index.php?r='.get_class($this->Owner).'/view&id='.$this->Owner->getPrimaryKey();
+            $log->url = CHtml::link('Link', array(''.get_class($this->Owner).'/view', 'id' => $this->Owner->getPrimaryKey()));
             $log->creationdate= new CDbExpression('NOW()');
             $log->userid=       Yii::app()->user->Name;
 
@@ -68,6 +71,8 @@ class ActiveRecordLogableBehavior extends CActiveRecordBehavior
         $log->model=        get_class($this->Owner);
         $log->idModel=      $this->Owner->getPrimaryKey();
         $log->field=        '';
+        //$log->url = ''.Yii::app()->baseUrl.'/index.php?r='.get_class($this->Owner).'/view&id='.$this->Owner->getPrimaryKey();
+        $log->url = CHtml::link('Link', array(''.get_class($this->Owner).'/view', 'id' => $this->Owner->getPrimaryKey()));
         $log->creationdate= new CDbExpression('NOW()');
         $log->userid=       Yii::app()->user->Name;
         $log->save();
