@@ -10,7 +10,6 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'Crear Ordenes de Servicio', 'url'=>array('create')),
 	array('label'=>'Administrar Ordenes de Servicio', 'url'=>array('admin')),
-	array('label'=>'Deshacer último Cobro Mensual', 'url'=>array('rollbackCobroMensual')),
 );
 ?>
 
@@ -20,14 +19,14 @@ $this->menu=array(
 
 	if (isset($_GET['confirm'])){
 		$model = new OrdenesServicio();
-		echo $model->generarCobrosMensuales(isset($_GET['confirm']));	
+		echo $model->rollbackCobrosMensuales(isset($_GET['confirm']));	
 		echo CHtml::button('Volver', array('submit' => array('ordenesServicio/admin'), 'button class' => 'button grey', ));
 	}else{
 		$model = new OrdenesServicio();
-		echo $model->generarCobrosMensuales(isset($_GET['confirm']));
+		echo $model->rollbackCobrosMensuales(isset($_GET['confirm']));
 		echo "<br>";
 		echo CHtml::button('Volver', array('submit' => array('ordenesServicio/admin'), 'button class' => 'button grey', ));
-		echo CHtml::button('Generar', array('submit' => array('ordenesServicio/GenerarCobroMensual', 'confirm'=>''), 'button class' => 'button green', ));	
+		echo CHtml::button('Deshacer', array('submit' => array('ordenesServicio/rollbackCobroMensual', 'confirm'=>''), 'button class' => 'button green', ));	
 	}
 	
 ?>

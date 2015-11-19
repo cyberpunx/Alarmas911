@@ -170,6 +170,8 @@ class OrdenesServicio extends CActiveRecord
     												// si flag == false -> aun no hizo clic en boton confirmar
     	$linea = "";
 		$lineaAlt = false;
+		$rollbackQuery = '';
+		$lastId = 0;
 
 		if($flag){
 			$linea.='<div class="flash-success">Se han generado Ordenes de Servicio satisfactoriamente para los siguientes Sistemas de Alarmas.</div>';
@@ -219,6 +221,17 @@ class OrdenesServicio extends CActiveRecord
 						'".date('Y-m-d')."',
 						'".$sistema['sistema_alarma_id']."')
 				")->execute();
+
+				// Genero la constula "rollback" para cada insercion
+				$lastId = Yii::app()->db->getLastInsertId();
+				$rollbackQuery .= "DELETE from ordenes_servicio WHERE orden_servicio_id = ".$lastId.";";
+
+				//File
+				$webroot = Yii::getPathOfAlias('webroot');
+				$file =  $webroot.'/protected/commands/ordenes_servicio_cobro_mensual_rollback.sql';		
+				$handle = fopen($file, 'a+');				
+				fwrite($handle, $rollbackQuery);
+				fclose($handle);								
 			}
 			
 
@@ -245,6 +258,50 @@ class OrdenesServicio extends CActiveRecord
 				</table>
 				</div>';
 		return $linea;
+    }
+
+    function rollbackCobrosMensuales($flag){    	
+    	
+		$linea = "";
+		$lineaAlt = false;
+		$rollbackQuery = '';
+		$lastId = 0;		
+		$webroot = Yii::getPathOfAlias('webroot');
+		$file =  $webroot.'/protected/commands/ordenes_servicio_cobro_mensual_rollback.sql';
+		if(filesize($file) > 0){
+			$content = file_get_contents($file);
+			$content = str_replace(';', '<br/>', $content);
+		}
+
+		if($flag){
+			$linea.='<div class="flash-success">Se han eliminado Ordenes de Servicio satisfactoriamente.</div>';
+		}else{
+			$linea.='<div class="flash-notice">¿Desea deshacer los siguientes cobros?</div>';
+		}
+
+		if(!$flag){
+			$linea.='<p>';
+			$linea.= $content;
+			$linea.='</p>';	
+		}
+		
+
+		if($flag){			
+			$sql = file_get_contents($file);
+			if(filesize($file) > 0){
+				Yii::app()->db->createCommand($sql)->execute();
+			}											
+		}
+
+
+		if($flag && filesize($file) > 0){
+			$handle = fopen($file, 'w');
+			fclose($handle);
+		}
+
+		return $linea;
+
+
     }
     
 }

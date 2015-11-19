@@ -33,7 +33,7 @@ class OrdenesServicioController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findSistemaAlarmas', 'findUsuario','loadDetalleByAjax','GenerarCobroMensual'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findSistemaAlarmas', 'findUsuario','loadDetalleByAjax','GenerarCobroMensual', 'rollbackCobroMensual'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -290,6 +290,15 @@ class OrdenesServicioController extends Controller
 
 		$dataProvider=new CActiveDataProvider('OrdenesServicio');
 		$this->render('cobroMensual',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
+	public function actionRollbackCobroMensual()
+	{
+
+		$dataProvider=new CActiveDataProvider('OrdenesServicio');
+		$this->render('rollbackCobroMensual',array(
 			'dataProvider'=>$dataProvider,
 		));
 	}
