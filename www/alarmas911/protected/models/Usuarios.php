@@ -516,7 +516,7 @@ class Usuarios extends CActiveRecord
 					<table>
 					
 						<thead>
-							<tr><th>Apellido</th><th>Nombre</th><th>Saldo</th></tr>
+							<tr><th>Apellido y Nombre </th><th>Email</th><th>Saldo</th></tr>
 						</thead>				
 
 						<tbody>';
