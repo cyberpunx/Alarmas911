@@ -41,6 +41,11 @@ $this->menu=array(
 			'type'=>'raw',
 			'value'=>$model->sistemaAlarmas->barrios->nombre_barrio,
 		),
+		array(
+			'label'=>'Direccion del sistema',
+			'type'=>'raw',
+			'value'=>$model->sistemaAlarmas->direccion_sistema_alarma,
+		),
 		'fecha_emision',
 		'fecha_cierre',
 		//'importe',
