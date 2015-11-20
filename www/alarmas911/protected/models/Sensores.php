@@ -39,7 +39,7 @@ class Sensores extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tipos_sensores_tipo_sensor_id, zonas_zona_id', 'required'),
+			array('tipos_sensores_tipo_sensor_id, zonas_zona_id, modelos_modelo_id', 'required'),
 			array('tipos_sensores_tipo_sensor_id, modelos_modelo_id, zonas_zona_id', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

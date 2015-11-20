@@ -109,11 +109,7 @@
 
 	<h1>Datos de cliente</h1>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'cliente_direccion_cobro'); ?>
-		<?php echo $form->textField($model,'cliente_direccion_cobro',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'cliente_direccion_cobro'); ?>
-	</div>
+	
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'cliente_sistema_secundario_id'); ?>

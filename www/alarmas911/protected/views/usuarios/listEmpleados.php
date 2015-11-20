@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Adminstrar Usuarios Empleados</h1>
+<h1>Administrar Usuarios Empleados</h1>
 
 <p>
 

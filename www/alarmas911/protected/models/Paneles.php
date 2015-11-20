@@ -37,7 +37,7 @@ class Paneles extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('sistema_alarmas_sistema_alarma_id, nombre_panel', 'required'),
+			array('sistema_alarmas_sistema_alarma_id, nombre_panel, modelos_modelo_id', 'required'),
 			array('modelos_modelo_id, sistema_alarmas_sistema_alarma_id', 'length', 'max'=>11),
 			array('nombre_panel', 'length', 'max'=>128),
 			array('observaciones_panel', 'safe'),

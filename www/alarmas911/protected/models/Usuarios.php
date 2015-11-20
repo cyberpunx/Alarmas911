@@ -19,7 +19,7 @@
  * @property string $empleado_funcion
  * @property integer $empleado_temporal
  * @property integer $empleado_activo
- * @property string $cliente_direccion_cobro
+ *
  * @property integer $cliente_sistema_secundario_id
  * @property string $cliente_factura
  * @property string $cliente_razon_social
@@ -56,11 +56,11 @@ class Usuarios extends CActiveRecord
 		return array(
 			array('apellido, email, password, dni, rol', 'required'),
 			array('empleado_temporal, empleado_activo, cliente_sistema_secundario_id, cliente_cuit', 'numerical', 'integerOnly'=>true),
-			array('nombre, apellido, email, password, direccion, telefono_celular, telefono_fijo, telefono_alt, rol, empleado_funcion, cliente_direccion_cobro, cliente_factura, cliente_razon_social', 'length', 'max'=>128),
+			array('nombre, apellido, email, password, direccion, telefono_celular, telefono_fijo, telefono_alt, rol, empleado_funcion, cliente_factura, cliente_razon_social', 'length', 'max'=>128),
 			array('dni, tipos_cliente_tipo_cliente_id', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('usuario_id, nombre, apellido, email, password, direccion, dni, telefono_celular, telefono_fijo, telefono_alt, rol, comentarios, empleado_funcion, empleado_temporal, empleado_activo, cliente_direccion_cobro, cliente_sistema_secundario_id, cliente_factura, cliente_razon_social, cliente_cuit, tipos_cliente_tipo_cliente_id, fullName, fullNameDniAddress', 'safe', 'on'=>'search, searchListClientes'),
+			array('usuario_id, nombre, apellido, email, password, direccion, dni, telefono_celular, telefono_fijo, telefono_alt, rol, comentarios, empleado_funcion, empleado_temporal, empleado_activo, cliente_sistema_secundario_id, cliente_factura, cliente_razon_social, cliente_cuit, tipos_cliente_tipo_cliente_id, fullName, fullNameDniAddress', 'safe', 'on'=>'search, searchListClientes'),
 		);
 	}
 
@@ -99,7 +99,7 @@ class Usuarios extends CActiveRecord
 			'empleado_funcion' => 'Función',
 			'empleado_temporal' => 'Temporal',
 			'empleado_activo' => 'Activo',
-			'cliente_direccion_cobro' => 'Direccion Cobro',
+			
 			'cliente_sistema_secundario_id' => 'ID de Sistema Secundario',
 			'cliente_factura' => 'Tipo de Factura',
 			'cliente_razon_social' => 'Razon Social',
@@ -144,7 +144,7 @@ class Usuarios extends CActiveRecord
 		$criteria->compare('empleado_funcion',$this->empleado_funcion,true);
 		$criteria->compare('empleado_temporal',$this->empleado_temporal);
 		$criteria->compare('empleado_activo',$this->empleado_activo);
-		$criteria->compare('cliente_direccion_cobro',$this->cliente_direccion_cobro,true);
+		
 		$criteria->compare('cliente_sistema_secundario_id',$this->cliente_sistema_secundario_id);
 		$criteria->compare('cliente_factura',$this->cliente_factura,true);
 		$criteria->compare('cliente_razon_social',$this->cliente_razon_social,true);
@@ -182,7 +182,7 @@ class Usuarios extends CActiveRecord
 		$criteria->compare('empleado_funcion',$this->empleado_funcion,true);
 		$criteria->compare('empleado_temporal',$this->empleado_temporal);
 		$criteria->compare('empleado_activo',$this->empleado_activo);
-		$criteria->compare('cliente_direccion_cobro',$this->cliente_direccion_cobro,true);
+		
 		$criteria->compare('cliente_sistema_secundario_id',$this->cliente_sistema_secundario_id);
 		$criteria->compare('cliente_factura',$this->cliente_factura,true);
 		$criteria->compare('cliente_razon_social',$this->cliente_razon_social,true);

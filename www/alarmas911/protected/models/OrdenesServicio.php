@@ -43,7 +43,7 @@ class OrdenesServicio extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fecha_emision, sistema_alarmas_sistema_alarma_id', 'required'),
+			array('fecha_emision, sistema_alarmas_sistema_alarma_id, usuarios_usuario_id', 'required'),
 			array('importe', 'numerical'),
 			array('observaciones_orden_servicio', 'length', 'max'=>128),
 			array('prioridad, sistema_alarmas_sistema_alarma_id, usuarios_usuario_id', 'length', 'max'=>11),

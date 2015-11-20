@@ -81,10 +81,7 @@
 		<?php echo $form->textField($model,'empleado_activo'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'cliente_direccion_cobro'); ?>
-		<?php echo $form->textField($model,'cliente_direccion_cobro',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
+	
 
 	<div class="row">
 		<?php echo $form->label($model,'cliente_sistema_secundario_id'); ?>

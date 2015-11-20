@@ -37,7 +37,7 @@ $this->menu=array(
 		'empleado_funcion',
 		'empleado_temporal',
 		'empleado_activo',
-		'cliente_direccion_cobro',
+	
 		'cliente_sistema_secundario_id',
 		'cliente_factura',
 		'cliente_razon_social',
