@@ -107,10 +107,10 @@ class OrdenesServicio extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		
-		$criteria->with = array('usuarios');		
+		//$criteria->with = array('usuarios');		
 		$criteria->compare('sistemaAlarmas.nombre_sistema_alarma', $this->sistemaAlarmasName, true);
 		$criteria->compare('sistemaAlarmas.direccion_sistema_alarma', $this->direccion_sistema_alarma_name, true);
-		$criteria->with = array('sistemaAlarmas', 'sistemaAlarmas.barrios', 'sistemaAlarmas.usuarios');
+		$criteria->with = array('sistemaAlarmas', 'sistemaAlarmas.barrios', 'usuarios');
 		$criteria->compare('barrios.nombre_barrio', $this->barrioName, true);
 
 		//$criteria->with = 'usuarios';
