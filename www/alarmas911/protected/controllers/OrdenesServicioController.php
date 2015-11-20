@@ -131,6 +131,7 @@ class OrdenesServicioController extends Controller
 		}
 
 		$model->fecha_emision = date('Y-m-d');
+		
 		$this->render('create',array(
 			'model'=>$model,
 		));

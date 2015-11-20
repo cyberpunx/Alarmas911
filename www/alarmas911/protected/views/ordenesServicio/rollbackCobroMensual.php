@@ -13,7 +13,9 @@ $this->menu=array(
 );
 ?>
 
-<h1>Ordenes Servicios - Cobro Mensual por Monitoreo</h1>
+<h1>Ordenes Servicios - Deshacer Mensual por Monitoreo</h1>
+
+<p>Al hacer click en el botón "Deshacer" se eliminarán las Ordenes de Servicio generadas del ÚLTIMO COBRO POR MONITOREO generado por el sistema.</p>
 
 <?php 
 

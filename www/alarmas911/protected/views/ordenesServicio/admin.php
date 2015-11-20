@@ -48,6 +48,17 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 	'columns'=>array(
 		//'orden_servicio_id',
 		'fecha_emision',
+		//array(
+		//	//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
+		//	'name'=>'fecha_emision',
+		//	'value'=>function($data) {
+		//		if($data->fecha_emision == "0000-00-00" ||$data->fecha_emision == null){
+		//			return "";
+		//		} else {
+		//			return $data->fecha_emision;
+		//		}
+		//	},
+		//),
 		array(
 			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
 			'name'=>'sistemaAlarmasName',
@@ -126,7 +137,19 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 			'name' => 'barrioName',
 			'value' => '$data->sistemaAlarmas->barrios->nombre_barrio',
 		),
-		'observaciones_orden_servicio',		
+		//'observaciones_orden_servicio',
+		array(
+			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
+			'name'=>'observaciones_orden_servicio',
+			'header'=>'Observaciones',
+			'value'=>function($data) {
+				if(strlen($data->observaciones_orden_servicio) > 20){
+					return substr($data->observaciones_orden_servicio, 0, 20)."...";
+				} else {
+					return $data->observaciones_orden_servicio;
+				}
+			},
+		),		
 		/*
 		'prioridad',
 		'sistema_alarmas_sistema_alarma_id',

@@ -43,7 +43,7 @@ class OrdenesServicio extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fecha_emision, sistema_alarmas_sistema_alarma_id, usuarios_usuario_id', 'required'),
+			array('fecha_emision, sistema_alarmas_sistema_alarma_id', 'required'),
 			array('importe', 'numerical'),
 			array('observaciones_orden_servicio', 'length', 'max'=>128),
 			array('prioridad, sistema_alarmas_sistema_alarma_id, usuarios_usuario_id', 'length', 'max'=>11),
@@ -128,6 +128,9 @@ class OrdenesServicio extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort'=>array(
+				'defaultOrder'=>'fecha_emision DESC',
+			)
 		));
 	}
 
@@ -164,6 +167,16 @@ class OrdenesServicio extends CActiveRecord
         	'ActiveRecordLogableBehavior'=> 'application.behaviors.ActiveRecordLogableBehavior',
         );
     }
+
+    public function beforeSave() { 
+	    if ($this->vencimiento_orden == "") {
+	        $this->vencimiento_orden = null;
+	    }
+	    if ($this->fecha_cierre == "") {
+	        $this->fecha_cierre = null;
+	    }
+	    return parent::beforeSave();
+	}
 
 
     public function generarCobrosMensuales($flag){ 	// si flag == true -> hizo clic en boton confirmar
@@ -228,10 +241,16 @@ class OrdenesServicio extends CActiveRecord
 
 				//File
 				$webroot = Yii::getPathOfAlias('webroot');
-				$file =  $webroot.'/protected/commands/ordenes_servicio_cobro_mensual_rollback.sql';		
-				$handle = fopen($file, 'a+');				
-				fwrite($handle, $rollbackQuery);
-				fclose($handle);								
+				$file =  $webroot.'/protected/commands/ordenes_servicio_cobro_mensual_rollback.sql';
+				$content = file_get_contents($file);
+				$pos = strpos($content, (string)$lastId);
+				if($pos === false && (is_numeric($lastId))){
+					$handle = fopen($file, 'a+');				
+					fwrite($handle, $rollbackQuery);
+					fclose($handle);
+				}
+
+												
 			}
 			
 
@@ -276,15 +295,16 @@ class OrdenesServicio extends CActiveRecord
 		if($flag){
 			$linea.='<div class="flash-success">Se han eliminado Ordenes de Servicio satisfactoriamente.</div>';
 		}else{
-			$linea.='<div class="flash-notice">¿Desea deshacer los siguientes cobros?</div>';
+			$linea.='<div class="flash-error">¿Desea deshacer los siguientes cobros?</div>';
 		}
 
-		if(!$flag){
+		if(!$flag && filesize($file) > 0){
 			$linea.='<p>';
 			$linea.= $content;
 			$linea.='</p>';	
+		}else{
+			$linea .= "<p><b>No hay Ordenes de Servicio para revertir.</b></p>";
 		}
-		
 
 		if($flag){			
 			$sql = file_get_contents($file);
