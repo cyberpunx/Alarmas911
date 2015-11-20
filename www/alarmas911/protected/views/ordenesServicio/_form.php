@@ -69,13 +69,8 @@
 		<?php echo $form->labelEx($model,'observaciones_orden_servicio'); ?>
 		<?php echo $form->textField($model,'observaciones_orden_servicio',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'observaciones_orden_servicio'); ?>
-	</div>	
-
-	
-	<?php if ($model->fecha_cierre == "0000-00-00"){
-					$model->fecha_cierre = "";
-				}?>
-				
+	</div>
+					
 	<div class="row">
 		<?php echo $form->labelEx($model,'fecha_cierre'); ?>
 		<?php

@@ -73,7 +73,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		),
 		array(
 			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
-			'name'=>'sistemaAlarmasName',
+			'name'=>'direccion_sistema_alarma_name',
 			'header'=>'Dirección',
 			'value'=>function($data) {
 				if(strlen($data->sistemaAlarmas->direccion_sistema_alarma) > 20){
