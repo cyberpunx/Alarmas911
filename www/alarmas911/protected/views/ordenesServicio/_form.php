@@ -72,13 +72,17 @@
 	</div>	
 
 	
-
+	<?php if ($model->fecha_cierre == "0000-00-00"){
+					$model->fecha_cierre = "";
+				}?>
+				
 	<div class="row">
 		<?php echo $form->labelEx($model,'fecha_cierre'); ?>
 		<?php
 			$this->widget('zii.widgets.jui.CJuiDatePicker', array(
 				'model'=>$model,
 				'attribute'=>'fecha_cierre',
+
 				'value'=>$model->fecha_cierre,
 				// additional javascript options for the date picker plugin
 				'options'=>array(
