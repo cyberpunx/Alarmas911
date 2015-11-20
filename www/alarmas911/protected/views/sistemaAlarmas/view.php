@@ -28,7 +28,7 @@ $this->menu=array(
 			'value' => CHtml::link($model->usuarios->FullName, '?r=usuarios/view&id='.$model->usuarios->usuario_id),
 			'type' => 'raw',
 		),
-		
+		'direccion_sistema_alarma',
 		'observaciones_sistema_alarma',
 		array(
 			'label' => 'Modelo',
