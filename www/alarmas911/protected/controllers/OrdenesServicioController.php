@@ -33,7 +33,7 @@ class OrdenesServicioController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findSistemaAlarmas', 'findUsuario','loadDetalleByAjax','GenerarCobroMensual', 'rollbackCobroMensual'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findSistemaAlarmas', 'findUsuario','loadDetalleByAjax','GenerarCobroMensual', 'rollbackCobroMensual', 'vistaImpresion'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -300,6 +300,19 @@ class OrdenesServicioController extends Controller
 
 		$dataProvider=new CActiveDataProvider('OrdenesServicio');
 		$this->render('rollbackCobroMensual',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
+	public function actionVistaImpresion()
+	{
+		$criteria=new CDbCriteria;
+		$criteria->with = array('sistemaAlarmas', 'sistemaAlarmas.barrios');
+		$criteria->addCondition('fecha_cierre IS NULL OR fecha_cierre = 0000-00-00');
+		//$criteria->compare('fecha_cierre', '');
+		$dataProvider=new CActiveDataProvider('OrdenesServicio', array('criteria'=>$criteria, 'sort'=>array('defaultOrder'=>'nombre_barrio ASC, prioridad DESC, fecha_emision ASC' )));
+
+		$this->render('vistaImpresion',array(
 			'dataProvider'=>$dataProvider,
 		));
 	}

@@ -3,13 +3,14 @@
 /* @var $model OrdenesServicio */
 
 $this->breadcrumbs=array(
-	'Ordenes Servicios'=>array('admin'),
+	'Ordenes de Servicio'=>array('admin'),
 	'Administrar',
 );
 
 $this->menu=array(
 	//array('label'=>'List OrdenesServicio', 'url'=>array('index')),
 	array('label'=>'Crear Ordenes de Servicio', 'url'=>array('create')),
+	array('label'=>'Vista por barrios', 'url'=>array('vistaImpresion')),
 	array('label'=>'Cobrar Monitoreo Mensual', 'url'=>array('GenerarCobroMensual')),
 );
 

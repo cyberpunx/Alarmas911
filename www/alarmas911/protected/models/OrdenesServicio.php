@@ -225,13 +225,14 @@ class OrdenesServicio extends CActiveRecord
 
 			if($flag){
 				$qry = Yii::app()->db->createCommand("
-					INSERT INTO ordenes_servicio(fecha_emision,fecha_cierre,importe,observaciones_orden_servicio,vencimiento_orden,sistema_alarmas_sistema_alarma_id)
+					INSERT INTO ordenes_servicio(fecha_emision,fecha_cierre,importe,observaciones_orden_servicio,vencimiento_orden, usuarios_usuario_id, sistema_alarmas_sistema_alarma_id)
 					VALUES( 
 						'".date('Y-m-d')."',
 						'".date('Y-m-d')."',
 						'".$sistema['valor']."',
 						'Orden generada por el Sistema para cobrar el servicio de monitoreo.',
 						'".date('Y-m-d')."',
+						'1',
 						'".$sistema['sistema_alarma_id']."')
 				")->execute();
 
