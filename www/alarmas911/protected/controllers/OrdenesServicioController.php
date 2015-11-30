@@ -304,12 +304,20 @@ class OrdenesServicioController extends Controller
 		));
 	}
 
-	public function actionVistaImpresion()
+	public function actionVistaImpresion($string = '')
 	{
 		$criteria=new CDbCriteria;
+
+
 		$criteria->with = array('sistemaAlarmas', 'sistemaAlarmas.barrios');
-		$criteria->addCondition('fecha_cierre IS NULL OR fecha_cierre = 0000-00-00');
+		
 		//$criteria->compare('fecha_cierre', '');
+
+		if( strlen( $string ) > 0 ){
+			$criteria->addSearchCondition( 'nombre_barrio', $string, true, 'OR', 'LIKE' );
+		}
+    	   
+		$criteria->addCondition('fecha_cierre IS NULL OR fecha_cierre = 0000-00-00');
 		$dataProvider=new CActiveDataProvider('OrdenesServicio', array('criteria'=>$criteria, 'sort'=>array('defaultOrder'=>'nombre_barrio ASC, prioridad DESC, fecha_emision ASC' )));
 
 		$this->render('vistaImpresion',array(
