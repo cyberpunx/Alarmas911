@@ -12,7 +12,7 @@ $this->menu=array(
 	//array('label'=>'List Baterias', 'url'=>array('index')),
 	array('label'=>'Crear Bateria', 'url'=>array('create')),
 	array('label'=>'Actualizar Bateria', 'url'=>array('update', 'id'=>$model->bateria_id)),
-	array('label'=>'Eliminar Bateria', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->bateria_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Eliminar Bateria', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->bateria_id),'confirm'=>'Esta seguro que desea eliminar este Item?')),
 	array('label'=>'Administrar Baterias', 'url'=>array('admin')),
 );
 ?>

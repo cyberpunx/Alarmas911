@@ -15,7 +15,7 @@ $this->menu=array(
 	//array('label'=>'List Accesorios', 'url'=>array('index')),
 	array('label'=>'Crear Accesorio', 'url'=>array('create')),
 	array('label'=>'Actualizar Accesorio', 'url'=>array('update', 'id'=>$model->accesorio_id)),
-	array('label'=>'Eliminar Accesorio', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->accesorio_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Eliminar Accesorio', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->accesorio_id),'confirm'=>'Esta seguro que desea eliminar este Item?')),
 	array('label'=>'Administrar Accesorios', 'url'=>array('admin')),
 );
 ?>
