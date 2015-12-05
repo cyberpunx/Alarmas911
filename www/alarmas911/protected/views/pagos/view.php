@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Pagos #<?php echo $model->pago_id; ?></h1>
+<h1>Detalle del Pago #<?php echo $model->pago_id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -31,7 +31,7 @@ $this->menu=array(
 		),
 		//'importe',
 		array(
-			'name'=>'Usuario',
+			'name'=>'Importe',
 			'type'=>'html',
 			'value'=>"$".$model->importe,
 		),
@@ -39,12 +39,12 @@ $this->menu=array(
 		'fecha',
 		//'tipos_pago_tipo_pago_id',
 		array(
-			'name'=>'Tipo de Pago',
+			'name'=>'Tipo de pago',
 			'type'=>'html',
 			'value'=>$model->tiposPago->nombre_tipo_pago,
 		),
 		array(
-			'name'=>'Información adiconal',
+			'name'=>'Información adicional',
 			'type'=>'html',
 			'value'=>$model->informacion_pago,
 		),

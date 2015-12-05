@@ -5,7 +5,7 @@
 $this->breadcrumbs=array(
 	'Pagos'=>array('admin'),
 	$model->pago_id=>array('view','id'=>$model->pago_id),
-	'Update',
+	'Editar',
 );
 
 $this->menu=array(
@@ -16,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Pagos <?php echo $model->pago_id; ?></h1>
+<h1>Editar pago #<?php echo $model->pago_id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

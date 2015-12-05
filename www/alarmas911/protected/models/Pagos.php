@@ -70,12 +70,12 @@ class Pagos extends CActiveRecord
 	{
 		return array(
 			'pago_id' => 'Pago ID',
-			'usuarios_usuario_id' => 'Usuarios Usuario',
+			'usuarios_usuario_id' => 'Usuario',
 			'importe' => 'Importe',
-			'ordenes_servicio_orden_servicio_id' => 'Ordenes Servicio Orden Servicio',
+			'ordenes_servicio_orden_servicio_id' => 'Orden Servicio',
 			'fecha' => 'Fecha',
-			'tipos_pago_tipo_pago_id' => 'Tipos Pago Tipo Pago',
-			'informacion_pago' => 'Informacion Pago',
+			'tipos_pago_tipo_pago_id' => 'Tipo de pago',
+			'informacion_pago' => 'Información del pago',
 		);
 	}
 
