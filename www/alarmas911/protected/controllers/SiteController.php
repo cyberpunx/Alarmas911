@@ -33,6 +33,10 @@ class SiteController extends Controller
 		//	
 		//}
 
+		// Esto se ejecuta 1 vez al dia, cada vez que entra al index
+		$this->check_vencimiento_baterias();
+		
+
 		if(Yii::app()->user->checkAccess('ADMINISTRADOR')){
 			$this->redirect('?r=site/adminMain'); // vista ADMIN
 		}
@@ -143,5 +147,87 @@ class SiteController extends Controller
 	{
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
+	}
+
+	public function check_vencimiento_baterias(){
+
+		// Armo un archivo donde guardo la fecha del ultimo checkeo realizado
+		$webroot = Yii::getPathOfAlias('webroot');
+		$file =  $webroot.'/protected/commands/vencimiento_baterias.dat';
+		$todayDate = date("Y-m-d");
+		
+		if(filesize($file) <= 0){			
+			$handle = fopen($file, 'a+');				
+			fwrite($handle, $todayDate);
+			fclose($handle);
+		}
+
+
+
+		// Query para checkear los vencimientos
+		$sql_check = "SELECT * 
+				FROM  `baterias` 
+				WHERE (DATEDIFF(CURDATE(), `fecha_alta`)) >= (`vida_util` * 360)";
+
+		
+						
+		$content = file_get_contents($file);
+		if(strtotime($content) < strtotime($todayDate)){
+			// Hoy no se hizo checkeo
+			// Checkear
+			$baterias_Lst = Yii::app()->db->createCommand($sql_check)->queryAll();
+			foreach($baterias_Lst as $bateria){			
+				// Query para obtener los mails de las baterias vencidas
+				$sql_get_mail = "SELECT *
+						FROM  `baterias` 
+						left join sistema_alarmas sa on sa.sistema_alarma_id = `sistema_alarmas_sistema_alarma_id`
+						left join usuarios u on sa.usuarios_usuario_id = u.usuario_id
+						WHERE `bateria_id` = ".$bateria['bateria_id'];
+
+				$sitema_info = Yii::app()->db->createCommand($sql_get_mail)->queryAll();
+				
+				//Envio los emails
+				foreach($sitema_info as $info){
+					
+					// AL CLIENTE
+					$text = "";
+			   		$text.= "<h1>Alarmas 911</h1>";
+			   		$text.= "Estimado cliente, se le informa que la batería instalada en su Sistema ha caducado.<br/>";
+			   		$text.= "Contáctese con la empresa para reemplazarla.<br/>";
+			   		$text.= "<br/><b>Nombre:</b> ".$info['nombre']." ".$info['apellido'];
+			   		$text.= "<br/><b>Dirección:</b> ".$info['direccion'];
+			   		$text.= "<br/><b>Fecha de instalación de la Batería:</b> ".$info['fecha_alta'];
+			   		$text.= "<br/><b>Vida útil de la batería:</b> ".$info['vida_util']." años.";          		
+			   		$text.= "<br/><br/>No responda a este mensaje ya que ha sido generado automáticamente para su información.";
+
+			   		 // Envio el email de la orden de servicio creada
+					Yii::import('application.extensions.phpmailer.JPhpMailer');
+					$mail = new JPhpMailer;
+					$mail->SMTPKeepAlive = true;  
+						$mail->Mailer = "smtp"; 
+					$mail->IsSMTP();
+					$mail->SMTPSecure = "ssl";
+					$mail->Host = 'smtp.gmail.com';
+					$mail->Port = '465';
+					//$mail->Host = 'smtp.googlemail.com:465';
+					$mail->SMTPAuth = true;
+					$mail->Username = 'alarmas911.test@gmail.com';
+					$mail->Password = 'alarmastest';
+					$mail->SetFrom('alarmas911.test@gmail.com', 'Alarmas 911 test');
+					$mail->Subject = 'Alarmas 911 - Bateria vencida';
+					$mail->AltBody = 'To view the message, please use an HTML compatible email viewer!';
+					$mail->MsgHTML($text);
+					$mail->AddAddress('alarmas911.test@gmail.com'); //$info['email']
+					$mail->SMTPDebug  = 1;
+					$mail->Send();
+				}
+				
+			}
+
+			//Escribo el archivo para dejar marcado que hoy se hizo el checkeo
+			$handle = fopen($file, 'w+');				
+			fwrite($handle, $todayDate);
+			fclose($handle);
+		}
 	}
 }
