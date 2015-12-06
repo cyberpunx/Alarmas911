@@ -47,9 +47,15 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 	'columns'=>array(
 		'sensor_id',
 
-		'baterias_bateria_id',
+		//'baterias_bateria_id',
 
 		//'tipos_sensores_tipo_sensor_id',
+		array(
+			//'filter'=>'sistemaAlarmas.nombre_sistema_alarma',
+			'name'=>'sistemaAlarmasName',
+			'header'=>'Sistema de Alarmas',
+			'value'=>'$data->zonas->sistemaAlarmas->nombre_sistema_alarma',
+		),
 		array(
 			//'filter'=>'tiposSensores.nombre_sensor',
 			'name'=>'tiposSensoresName',

@@ -30,6 +30,11 @@
     <?php echo CHtml::activeDropDownList($model, '[' . $index . ']modelos_modelo_id', $modelos_list, $options); ?>
     <?php echo CHtml::error($model, '[' . $index . ']modelos_modelo_id'); ?>
     </div>
+    <div class="row" style="width:100px;float: left;">
+        <br />
+        <?php echo CHtml::link('Borrar', '#', array('onclick' => 'deleteChild(this, ' . $index . '); return false;'));
+        ?>
+    </div>
 
 </div>
  

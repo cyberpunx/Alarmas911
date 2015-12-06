@@ -66,10 +66,10 @@ class Paneles extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'panel_id' => 'Panel',
+			'panel_id' => 'Panel ID',
 			'modelos_modelo_id' => 'Modelo',
-			'sistema_alarmas_sistema_alarma_id' => 'Sistema Alarmas Sistema Alarma',
-			'nombre_panel' => 'Nombre',
+			'sistema_alarmas_sistema_alarma_id' => 'Sistema de alarma',
+			'nombre_panel' => 'Nombre del panel',
 			'observaciones_panel' => 'Observaciones',
 		);
 	}

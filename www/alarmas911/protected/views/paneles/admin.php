@@ -46,7 +46,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 	'filter'=>$model,
 	'columns'=>array(
 		'panel_id',
-		'baterias_bateria_id',
+		//'baterias_bateria_id',
 		array(
 			'header' => 'Modelo',
 			'name' => 'modeloMarca',
