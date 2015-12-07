@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	//array('label'=>'List Modelos', 'url'=>array('index')),
 	array('label'=>'Crear Modelos', 'url'=>array('create')),
-	array('label'=>'Ver Modelo', 'url'=>array('view', 'id'=>$model->modelo_id)),
+	//array('label'=>'Ver Modelo', 'url'=>array('view', 'id'=>$model->modelo_id)),
 	array('label'=>'Administrar Modelos', 'url'=>array('admin')),
 );
 ?>

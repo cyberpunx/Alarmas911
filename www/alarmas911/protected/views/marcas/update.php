@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	//array('label'=>'List Marcas', 'url'=>array('index')),
 	array('label'=>'Crear Marcas', 'url'=>array('create')),
-	array('label'=>'Ver Marca', 'url'=>array('view', 'id'=>$model->marca_id)),
+	//array('label'=>'Ver Marca', 'url'=>array('view', 'id'=>$model->marca_id)),
 	array('label'=>'Administrar Marcas', 'url'=>array('admin')),
 );
 ?>

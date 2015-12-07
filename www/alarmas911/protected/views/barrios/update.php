@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	//array('label'=>'List Barrios', 'url'=>array('index')),
 	array('label'=>'Crear Barrio', 'url'=>array('create')),
-	array('label'=>'Ver Barrio', 'url'=>array('view', 'id'=>$model->barrio_id)),
+	//array('label'=>'Ver Barrio', 'url'=>array('view', 'id'=>$model->barrio_id)),
 	array('label'=>'Administrar Barrios', 'url'=>array('admin')),
 );
 ?>

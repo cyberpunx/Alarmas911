@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List Accesorios', 'url'=>array('index')),
-	array('label'=>'Crear Accesorio', 'url'=>array('create')),
-	array('label'=>'Administrar Accesorios', 'url'=>array('admin')),
+	//array('label'=>'Crear Accesorio', 'url'=>array('create')),
+	//array('label'=>'Administrar Accesorios', 'url'=>array('admin')),
 );
 
 ?>

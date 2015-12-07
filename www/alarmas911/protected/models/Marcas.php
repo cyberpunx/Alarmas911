@@ -29,6 +29,7 @@ class Marcas extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('nombre_marca', 'required'),
 			array('nombre_marca', 'length', 'max'=>128),
 			array('observaciones_marca', 'safe'),
 			// The following rule is used by search().

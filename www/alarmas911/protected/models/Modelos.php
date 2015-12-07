@@ -73,7 +73,7 @@ class Modelos extends CActiveRecord
 	{
 		return array(
 			'modelo_id' => 'Id Modelo',
-			'marcas_marca_id' => 'Id Marca',
+			'marcas_marca_id' => 'Marca',
 			'nombre_modelo' => 'Modelo',
 			'observaciones_modelo' => 'Observaciones Modelo',
 			'discriminante' => 'Discriminante',
