@@ -50,7 +50,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		'observaciones',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{update}'
+			'template'=>'{update}{delete}'
 		),
 	),
 )); ?>
