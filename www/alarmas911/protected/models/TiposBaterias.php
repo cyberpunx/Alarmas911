@@ -31,6 +31,7 @@ class TiposBaterias extends CActiveRecord
 		return array(
 			array('nombre', 'required'),
 			array('nombre', 'length', 'max'=>128),
+			array('nombre', 'unique'),
 			array('observaciones', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

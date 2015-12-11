@@ -31,6 +31,7 @@ class TiposMonitoreo extends CActiveRecord
 		return array(
 			array('nombre_tipo_monitoreo', 'required'),
 			array('nombre_tipo_monitoreo', 'length', 'max'=>128),
+			array('nombre_tipo_monitoreo', 'unique'),
 			array('valor', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

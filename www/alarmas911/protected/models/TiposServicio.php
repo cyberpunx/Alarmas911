@@ -31,6 +31,7 @@ class TiposServicio extends CActiveRecord
 		return array(
 			array('nombre_tipo_servicio', 'required'),
 			array('nombre_tipo_servicio', 'length', 'max'=>128),
+			array('nombre_tipo_servicio', 'unique'),
 			array('observaciones_tipo_servicio', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

@@ -114,9 +114,8 @@ class BarriosController extends Controller
 		}catch (CDbException $e){
 			if($e->getCode()===23000){
 				//You can have nother error handling
-				header("HTTP/1.0 400 Relation Restriction");
-				echo "\n\n\nNo se puede borrar.\n\nEste elemento está siendo utilizado.\n
-				Elimine primero todas las referencias a este elemento.\n\n\n";
+				throw new CHttpException(403,"\n\n\nNo se puede borrar.\n\nEste elemento está siendo utilizado.\n
+      			Elimine primero todas las referencias a este elemento.\n\n\n");
 			}else{
 				throw $e;
 			}

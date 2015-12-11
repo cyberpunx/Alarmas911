@@ -56,7 +56,7 @@ class Usuarios extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('apellido, email, password, dni, rol', 'required'),
-			array('email', 'unique'),
+			array('email, dni', 'unique'),
 			array('empleado_temporal, empleado_activo, cliente_sistema_secundario_id, cliente_cuit', 'numerical', 'integerOnly'=>true),
 			array('nombre, apellido, email, password, direccion, telefono_celular, telefono_fijo, telefono_alt, rol, empleado_funcion, cliente_factura, cliente_razon_social', 'length', 'max'=>128),
 			array('dni, tipos_cliente_tipo_cliente_id', 'length', 'max'=>11),

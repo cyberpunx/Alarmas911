@@ -31,6 +31,7 @@ class TiposSensores extends CActiveRecord
 		return array(
 			array('nombre_sensor', 'required'),
 			array('nombre_sensor', 'length', 'max'=>128),
+			array('nombre_sensor', 'unique'),
 			array('observaciones_sensor', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

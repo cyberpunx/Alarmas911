@@ -31,6 +31,7 @@ class Marcas extends CActiveRecord
 		return array(
 			array('nombre_marca', 'required'),
 			array('nombre_marca', 'length', 'max'=>128),
+			array('nombre_marca', 'unique'),
 			array('observaciones_marca', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

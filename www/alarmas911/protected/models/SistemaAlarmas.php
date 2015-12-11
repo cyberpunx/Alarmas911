@@ -49,6 +49,7 @@ class SistemaAlarmas extends CActiveRecord
 			array('nombre_sistema_alarma, direccion_sistema_alarma, modelos_modelo_id, barrios_barrio_id, tipos_monitoreo_tipo_monitoreo_id, usuarios_usuario_id', 'required'),
 			array('nombre_sistema_alarma, direccion_sistema_alarma, observaciones_sistema_alarma', 'length', 'max'=>128),
 			array('modelos_modelo_id, barrios_barrio_id, tipos_monitoreo_tipo_monitoreo_id, usuarios_usuario_id', 'length', 'max'=>11),
+			array('nombre_sistema_alarma', 'unique'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('sistema_alarma_id, nombre_sistema_alarma, observaciones_sistema_alarma, modelos_modelo_id, barrios_barrio_id, tipos_monitoreo_tipo_monitoreo_id, usuarios_usuario_id, modeloMarca, nombre_barrio, direccion_sistema_alarma, tipo_monitoreo_search, nombre_usuario_search', 'safe', 'on'=>'search'),
