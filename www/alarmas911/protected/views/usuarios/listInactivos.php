@@ -3,17 +3,13 @@
 /* @var $model Usuarios */
 
 $this->breadcrumbs=array(
-	'Usuarios'=>array('admin'),
-	'Administrar',
+	//'Usuarios'=>array('admin'),
+	'Administrar Usuarios Inactivos',
 );
 
 $this->menu=array(
 	//array('label'=>'Listar Todos', 'url'=>array('index')),
-	array('label'=>'Crear Usuarios', 'url'=>array('create')),
-	array('label'=>'Listar Empleados', 'url'=>array('listEmpleados')),
-	array('label'=>'Listar Usuarios Inactivos', 'url'=>array('listInactivos')),
-	array('label'=>'Listar Saldos', 'url'=>array('ListSaldo')),
-	array('label'=>'Listar Deudores', 'url'=>array('listSaldoDeuda')),
+	//array('label'=>'Crear Usuario', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -30,7 +26,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Administrar Usuarios</h1>
+<h1>Administrar Usuarios Inactivos</h1>
 
 <p>
 
@@ -40,15 +36,13 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 
 <?php echo CHtml::link('Búsqueda avanzada','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
+
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'usuarios-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+	'dataProvider'=>$modelSearch->searchListInactivos(),
+	'filter'=>$modelSearch,
 	'columns'=>array(
 		array(
 			'header' => 'Nombre y Apellido',

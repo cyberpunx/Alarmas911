@@ -107,11 +107,29 @@ class TiposClienteController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		$model=$this->loadModel($id);
+		if($model->nombre_tipo_cliente == "Default"
+				|| $model->nombre_tipo_cliente == "Empleado"
+				|| $model->nombre_tipo_cliente == "Inactivo"){
+			throw new CHttpException(403,'Este elemento no puede ser eliminado.');
+		}
+
+		try{			
+			$this->loadModel($id)->delete();
+			if(!isset($_GET['ajax'])){
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			}				
+		}catch (CDbException $e){
+			if($e->getCode()===23000){
+				//You can have nother error handling
+				header("HTTP/1.0 400 Relation Restriction");
+				echo "\n\n\nNo se puede borrar.\n\nEste elemento está siendo utilizado.\n
+				Elimine primero todas las referencias a este elemento.\n\n\n";
+			}else{
+				throw $e;
+			}
+		}
 	}
 
 	/**

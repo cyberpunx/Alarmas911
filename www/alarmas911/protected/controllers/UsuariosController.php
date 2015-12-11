@@ -33,7 +33,7 @@ class UsuariosController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update','listEmpleados', 'estadoCuenta', 'ListSaldo', 'ListSaldoDeuda'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update','listEmpleados', 'listInactivos', 'estadoCuenta', 'ListSaldo', 'ListSaldoDeuda'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -186,6 +186,18 @@ class UsuariosController extends Controller
 			$modelSearch->attributes=$_GET['Usuarios'];
 
 		$this->render('listEmpleados',array(
+			'modelSearch'=>$modelSearch,
+		));
+	}
+
+	public function actionlistInactivos()
+	{
+		$modelSearch=new Usuarios('searchListInactivos');
+		$modelSearch->unsetAttributes();  // clear any default values
+		if(isset($_GET['Usuarios']))
+			$modelSearch->attributes=$_GET['Usuarios'];
+
+		$this->render('listInactivos',array(
 			'modelSearch'=>$modelSearch,
 		));
 	}

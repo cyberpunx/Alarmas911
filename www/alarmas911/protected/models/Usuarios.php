@@ -40,6 +40,7 @@ class Usuarios extends CActiveRecord
 
 	public $fullName;
 	public $fullNameDniAddress;
+	public $tipoCliente;
 
 	public function tableName()
 	{
@@ -61,7 +62,7 @@ class Usuarios extends CActiveRecord
 			array('dni, tipos_cliente_tipo_cliente_id', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('usuario_id, nombre, apellido, email, password, direccion, dni, telefono_celular, telefono_fijo, telefono_alt, rol, comentarios, empleado_funcion, empleado_temporal, empleado_activo, cliente_sistema_secundario_id, cliente_factura, cliente_razon_social, cliente_cuit, tipos_cliente_tipo_cliente_id, fullName, fullNameDniAddress', 'safe', 'on'=>'search, searchListClientes'),
+			array('usuario_id, nombre, apellido, email, password, direccion, dni, telefono_celular, telefono_fijo, telefono_alt, rol, comentarios, empleado_funcion, empleado_temporal, empleado_activo, cliente_sistema_secundario_id, cliente_factura, cliente_razon_social, cliente_cuit, tipos_cliente_tipo_cliente_id, fullName, fullNameDniAddress, tipoCliente', 'safe', 'on'=>'search, searchListClientes'),
 		);
 	}
 
@@ -127,8 +128,11 @@ class Usuarios extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->with = array('tiposClienteTipoCliente');
 		$criteria->addSearchCondition('concat(nombre, " ", apellido)', $this->fullName);
 		$criteria->addSearchCondition('concat(nombre, " ", apellido, " ", dni, " ", direccion)', $this->fullNameDniAddress);
+		$criteria->addCondition("tiposClienteTipoCliente.nombre_tipo_cliente <> \"Inactivo\"");
+		$criteria->addCondition("tiposClienteTipoCliente.nombre_tipo_cliente <> \"Empleado\"");
 
 		$criteria->compare('usuario_id',$this->usuario_id,true);
 		$criteria->compare('nombre',$this->nombre,true);
@@ -163,7 +167,47 @@ class Usuarios extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 		$criteria->with = array('tiposClienteTipoCliente');
-		$criteria->condition = "tiposClienteTipoCliente.nombre_tipo_cliente like \"empleado\" ";
+		$criteria->condition = "tiposClienteTipoCliente.nombre_tipo_cliente like \"empleado\"";
+
+		$criteria->addSearchCondition('concat(nombre, " ", apellido)', $this->fullName);
+		$criteria->addSearchCondition('concat(nombre, " ", apellido, " ", dni, " ", direccion)', $this->fullNameDniAddress);
+
+		$criteria->compare('usuario_id',$this->usuario_id,true);
+		$criteria->compare('nombre',$this->nombre,true);
+		$criteria->compare('apellido',$this->apellido,true);
+		$criteria->compare('email',$this->email,true);
+		$criteria->compare('password',$this->password,true);
+		$criteria->compare('direccion',$this->direccion,true);
+		$criteria->compare('dni',$this->dni,true);
+		$criteria->compare('telefono_celular',$this->telefono_celular,true);
+		$criteria->compare('telefono_fijo',$this->telefono_fijo,true);
+		$criteria->compare('telefono_alt',$this->telefono_alt,true);
+		$criteria->compare('rol',$this->rol,true);
+		$criteria->compare('comentarios',$this->comentarios,true);
+		$criteria->compare('empleado_funcion',$this->empleado_funcion,true);
+		$criteria->compare('empleado_temporal',$this->empleado_temporal);
+		$criteria->compare('empleado_activo',$this->empleado_activo);
+		
+		$criteria->compare('cliente_sistema_secundario_id',$this->cliente_sistema_secundario_id);
+		$criteria->compare('cliente_factura',$this->cliente_factura,true);
+		$criteria->compare('cliente_razon_social',$this->cliente_razon_social,true);
+		$criteria->compare('cliente_cuit',$this->cliente_cuit);
+		$criteria->compare('tipos_cliente_tipo_cliente_id',$this->tipos_cliente_tipo_cliente_id,true);
+
+		
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+
+	public function searchListInactivos()
+	{
+		// @todo Please modify the following code to remove attributes that should not be searched.
+
+		$criteria=new CDbCriteria;
+		$criteria->with = array('tiposClienteTipoCliente');
+		$criteria->condition = "tiposClienteTipoCliente.nombre_tipo_cliente like \"Inactivo\"";
 
 		$criteria->addSearchCondition('concat(nombre, " ", apellido)', $this->fullName);
 		$criteria->addSearchCondition('concat(nombre, " ", apellido, " ", dni, " ", direccion)', $this->fullNameDniAddress);

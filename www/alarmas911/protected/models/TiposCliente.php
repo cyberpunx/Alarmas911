@@ -56,9 +56,9 @@ class TiposCliente extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'tipo_cliente_id' => 'Tipo Cliente',
-			'nombre_tipo_cliente' => 'Nombre Tipo Cliente',
-			'observaciones_tipo_cliente' => 'Observaciones Tipo Cliente',
+			'tipo_cliente_id' => 'ID',
+			'nombre_tipo_cliente' => 'Nombre de Tipo de Usuario',
+			'observaciones_tipo_cliente' => 'Observaciones',
 		);
 	}
 
