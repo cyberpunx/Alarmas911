@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Crear Ordenes de Servicio', 'url'=>array('create')),
+	array('label'=>'Crear Orden de Servicio', 'url'=>array('create')),
 	array('label'=>'Administrar Ordenes de Servicio', 'url'=>array('admin')),
 );
 ?>

@@ -9,14 +9,14 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List OrdenesServicio', 'url'=>array('index')),
-	array('label'=>'Crear Ordenes de Servicio', 'url'=>array('create'), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR') ),
-	array('label'=>'Actualizar Ordenes de Servicio', 'url'=>array('update', 'id'=>$model->orden_servicio_id), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
-	//array('label'=>'Delete OrdenesServicio', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->orden_servicio_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Crear Orden de Servicio', 'url'=>array('create'), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR') ),
+	array('label'=>'Actualizar Orden de Servicio', 'url'=>array('update', 'id'=>$model->orden_servicio_id), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
+	array('label'=>'Borrar Orden de Servicio', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->orden_servicio_id),'confirm'=>'¿Está usted seguro de eliminar el siguiente item?')),
 	array('label'=>'Administrar Ordenes de Servicio', 'url'=>array('admin'), 'visible'=>Yii::app()->user->checkAccess('ADMINISTRADOR')),
 );
 ?>
 
-<h1>Ver datos de Orden de Servicio:  <?php echo $model->sistemaAlarmas->nombre_sistema_alarma.' / ID: '.$model->orden_servicio_id; ?></h1>
+<h1>Ver detalle de Orden de Servicio:  <?php echo $model->sistemaAlarmas->nombre_sistema_alarma.' / ID: '.$model->orden_servicio_id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

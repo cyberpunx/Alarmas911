@@ -10,13 +10,13 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List OrdenesServicio', 'url'=>array('index')),
-	array('label'=>'Crear Ordenes de Servicio', 'url'=>array('create')),
+	array('label'=>'Crear Orden de Servicio', 'url'=>array('create')),
 	array('label'=>'Ver Orden de Servicio', 'url'=>array('view', 'id'=>$model->orden_servicio_id)),
 	array('label'=>'Administrar Ordenes de Servicio', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Actualizar Ordenes de Servicio <?php echo $model->orden_servicio_id; ?></h1>
+<h1>Actualizar Orden de Servicio # <?php echo $model->orden_servicio_id; ?></h1>
 
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

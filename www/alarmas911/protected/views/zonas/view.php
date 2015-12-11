@@ -12,7 +12,7 @@ $this->menu=array(
 	//array('label'=>'List Zonas', 'url'=>array('index')),
 	array('label'=>'Crear Zona', 'url'=>array('create')),
 	array('label'=>'Actualizar Zona', 'url'=>array('update', 'id'=>$model->zona_id)),
-	//array('label'=>'Delete Zonas', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->zona_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Borrar Zona', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->zona_id),'confirm'=>'¿Está seguro que desea eliminar este item?')),
 	array('label'=>'Administrar Zonas', 'url'=>array('admin')),
 );
 ?>

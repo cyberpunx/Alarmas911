@@ -11,7 +11,7 @@ $this->menu=array(
 	//array('label'=>'List Modelos', 'url'=>array('index')),
 	array('label'=>'Crear Modelos', 'url'=>array('create')),
 	array('label'=>'Editar Modelo', 'url'=>array('update', 'id'=>$model->modelo_id)),
-	//array('label'=>'Eliminar Modelo', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->modelo_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Eliminar Modelo', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->modelo_id),'confirm'=>'¿Está seguro que desea eliminar este Item?')),
 	array('label'=>'Administrar Modelos', 'url'=>array('admin')),
 );
 ?>

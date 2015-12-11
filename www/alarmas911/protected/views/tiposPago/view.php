@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposPago', 'url'=>array('index')),
-	array('label'=>'Crear Tipos Pago', 'url'=>array('create')),
-	array('label'=>'Actualizar Tipo Pago', 'url'=>array('update', 'id'=>$model->tipo_pago_id)),
-	//array('label'=>'Delete TiposPago', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->tipo_pago_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Administrar Tipos Pago', 'url'=>array('admin')),
+	array('label'=>'Crear Tipo de Pago', 'url'=>array('create')),
+	array('label'=>'Actualizar Tipo de Pago', 'url'=>array('update', 'id'=>$model->tipo_pago_id)),
+	array('label'=>'Borrar Tipo de Pago', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->tipo_pago_id),'confirm'=>'¿Está seguro que desea eliminar este item?')),
+	array('label'=>'Administrar Tipos de Pago', 'url'=>array('admin')),
 );
 ?>
 

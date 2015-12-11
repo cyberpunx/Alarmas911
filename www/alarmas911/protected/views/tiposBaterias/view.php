@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposBaterias', 'url'=>array('index')),
-	array('label'=>'Crear Tipos Baterias', 'url'=>array('create')),
-	array('label'=>'Actualizar Tipo Bateria', 'url'=>array('update', 'id'=>$model->tipo_bateria_id)),
-	//array('label'=>'Delete TiposBaterias', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->tipo_bateria_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Administrar Tipos Baterias', 'url'=>array('admin')),
+	array('label'=>'Crear Tipo de Bateria', 'url'=>array('create')),
+	array('label'=>'Actualizar Tipo de Bateria', 'url'=>array('update', 'id'=>$model->tipo_bateria_id)),
+	array('label'=>'Borrar Tipo de Bateria', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->tipo_bateria_id),'confirm'=>'¿Está seguro que desea eliminar este item?')),
+	array('label'=>'Administrar Tipos de Baterias', 'url'=>array('admin')),
 );
 ?>
 

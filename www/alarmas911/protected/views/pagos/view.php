@@ -8,10 +8,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Admin Pagos', 'url'=>array('admin')),
+	array('label'=>'Administrar Pagos', 'url'=>array('admin')),
 	array('label'=>'Crear Pago', 'url'=>array('create')),
 	array('label'=>'Editar Pago', 'url'=>array('update', 'id'=>$model->pago_id)),
-	//array('label'=>'Delete Pagos', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->pago_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Borrar Pago', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->pago_id),'confirm'=>'¿Está usted seguro de eliminar el siguiente item?')),
 	//array('label'=>'Manage Pagos', 'url'=>array('admin')),
 );
 ?>

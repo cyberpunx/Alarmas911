@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposMonitoreo', 'url'=>array('index')),
-	array('label'=>'Crear  Tipos Monitoreo', 'url'=>array('create')),
+	array('label'=>'Crear Tipo de Monitoreo', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -50,7 +50,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		'valor',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{view},{update}'
+			'template'=>'{view}{update}{delete}'
 		),
 	),
 )); ?>

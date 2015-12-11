@@ -50,7 +50,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		'observaciones_barrio',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{update},{delete}',
+			'template'=>'{view}{update}{delete}',
 		),
 	),
 )); ?>

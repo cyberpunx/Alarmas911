@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposBaterias', 'url'=>array('index')),
-	array('label'=>'Crear Tipos Baterias', 'url'=>array('create')),
+	array('label'=>'Crear Tipo de Bateria', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -50,7 +50,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		'observaciones',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{update}{delete}'
+			'template'=>'{view}{update}{delete}'
 		),
 	),
 )); ?>

@@ -11,7 +11,7 @@ $this->menu=array(
 	//array('label'=>'List Marcas', 'url'=>array('index')),
 	array('label'=>'Crear Marcas', 'url'=>array('create')),
 	array('label'=>'Actualizar Marcas', 'url'=>array('update', 'id'=>$model->marca_id)),
-	//array('label'=>'Delete Marcas', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->marca_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Borrar Marca', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->marca_id),'confirm'=>'¿Está seguro que desea eliminar este Item?')),
 	array('label'=>'Administrar Marcas', 'url'=>array('admin')),
 );
 ?>

@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposBaterias', 'url'=>array('index')),
-	array('label'=>'Administrar Tipos Baterias', 'url'=>array('admin')),
+	array('label'=>'Administrar Tipos de Baterias', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Crear  Tipos de Bateria</h1>
+<h1>Crear Tipo de Bateria</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

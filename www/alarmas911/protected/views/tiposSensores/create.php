@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposSensores', 'url'=>array('index')),
-	array('label'=>'Administrar Tipos Sensores', 'url'=>array('admin')),
+	array('label'=>'Administrar Tipos de Sensores', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Crear Tipos de Sensores</h1>
+<h1>Crear Tipo de Sensores</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

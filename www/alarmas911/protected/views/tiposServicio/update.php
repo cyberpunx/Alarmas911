@@ -10,12 +10,12 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposServicio', 'url'=>array('index')),
-	array('label'=>'Crear Tipos Servicio', 'url'=>array('create')),
+	array('label'=>'Crear Tipo de Servicio', 'url'=>array('create')),
 	array('label'=>'Ver Tipo Servicio', 'url'=>array('view', 'id'=>$model->tipo_servicio_id)),
-	array('label'=>'Administrar Tipos Servicio', 'url'=>array('admin')),
+	array('label'=>'Administrar Tipos de Servicio', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Actualizar Tipos de Servicio #<?php echo $model->tipo_servicio_id; ?></h1>
+<h1>Actualizar Tipo de Servicio # <?php echo $model->tipo_servicio_id.' / '.$model->nombre_tipo_servicio; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

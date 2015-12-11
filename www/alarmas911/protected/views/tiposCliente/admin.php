@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposCliente', 'url'=>array('index')),
-	array('label'=>'Crear Tipos Cliente', 'url'=>array('create')),
+	array('label'=>'Crear Tipo de Cliente', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -50,7 +50,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		'observaciones_tipo_cliente',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{view},{update}'
+			'template'=>'{view}{update}{delete}'
 		),
 	),
 )); ?>

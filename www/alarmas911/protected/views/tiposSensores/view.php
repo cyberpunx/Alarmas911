@@ -9,9 +9,9 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposSensores', 'url'=>array('index')),
-	array('label'=>'Crear  Tipos Sensores', 'url'=>array('create')),
-	array('label'=>'Actualizar  Tipo Sensor', 'url'=>array('update', 'id'=>$model->tipo_sensor_id)),
-	//array('label'=>'Delete TiposSensores', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->tipo_sensor_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Crear Tipos Sensores', 'url'=>array('create')),
+	array('label'=>'Actualizar Tipo Sensor', 'url'=>array('update', 'id'=>$model->tipo_sensor_id)),
+	array('label'=>'Borrar Tipo de Sensor', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->tipo_sensor_id),'confirm'=>'¿Está seguro que desea eliminar este item?')),
 	array('label'=>'Administrar Tipos Sensores', 'url'=>array('admin')),
 );
 ?>

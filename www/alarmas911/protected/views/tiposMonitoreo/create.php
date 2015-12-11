@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposMonitoreo', 'url'=>array('index')),
-	array('label'=>'Administrar Tipos Monitoreo', 'url'=>array('admin')),
+	array('label'=>'Administrar Tipos de Monitoreo', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Crear  Tipos de Monitoreo</h1>
+<h1>Crear Tipo de Monitoreo</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

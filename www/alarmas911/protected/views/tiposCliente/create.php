@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposCliente', 'url'=>array('index')),
-	array('label'=>'Administrar Tipos Cliente', 'url'=>array('admin')),
+	array('label'=>'Administrar Tipos de Cliente', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Crear Tipos de Cliente</h1>
+<h1>Crear Tipo de Cliente</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

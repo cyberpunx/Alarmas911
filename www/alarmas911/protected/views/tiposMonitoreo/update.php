@@ -10,12 +10,12 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposMonitoreo', 'url'=>array('index')),
-	array('label'=>'Crear Tipos Monitoreo', 'url'=>array('create')),
-	array('label'=>'Ver Tipo Monitoreo', 'url'=>array('view', 'id'=>$model->tipo_monitoreo_id)),
+	array('label'=>'Crear Tipo de  Monitoreo', 'url'=>array('create')),
+	array('label'=>'Ver Tipo de Monitoreo', 'url'=>array('view', 'id'=>$model->tipo_monitoreo_id)),
 	array('label'=>'Administrar Tipos de Monitoreo', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Actualizar Tipos de Monitoreo <?php echo $model->tipo_monitoreo_id; ?></h1>
+<h1>Actualizar Tipo de Monitoreo # <?php echo $model->tipo_monitoreo_id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

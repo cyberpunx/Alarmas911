@@ -9,14 +9,14 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposMonitoreo', 'url'=>array('index')),
-	array('label'=>'Crear Tipos Monitoreo', 'url'=>array('create')),
-	array('label'=>'Actualizar Tipo Monitoreo', 'url'=>array('update', 'id'=>$model->tipo_monitoreo_id)),
-	//array('label'=>'Delete TiposMonitoreo', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->tipo_monitoreo_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Administrar Tipos Monitoreo', 'url'=>array('admin')),
+	array('label'=>'Crear Tipo de Monitoreo', 'url'=>array('create')),
+	array('label'=>'Actualizar Tipo de Monitoreo', 'url'=>array('update', 'id'=>$model->tipo_monitoreo_id)),
+	array('label'=>'Borrar Tipo de Monitoreo', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->tipo_monitoreo_id),'confirm'=>'¿Está seguro que desea eliminar este item?')),
+	array('label'=>'Administrar Tipos de Monitoreo', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Ver  Tipo de Monitoreo #<?php echo $model->tipo_monitoreo_id; ?></h1>
+<h1>Ver Tipo de Monitoreo #<?php echo $model->tipo_monitoreo_id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

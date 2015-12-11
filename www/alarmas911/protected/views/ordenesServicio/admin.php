@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List OrdenesServicio', 'url'=>array('index')),
-	array('label'=>'Crear Ordenes de Servicio', 'url'=>array('create')),
+	array('label'=>'Crear Orden de Servicio', 'url'=>array('create')),
 	array('label'=>'Vista por barrios', 'url'=>array('vistaImpresion')),
 	array('label'=>'Cobrar Monitoreo Mensual', 'url'=>array('GenerarCobroMensual')),
 );
@@ -157,7 +157,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		*/
 		array(
     		'class'=>'CButtonColumn',
-    		'template'=>'{update}{view}',
+    		'template'=>'{view}{update}{delete}',
     		//'buttons'=>array(
 			// 	'view' => array(
 			//		'imageUrl'=>Yii::app()->request->baseUrl.'/themes/shadow_dancer/images/small_icons/magnifier.png',

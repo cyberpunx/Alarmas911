@@ -76,7 +76,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		array(
 			'class'=>'CButtonColumn',
 			'header' => 'Acciones',
-			'template'=>'{view}{update}',
+			'template'=>'{view}{update}{delete}',
 			 'buttons'=>array(
 			 	'view' => array(
 					'imageUrl'=>Yii::app()->request->baseUrl.'/themes/shadow_dancer/images/small_icons/magnifier.png',

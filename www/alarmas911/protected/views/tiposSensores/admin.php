@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposSensores', 'url'=>array('index')),
-	array('label'=>'Crear Tipos Sensores', 'url'=>array('create')),
+	array('label'=>'Crear Tipos de Sensores', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -50,7 +50,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		'observaciones_sensor',
 		array(
 			'class'=>'CButtonColumn',
-			'template'=>'{view},{update}',
+			'template'=>'{view}{update}{delete}',
 		),
 	),
 )); ?>

@@ -10,12 +10,12 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	//array('label'=>'List TiposSensores', 'url'=>array('index')),
-	array('label'=>'Crear Tipos Sensores', 'url'=>array('create')),
-	array('label'=>'Ver  Tipo Sensores', 'url'=>array('view', 'id'=>$model->tipo_sensor_id)),
-	array('label'=>'Administrar Tipos Sensores', 'url'=>array('admin')),
+	array('label'=>'Crear Tipo deSensores', 'url'=>array('create')),
+	array('label'=>'Ver  Tipo de Sensores', 'url'=>array('view', 'id'=>$model->tipo_sensor_id)),
+	array('label'=>'Administrar Tipos de Sensores', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Actualizar Tipos de Sensores <?php echo $model->tipo_sensor_id; ?></h1>
+<h1>Actualizar Tipo de Sensor # <?php echo $model->tipo_sensor_id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

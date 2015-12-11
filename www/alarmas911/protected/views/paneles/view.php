@@ -12,7 +12,7 @@ $this->menu=array(
 	//array('label'=>'List Paneles', 'url'=>array('index')),
 	array('label'=>'Crear Panel', 'url'=>array('create')),
 	array('label'=>'Actualizar Panel', 'url'=>array('update', 'id'=>$model->panel_id)),
-	array('label'=>'Eliminar Panel', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->panel_id),'confirm'=>'Esta seguro que desea eliminar este Item?')),
+	array('label'=>'Eliminar Panel', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->panel_id),'confirm'=>'¿Está seguro que desea eliminar este Item?')),
 	array('label'=>'Administrar Paneles', 'url'=>array('admin')),
 );
 ?>

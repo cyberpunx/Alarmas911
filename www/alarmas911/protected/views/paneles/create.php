@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Crear Paneles</h1>
+<h1>Crear Panel </h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

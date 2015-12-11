@@ -9,13 +9,13 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Admin Pagos', 'url'=>array('admin')),
+	array('label'=>'Administrar Pagos', 'url'=>array('admin')),
 	array('label'=>'Crear Pago', 'url'=>array('create')),
 	array('label'=>'Ver Pago', 'url'=>array('view', 'id'=>$model->pago_id)),
 	//array('label'=>'Manage Pagos', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Editar pago #<?php echo $model->pago_id; ?></h1>
+<h1>Editar pago # <?php echo $model->pago_id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
