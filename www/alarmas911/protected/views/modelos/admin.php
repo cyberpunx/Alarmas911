@@ -82,7 +82,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 		array(
 			'class'=>'CButtonColumn',
 			'header' => 'Acciones',
-			'template'=>'{update}',
+			'template'=>'{view}{update}{delete}',
 		),
 	),
 )); ?>
