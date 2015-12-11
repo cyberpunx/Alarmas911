@@ -32020,3 +32020,200 @@ in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
 2015/12/11 20:05:40 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`alarmas_db`.`sistema_alarmas`, CONSTRAINT `fk_{50921D8E-B05E-479E-827C-FE12A375116A}` FOREIGN KEY (`barrios_barrio_id`) REFERENCES `barrios` (`barrio_id`) ON UPDATE CASCADE). La sentencia SQL ejecutada fue: DELETE FROM `barrios` WHERE `barrios`.`barrio_id`='1'.
 in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (111)
 in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:09:25 [warning] [application] Error al establecer unsafe al atributo "comentarios" de "Usuarios".
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\UsuariosController.php (104)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:09:34 [warning] [application] Error al establecer unsafe al atributo "comentarios" de "Usuarios".
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\UsuariosController.php (104)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:09:34 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'augue@senectuset.org' for key 'email_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `usuarios` (`nombre`, `apellido`, `email`, `password`, `direccion`, `dni`, `telefono_celular`, `telefono_fijo`, `telefono_alt`, `rol`, `tipos_cliente_tipo_cliente_id`, `cliente_sistema_secundario_id`, `cliente_factura`, `cliente_razon_social`, `cliente_cuit`, `empleado_funcion`, `empleado_temporal`, `empleado_activo`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\UsuariosController.php (105)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:09:34 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'augue@senectuset.org' for key 'email_UNIQUE'. The SQL statement executed was: INSERT INTO `usuarios` (`nombre`, `apellido`, `email`, `password`, `direccion`, `dni`, `telefono_celular`, `telefono_fijo`, `telefono_alt`, `rol`, `tipos_cliente_tipo_cliente_id`, `cliente_sistema_secundario_id`, `cliente_factura`, `cliente_razon_social`, `cliente_cuit`, `empleado_funcion`, `empleado_temporal`, `empleado_activo`) VALUES (:yp0, :yp1, :yp2, :yp3, :yp4, :yp5, :yp6, :yp7, :yp8, :yp9, :yp10, :yp11, :yp12, :yp13, :yp14, :yp15, :yp16, :yp17)' in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\CDbCommand.php:358
+Stack trace:
+#0 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\UsuariosController.php(105): CActiveRecord->save()
+#3 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\actions\CInlineAction.php(49): UsuariosController->actionCreate()
+#4 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(291): CFilterChain->run()
+#11 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(282): CController->run('create')
+#13 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(141): CWebApplication->runController('usuarios/create')
+#14 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/alarmas911/index.php?r=usuarios/create
+HTTP_REFERER=http://alarmas.localhost/alarmas911/index.php?r=usuarios/create
+---
+2015/12/11 20:10:02 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (70)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:10:02 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Centro' for key 'nombre_barrio_UNIQUE'. The SQL statement executed was: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1)' in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\CDbCommand.php:358
+Stack trace:
+#0 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php(70): CActiveRecord->save()
+#3 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\actions\CInlineAction.php(49): BarriosController->actionCreate()
+#4 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(291): CFilterChain->run()
+#11 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(282): CController->run('create')
+#13 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(141): CWebApplication->runController('barrios/create')
+#14 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/alarmas911/index.php?r=barrios/create
+HTTP_REFERER=http://alarmas.localhost/alarmas911/index.php?r=barrios/create
+---
+2015/12/11 20:10:50 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (70)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:10:50 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. The SQL statement executed was: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1)' in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\CDbCommand.php:358
+Stack trace:
+#0 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php(70): CActiveRecord->save()
+#3 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\actions\CInlineAction.php(49): BarriosController->actionCreate()
+#4 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(291): CFilterChain->run()
+#11 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(282): CController->run('create')
+#13 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(141): CWebApplication->runController('barrios/create')
+#14 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/alarmas911/index.php?r=barrios/create
+HTTP_REFERER=http://alarmas.localhost/alarmas911/index.php?r=barrios/create
+---
+2015/12/11 20:12:02 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:14:02 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:14:20 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:14:20 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'Centro' for key 'nombre_barrio_UNIQUE'. The SQL statement executed was: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1)' in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\CDbCommand.php:358
+Stack trace:
+#0 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php(71): CActiveRecord->save()
+#3 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\actions\CInlineAction.php(49): BarriosController->actionCreate()
+#4 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(291): CFilterChain->run()
+#11 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(282): CController->run('create')
+#13 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(141): CWebApplication->runController('barrios/create')
+#14 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/alarmas911/index.php?r=barrios/create
+HTTP_REFERER=http://alarmas.localhost/alarmas911/index.php?r=barrios/create
+---
+2015/12/11 20:14:30 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:14:30 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand falló al ejecutar la sentencia SQL: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. The SQL statement executed was: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1)' in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\CDbCommand.php:358
+Stack trace:
+#0 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\ar\CActiveRecord.php(1077): CDbCommand->execute()
+#1 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\db\ar\CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php(71): CActiveRecord->save()
+#3 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\actions\CInlineAction.php(49): BarriosController->actionCreate()
+#4 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(291): CFilterChain->run()
+#11 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(282): CController->run('create')
+#13 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(141): CWebApplication->runController('barrios/create')
+#14 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/alarmas911/index.php?r=barrios/create
+HTTP_REFERER=http://alarmas.localhost/alarmas911/index.php?r=barrios/create
+---
+2015/12/11 20:16:01 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:16:01 [error] [php] Undefined variable: error (F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php:84)
+Stack trace:
+#0 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilterChain.php(133): BarriosController->runAction()
+#1 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#2 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#3 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CInlineFilter.php(58): BarriosController->filterAccessControl()
+#4 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#5 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(291): CFilterChain->run()
+#6 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(265): BarriosController->runActionWithFilters()
+#7 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(282): BarriosController->run()
+#8 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php(13): CWebApplication->run()
+REQUEST_URI=/alarmas911/index.php?r=barrios/create
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (84)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:16:28 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:16:36 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:18:32 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:18:41 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:18:58 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:18:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "error" solicitada.' in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php:483
+Stack trace:
+#0 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CController.php(270): CController->missingAction('error')
+#1 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(282): CController->run('error')
+#2 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\web\CWebApplication.php(141): CWebApplication->runController('barrios/error')
+#3 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/alarmas911/index.php?r=barrios/error
+HTTP_REFERER=http://alarmas.localhost/alarmas911/index.php?r=barrios/create
+---
+2015/12/11 20:21:34 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:21:51 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:22:32 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (71)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:23:09 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (72)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)
+2015/12/11 20:23:20 [error] [system.db.CDbCommand] CDbCommand::execute() falló: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'centro' for key 'nombre_barrio_UNIQUE'. La sentencia SQL ejecutada fue: INSERT INTO `barrios` (`nombre_barrio`, `observaciones_barrio`) VALUES (:yp0, :yp1).
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\protected\controllers\BarriosController.php (72)
+in F:\Trabajo\Facultad\Alarmas911\www\alarmas911\index.php (13)

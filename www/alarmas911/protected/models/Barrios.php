@@ -30,6 +30,7 @@ class Barrios extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('nombre_barrio', 'required'),
+			array('nombre_barrio', 'unique'),
 			array('nombre_barrio', 'length', 'max'=>128),
 			array('observaciones_barrio', 'safe'),
 			// The following rule is used by search().
