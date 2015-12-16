@@ -196,7 +196,7 @@ class OrdenesServicio extends CActiveRecord
 			select * from sistema_alarmas sa
 				left join usuarios u on sa.usuarios_usuario_id = u.usuario_id
 				left join tipos_monitoreo tp on sa.tipos_monitoreo_tipo_monitoreo_id = tp.tipo_monitoreo_id
-			where tp.valor > 0
+			where tp.valor > 0 AND sa.activo_sistema_alarma = 1
 		')->queryAll();
 
 		$importeTotal = 0;

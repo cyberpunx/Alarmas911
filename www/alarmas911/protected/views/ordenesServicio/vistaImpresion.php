@@ -14,6 +14,18 @@ $this->menu=array(
 
 <h1>Ordenes de Servicio - Vista por Barrios</h1>
 
+<div id="printButton" style="text-align:right;">
+<?php 
+    $this->widget('application.extensions.print.printWidget', 
+					array(  
+						'title' => 'Ordenes de Servicio',
+						'cssFile' => 'print.css',
+						'printedElement'=>'#ajaxListView',
+					)
+               ); 
+?>
+</div>
+
 <?php 
 
 echo CHtml::beginForm(CHtml::normalizeUrl(array('ordenesServicio/vistaImpresion')), 'get', array('id'=>'filter-form'))

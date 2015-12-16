@@ -46,6 +46,16 @@ $this->menu=array(
 			'label' => 'Tipo de Monitoreo',
 			'value' => $model->tiposMonitoreo->nombre_tipo_monitoreo
 		),
+		array(
+			'label' => 'Activo',
+			'value' => function($model) {
+				if($model->activo_sistema_alarma == 1 ){
+					return "Si";
+				} else {
+					return "No";
+				}
+			}, 
+		),
 		'nombre_sistema_alarma',
 		array(
 			'name'=>'Zonas',
