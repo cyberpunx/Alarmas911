@@ -48,6 +48,9 @@ $this->widget('zii.widgets.CListView', array(
 		'vencimiento_orden'=>'Fecha de Vencimiento',
 		'prioridad'=>'Prioridad',
 	),
+	'pager'=>array (
+		'pageSize'=>1,
+	),
 	'id'=>'ajaxListView',
 )); ?>
 

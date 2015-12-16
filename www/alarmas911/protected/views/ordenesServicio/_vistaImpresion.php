@@ -33,6 +33,7 @@
 	<?php echo CHtml::encode($data->observaciones_orden_servicio); ?>
 	<br />
 
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('vencimiento_orden')); ?>:</b>
 	<?php if($data->vencimiento_orden == '' || $data->vencimiento_orden == '0000-00-00'){
 		echo '-';
@@ -44,6 +45,12 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('prioridad')); ?>:</b>
 	<?php echo CHtml::encode($data->prioridad); ?>
+	<br />
+
+	<b><?php echo 'Detalle'; ?>:</b>
+	<?php
+	echo $data->getDetallesOrdenServicio();
+	?>
 	<br />
 
 </div>

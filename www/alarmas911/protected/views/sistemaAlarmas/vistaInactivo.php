@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	//array('label'=>'List SistemaAlarmas', 'url'=>array('index')),
 	array('label'=>'Crear Sistema de Alarmas', 'url'=>array('create')),
-	array('label'=>'Ver Sistemas Inactivos', 'url'=>array('vistaInactivo')),
+	array('label'=>'Ver Sistema de Alarmas', 'url'=>array('admin')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -42,7 +42,7 @@ o <b>=</b>) al comienzo de cada uno de sus valores de búsqueda para especificar
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'sistema-alarmas-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$model->searchInactivo(),
 	'filter'=>$model,
 	'columns'=>array(
 		//'sistema_alarma_id',

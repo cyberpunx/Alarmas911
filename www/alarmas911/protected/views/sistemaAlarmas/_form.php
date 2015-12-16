@@ -65,7 +65,7 @@
     $barrios_list = CHtml::listData(Barrios::model()->findAll(), 'barrio_id', 'nombre_barrio');
     $options = array(
             'tabindex' => '0',
-            'empty' => '(not set)',
+            'empty' => 1,
     );
     ?>
     <?php echo $form->dropDownList($model,'barrios_barrio_id', $barrios_list, $options); ?>
@@ -76,6 +76,16 @@
         <?php echo $form->labelEx($model,'observaciones_sistema_alarma'); ?>
         <?php echo $form->textField($model,'observaciones_sistema_alarma',array('size'=>60,'maxlength'=>128)); ?>
         <?php echo $form->error($model,'observaciones_sistema_alarma'); ?>
+    </div>
+
+    <div class="row">
+    <?php echo $form->labelEx($model,'activo_sistema_alarma'); ?>
+    <?php
+    $yes_no_list = array(1 => 'Si', 0 => 'No');
+    $options = array();
+    ?>
+    <?php echo $form->dropDownList($model,'activo_sistema_alarma', $yes_no_list, $options); ?>
+    <?php echo $form->error($model,'activo_sistema_alarma'); ?>
     </div>
 
     <div class="row">

@@ -33,7 +33,7 @@ class SistemaAlarmasController extends Controller
 			),
 			
 			array('allow', // ADMISNITRADOR HACE TODO
-				'actions'=>array('admin','delete','view', 'create', 'index', 'update', 'findUsuario', 'loadChildByAjax'),
+				'actions'=>array('admin','delete','view', 'create', 'index', 'update','vistaInactivo', 'findUsuario', 'loadChildByAjax'),
 				'roles'=>array('ADMINISTRADOR')
 			),
 			array('deny',  // deny all users
@@ -191,6 +191,31 @@ class SistemaAlarmasController extends Controller
     
 
 		$this->render('admin',array(
+			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Manages all models.
+	 */
+	public function actionVistaInactivo()
+	{
+		$model=new SistemaAlarmas('searchInactivo');
+		$model->unsetAttributes();  // clear any default values
+		
+		
+		if(isset($_GET['usuarios_usuario_id'])){ 
+			//$model->attributes=$_GET['usuarios_usuario_id'];
+        	$model->usuarios_usuario_id = $_GET['usuarios_usuario_id'];
+        }else{
+        	
+        	if(isset($_GET['SistemaAlarmas'])){
+				$model->attributes=$_GET['SistemaAlarmas'];
+			}
+		}
+    
+
+		$this->render('vistaInactivo',array(
 			'model'=>$model,
 		));
 	}
