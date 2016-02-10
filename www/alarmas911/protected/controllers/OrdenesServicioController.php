@@ -295,15 +295,6 @@ class OrdenesServicioController extends Controller
 		}
 	}
 
-	public function actionGenerarCobroMensual()
-	{
-
-		$dataProvider=new CActiveDataProvider('OrdenesServicio');
-		$this->render('cobroMensual',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
-
 	public function actionRollbackCobroMensual()
 	{
 
@@ -311,6 +302,25 @@ class OrdenesServicioController extends Controller
 		$this->render('rollbackCobroMensual',array(
 			'dataProvider'=>$dataProvider,
 		));
+	}
+
+	public function actionGenerarCobroMensual()
+	{
+		$criteria=new CDbCriteria;
+		$criteria->with = array('usuarios', 'tiposMonitoreo', 'ordenesServicios');
+		$criteria->addCondition('valor > 0 AND activo_sistema_alarma = 1');
+		$dataProvider=new CActiveDataProvider('SistemaAlarmas', array('criteria'=>$criteria));
+
+		$this->render('cobrosMensuales',array(
+			'dataProvider'=>$dataProvider,
+		));
+
+
+		if(Yii::app()->request->isAjaxRequest){
+			$this->redirect(array('OrdenesServicio/admin'));
+		}
+
+
 	}
 
 	public function actionVistaImpresion($string = '')

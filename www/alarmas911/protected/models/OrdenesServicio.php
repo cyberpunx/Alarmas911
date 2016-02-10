@@ -134,6 +134,7 @@ class OrdenesServicio extends CActiveRecord
 		));
 	}
 
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
@@ -176,22 +177,10 @@ class OrdenesServicio extends CActiveRecord
 	        $this->fecha_cierre = null;
 	    }
 	    return parent::beforeSave();
-	}
+	}	
 
 
-    public function generarCobrosMensuales($flag){ 	// si flag == true -> hizo clic en boton confirmar
-    												// si flag == false -> aun no hizo clic en boton confirmar
-    	$linea = "";
-		$lineaAlt = false;
-		$rollbackQuery = '';
-		$lastId = 0;
-
-		if($flag){
-			$linea.='<div class="flash-success">Se han generado Ordenes de Servicio satisfactoriamente para los siguientes Sistemas de Alarmas.</div>';
-		}else{
-			$linea.='<div class="flash-notice">¿Desea generar los siguientes cobros?</div>';
-		}
-
+	public function getImporteTotalCobrosMensuales(){
 		$sistemas_Lst = Yii::app()->db->createCommand('
 			select * from sistema_alarmas sa
 				left join usuarios u on sa.usuarios_usuario_id = u.usuario_id
@@ -200,28 +189,36 @@ class OrdenesServicio extends CActiveRecord
 		')->queryAll();
 
 		$importeTotal = 0;
+		foreach($sistemas_Lst as $sistema){	
+			$importeTotal += $sistema['valor'];	
+		}
+		return $importeTotal;
+	}
 
-		
-		$linea.='
-				<div class="datagrid"> 
-					<table>
-					
-						<thead>
-							<tr><th>Nombre Sistema</th><th>Cliente</th><th>Tipo de Monitoreo</th><th>Importe</th></tr>
-						</thead>				
+	public function getFechaUltimoCobro(){
+		//File
+		$webroot = Yii::getPathOfAlias('webroot');
+		$file =  $webroot.'/protected/commands/ordenes_servicio_cobro_mensual_rollback.sql';
+		$content = file_get_contents($file);
+		$xml = simplexml_load_string($content);
+		return $xml->date;
+	}
 
-						<tbody>';
+
+
+	public function generarCobrosMensuales($flag){ 	// si flag == true -> hizo clic en boton confirmar
+    												// si flag == false -> aun no hizo clic en boton confirmar
+ 		$rollbackQuery = '';
+		$lastId = 0;
+
+		$sistemas_Lst = Yii::app()->db->createCommand('
+			select * from sistema_alarmas sa
+				left join usuarios u on sa.usuarios_usuario_id = u.usuario_id
+				left join tipos_monitoreo tp on sa.tipos_monitoreo_tipo_monitoreo_id = tp.tipo_monitoreo_id
+			where tp.valor > 0 AND sa.activo_sistema_alarma = 1
+		')->queryAll();
 
 		foreach($sistemas_Lst as $sistema){
-			if($lineaAlt){ $linea .= '<tr class="alt">'; }
-			else{ $linea .= '<tr>'; }	
-
-			$linea.= '<td>'.$sistema['nombre_sistema_alarma'].'</td>'; 
-			$linea.= '<td>'.$sistema['apellido'].', '.$sistema['nombre'].'</td>'; 
-			$linea.= '<td>'.$sistema['nombre_tipo_monitoreo'].'</td>'; 
-			$linea.= '<td>'.$sistema['valor'].'</td>'; 
-
-			$importeTotal += $sistema['valor'];
 
 			if($flag){
 				$qry = Yii::app()->db->createCommand("
@@ -234,53 +231,48 @@ class OrdenesServicio extends CActiveRecord
 						'".date('Y-m-d')."',
 						'1',
 						'".$sistema['sistema_alarma_id']."')
-				")->execute();
+				")->execute();	
 
 				// Genero la constula "rollback" para cada insercion
 				$lastId = Yii::app()->db->getLastInsertId();
-				$rollbackQuery .= "DELETE from ordenes_servicio WHERE orden_servicio_id = ".$lastId.";";
-
-				//File
-				$webroot = Yii::getPathOfAlias('webroot');
-				$file =  $webroot.'/protected/commands/ordenes_servicio_cobro_mensual_rollback.sql';
-				$content = file_get_contents($file);
-				$pos = strpos($content, (string)$lastId);
-				if($pos === false && (is_numeric($lastId))){
-					$handle = fopen($file, 'a+');				
-					fwrite($handle, $rollbackQuery);
-					fclose($handle);
-				}
-
-												
-			}
-			
-
-			$linea .= '</tr>';
-			$lineaAlt = !$lineaAlt;
+				$rollbackQuery .= "DELETE from ordenes_servicio WHERE orden_servicio_id = ".$lastId.";";										
+			}	
 		}
 
-		$linea.='</tbody>
-						<tfoot>
-							<tr>
-								<td colspan="4">
-									<div id="paging" >
-										<ul>
-											<li><b>TOTAL:</b> '.$importeTotal.'$</li>
-										</ul>
-										<ul>';
-		$linea.='								
-											
-										</ul>
-									</div>
-								</td>
-							</tr>
-						</tfoot>
-				</table>
-				</div>';
-		return $linea;
+		//Abro el archivo
+		$webroot = Yii::getPathOfAlias('webroot');
+		$file =  $webroot.'/protected/commands/ordenes_servicio_cobro_mensual_rollback.sql';
+
+		// Reemplazo la prev_date por la fecha que estaba en date
+		$content = file_get_contents($file);
+		$xml = simplexml_load_string($content);
+		$replacement = $xml->date;
+		$newContent = replace_between($content, "<prev_date>", "</prev_date>", $replacement);
+		$handle = fopen($file, 'w');		
+		fwrite($handle, $newContent);
+		fclose($handle);
+		
+		// Reemplazo la fecha que estaba por la de hoy
+		$content = file_get_contents($file);
+		$replacement = date('Y-m-d');
+		$newContent = replace_between($content, "<date>", "</date>", $replacement);
+		$handle = fopen($file, 'w');		
+		fwrite($handle, $newContent);
+		fclose($handle);
+
+
+		// Reemplazo la rollback query por la nueva
+		$content = file_get_contents($file);
+		$replacement = $rollbackQuery;
+		$newContent = replace_between($content, "<rollback_query>", "</rollback_query>", $replacement);
+		$handle = fopen($file, 'w');		
+		fwrite($handle, $newContent);
+		fclose($handle);
+
+
     }
 
-    function rollbackCobrosMensuales($flag){    	
+    public function rollbackCobrosMensuales($flag){    	
     	
 		$linea = "";
 		$lineaAlt = false;
@@ -288,6 +280,10 @@ class OrdenesServicio extends CActiveRecord
 		$lastId = 0;		
 		$webroot = Yii::getPathOfAlias('webroot');
 		$file =  $webroot.'/protected/commands/ordenes_servicio_cobro_mensual_rollback.sql';
+		$content = file_get_contents($file);
+		$xml = simplexml_load_string($content);
+		$sql = $xml->rollback_query;		
+
 		if(filesize($file) > 0){
 			$content = file_get_contents($file);
 			$content = str_replace(';', '<br/>', $content);
@@ -299,30 +295,68 @@ class OrdenesServicio extends CActiveRecord
 			$linea.='<div class="flash-error">¿Desea deshacer los siguientes cobros?</div>';
 		}
 
-		if(!$flag && filesize($file) > 0){
+		if(!$flag && $sql != "" ){
+
+			$linea .= '<b>Deshacer los cobros realizados el día: '. $xml->date.'</b></br>';
 			$linea.='<p>';
-			$linea.= $content;
-			$linea.='</p>';	
+			$linea.= str_replace(';', '<br/>', $xml->rollback_query);
 		}else{
 			$linea .= "<p><b>No hay Ordenes de Servicio para revertir.</b></p>";
 		}
 
-		if($flag){			
-			$sql = file_get_contents($file);
-			if(filesize($file) > 0){
+		if($flag){		
+			if($sql){
 				Yii::app()->db->createCommand($sql)->execute();
 			}											
 		}
 
 
-		if($flag && filesize($file) > 0){
-			$handle = fopen($file, 'w');
+		if($flag && $sql){			
+			// Reemplazo la date por la prev_date
+			$content = file_get_contents($file);
+			$xml = simplexml_load_string($content);
+			$replacement = $xml->prev_date;
+			$newContent = replace_between($content, "<date>", "</date>", $replacement);
+			$handle = fopen($file, 'w');		
+			fwrite($handle, $newContent);
 			fclose($handle);
+
+			// Reemplazo la prev_date por nulo
+			$content = file_get_contents($file);
+			$xml = simplexml_load_string($content);
+			$replacement = "";
+			$newContent = replace_between($content, "<prev_date>", "</prev_date>", $replacement);
+			$handle = fopen($file, 'w');		
+			fwrite($handle, $newContent);
+			fclose($handle);
+
+			// Reemplazo la rollback query por nulo
+			$content = file_get_contents($file);
+			$replacement = "";
+			$newContent = replace_between($content, "<rollback_query>", "</rollback_query>", $replacement);
+			$handle = fopen($file, 'w');		
+			fwrite($handle, $newContent);
+			fclose($handle);
+
+			
 		}
 
 		return $linea;
 
 
     }
+
+	
     
+}
+
+
+function replace_between($str, $needle_start, $needle_end, $replacement) {
+    $pos = strpos($str, $needle_start);
+    $start = $pos === false ? 0 : $pos + strlen($needle_start);
+
+    $pos = strpos($str, $needle_end, $start);
+    $end = $start === false ? strlen($str) : $pos;
+ 
+    return substr_replace($str,$replacement,  $start, $end - $start);
 }
