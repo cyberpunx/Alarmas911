@@ -25,7 +25,7 @@
 		$modelos_list = CHtml::listData(Modelos::model()->findAll(array("condition"=>"discriminante = 'BAT' ")), 'modelo_id', 'ModeloMarca');
 			$options = array(
 			        'tabindex' => '0',
-			        'empty' => '(not set)',
+			        'empty' => '(no seleccionado)',
 			);
 	?>
 	<?php echo $form->dropDownList($model,'modelos_modelo_id', $modelos_list, $options); ?>
@@ -38,7 +38,7 @@
 		$tiposBateria_Lst = CHtml::listData(TiposBaterias::model()->findAll(), 'tipo_bateria_id', 'nombre');
 			$options = array(
 			        'tabindex' => '0',
-			        'empty' => '(not set)',
+			        'empty' => '(no seleccionado)',
 			);
 	?>
 	<?php echo $form->dropDownList($model,'tipos_baterias_tipo_bateria_id', $tiposBateria_Lst, $options); ?>

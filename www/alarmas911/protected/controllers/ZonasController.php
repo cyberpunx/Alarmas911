@@ -75,7 +75,7 @@ class ZonasController extends Controller
             if ($model->saveWithRelated('sensores'))
                 $this->redirect(array('view', 'id' => $model->zona_id));
             else
-                $model->addError('sensores', 'Error occured while saving sensores.');
+                $model->addError('sensores', 'Ocurrio un error al guardar los sensores.');
         }
  
         $this->render('create', array(

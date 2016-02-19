@@ -39,7 +39,7 @@ class Pagos extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('usuarios_usuario_id, importe', 'required'),
-			array('importe', 'numerical'),
+			array('importe', 'numerical', 'min'=>0.01),
 			array('usuarios_usuario_id, ordenes_servicio_orden_servicio_id, tipos_pago_tipo_pago_id', 'length', 'max'=>11),
 			array('informacion_pago', 'length', 'max'=>128),
 			array('fecha', 'safe'),

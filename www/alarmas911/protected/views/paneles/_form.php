@@ -52,7 +52,7 @@
 		$modelos_list = CHtml::listData(Modelos::model()->findAll(array("condition"=>"discriminante = 'PAN' ")), 'modelo_id', 'ModeloMarca');
 			$options = array(
 			        'tabindex' => '0',
-			        'empty' => '(not set)',
+			        'empty' => '(no seleccionado)',
 			);
 	?>
 	<?php echo $form->dropDownList($model,'modelos_modelo_id', $modelos_list, $options); ?>

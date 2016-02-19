@@ -65,7 +65,7 @@
     $barrios_list = CHtml::listData(Barrios::model()->findAll(), 'barrio_id', 'nombre_barrio');
     $options = array(
             'tabindex' => '0',
-            'empty' => 1,
+            'empty' => "-Barrio?-",
     );
     ?>
     <?php echo $form->dropDownList($model,'barrios_barrio_id', $barrios_list, $options); ?>
@@ -94,7 +94,7 @@
     $modelos_list = CHtml::listData(Modelos::model()->findAll(array("condition"=>"discriminante = 'SIA' ")), 'modelo_id', 'ModeloMarca');
     $options = array(
             'tabindex' => '0',
-            'empty' => '(not set)',
+            'empty' => '(no seleccionado)',
     );
     ?>
     <?php echo $form->dropDownList($model,'modelos_modelo_id', $modelos_list, $options); ?>
@@ -109,7 +109,7 @@
     $monitoreos_list = CHtml::listData(TiposMonitoreo::model()->findAll(), 'tipo_monitoreo_id', 'nombre_tipo_monitoreo');
     $options = array(
             'tabindex' => '0',
-            'empty' => '(not set)',
+            'empty' => '(no seleccionado)',
     );
     ?>
     <?php echo $form->dropDownList($model,'tipos_monitoreo_tipo_monitoreo_id', $monitoreos_list, $options); ?>

@@ -25,7 +25,7 @@
     $tipoSensor_list = CHtml::listData(TiposSensores::model()->findAll(), 'tipo_sensor_id', 'nombre_sensor');
     $options = array(
             'tabindex' => '0',
-            'empty' => '(not set)',
+            'empty' => '(no seleccionado)',
     );
     ?>
     <?php echo $form->dropDownList($model,'tipos_sensores_tipo_sensor_id', $tipoSensor_list, $options); ?>
@@ -38,7 +38,7 @@
     $modelos_list = CHtml::listData(Modelos::model()->findAll(array("condition"=>"discriminante = 'SEN' ")), 'modelo_id', 'ModeloMarca');
     $options = array(
             'tabindex' => '0',
-            'empty' => '(not set)',
+            'empty' => '(no seleccionado)',
     );
     ?>
     <?php echo $form->dropDownList($model,'modelos_modelo_id', $modelos_list, $options); ?>

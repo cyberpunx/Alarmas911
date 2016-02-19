@@ -141,7 +141,7 @@ class PanelesController extends Controller
 				throw $e;
 			}
 		}
-
+	}
 	/**
 	 * Lists all models.
 	 */

@@ -43,7 +43,9 @@ class Baterias extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('sistema_alarmas_sistema_alarma_id, modelos_modelo_id, tipos_baterias_tipo_bateria_id', 'required'),
-			array('sistema_alarmas_sistema_alarma_id, modelos_modelo_id, tipos_baterias_tipo_bateria_id, vida_util', 'length', 'max'=>11),
+			array('sistema_alarmas_sistema_alarma_id, modelos_modelo_id, tipos_baterias_tipo_bateria_id', 'length', 'max'=>11),
+			array('vida_util','numerical', 'integerOnly'=>true, 'min'=>1),
+				
 			array('observaciones_bateria', 'length', 'max'=>128),
 			array('fecha_alta, fecha_baja', 'safe'),
 			// The following rule is used by search().

@@ -44,7 +44,7 @@ class OrdenesServicio extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('fecha_emision, sistema_alarmas_sistema_alarma_id', 'required'),
-			array('importe', 'numerical'),
+			array('importe', 'numerical','min'=>0.01),
 			array('observaciones_orden_servicio', 'length', 'max'=>128),
 			array('prioridad, sistema_alarmas_sistema_alarma_id, usuarios_usuario_id', 'length', 'max'=>11),
 			array('fecha_cierre, vencimiento_orden', 'safe'),
